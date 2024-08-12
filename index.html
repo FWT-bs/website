@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Chat AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #000000; /* Black background */
+            color: #BB86FC; /* Use the exact purple from the image */
+        }
+
+        .text-customPurple {
+            color: #7e3fef;
+        }
+
+        .text-customPink {
+            color: #ff7cfd; /* Adjust this value to a lighter pink based on your preference */
+        }
+
+        .bg-customPurple {
+            background-color: #BB86FC;
+        }
+
+        .bg-customPink {
+            background-color: #af678e; /* Adjust this value to a lighter pink based on your preference */
+        }
+
+        /* Additional margin to move the top bar down */
+        header {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased" style="font-family: 'Inter', sans-serif;">
+
+    <!-- Header -->
+    <header class="relative top-[30px] left-0 right-0 h-[80px] flex z-[99] bg-black items-center border-b border-black">
+        <div class="h-full flex items-center mx-auto max-w-screen-xl w-full px-4">
+            <div class="mr-auto flex items-center">
+                <img src="logo.png" alt="Logo" class="w-[10px] h-[10px]">
+                <span class="text-customPurple text-xl ml-2">Hotel Chat AI</span>
+            </div>
+            <nav class="flex space-x-6">
+                <a href="#" class="text-customPurple font-medium hover:underline">Home</a>
+                <a href="#" class="text-customPurple font-medium hover:underline">Features</a>
+                <a href="#" class="text-customPurple font-medium hover:underline">Pricing</a>
+            </nav>
+            <div class="flex space-x-4 ml-4">
+                <a href="#" class="text-customPurple border border-customPurple px-4 py-2 rounded-full hover:bg-customPurple hover:text-white">Get Started</a>
+                <a href="#" class="bg-customPurple text-white px-4 py-2 rounded-full hover:bg-customPink">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section (Hero Section) -->
+    <section class="pt-[150px] flex items-center justify-between max-w-7xl mx-auto py-24 px-6">
+        <div class="md:w-1/2 text-center md:text-left">
+            <h1 class="text-5xl md:text-6xl font-bold text-customPurple mb-6">Unlock the Future of Hotel Customer Service</h1>
+            <p class="text-xl text-customPink mb-8">Our AI-powered hotel chatbot revolutionizes customer service by answering your guests' questions instantly and accurately, 24/7. Enhance their experience and boost your revenue.</p>
+            <div class="flex justify-center md:justify-start space-x-4">
+                <a href="#" class="px-8 py-3 border border-customPurple text-customPurple rounded-full hover:bg-customPurple hover:text-white">See How It Works</a>
+                <a href="#" class="px-8 py-3 bg-customPurple text-white rounded-full hover:bg-customPink">Get Started</a>
+            </div>
+        </div>
+        <div class="mt-10 md:mt-0 md:w-1/2 flex justify-center">
+            <img src="chaticon.png" alt="chaticon" class="rounded-lg shadow-lg max-w-full h-auto">
+        </div>
+    </section>
+
+    <!-- Our Top Features Section -->
+    <section class="bg-black text-customPurple py-20 flex items-center">
+        <div class="max-w-screen-lg mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-4">Our Top Features</h2>
+            <p class="text-lg mb-12 text-customPink">Discover how Hotel Chat AI's smart features transform your customer service into a seamless and efficient experience for your guests.</p>
+
+            <div class="grid gap-8 md:grid-cols-3 text-left">
+                <!-- Feature 1 -->
+                <div class="flex items-start">
+                    <div class="text-customPurple text-3xl mr-4">
+                        <!-- Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-cloud" viewBox="0 0 16 16">
+                            <path d="M4.406 4.342A5.53 5.53 0 0 1 8 3c.86 0 1.68.202 2.406.342A5.53 5.53 0 0 1 12 4c1.68 0 3 1.32 3 3s-1.32 3-3 3H4a3 3 0 1 1 0-6h.406z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">24/7 Support</h3>
+                        <p class="text-lg text-customPink">Provide unparalleled customer support around the clock, ensuring no guest inquiry goes unanswered.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="flex items-start">
+                    <div class="text-customPurple text-3xl mr-4">
+                        <!-- Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                            <path d="M16 8s-3-5.333-8-5.333S0 8 0 8s3 5.333 8 5.333S16 8 16 8zM8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Multi-Language</h3>
+                        <p class="text-lg text-customPink">Break language barriers with our multilingual support, catering to diverse guests from all over the world.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="flex items-start">
+                    <div class="text-customPurple text-3xl mr-4">
+                        <!-- Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                            <path d="M0 1a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1h10V1a1 1 0 0 1 1 1h1a1 1 0 0 1 1 1v1h1v2H0V2h1V1z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Seamless Integration</h3>
+                        <p class="text-lg text-customPink">Effortlessly integrate with your existing systems for a smooth and hassle-free setup process.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ml-10">
+            <img src="robot.png" alt="Laptop with image" class="shadow-lg rounded-lg">
+        </div>
+    </section>
+
+    <!-- Key Benefits Section -->
+    <section class="bg-black text-customPurple py-20">
+        <div class="max-w-screen-lg mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-4">Key Benefits</h2>
+            <p class="text-lg mb-12 text-customPink">Unveil the advantages of utilizing Hotel Chat AI and see how it can improve guest experience and your hotel's operations.</p>
+
+            <div class="grid gap-8 md:grid-cols-3 text-left">
+                <!-- Benefit 1 -->
+                <div class="flex items-start">
+                    <div class="text-customPurple text-3xl mr-4">
+                        <!-- Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-droplet" viewBox="0 0 16 16">
+                            <path d="M6 9c0-1.45.63-3.3 6-9 5.37 5.7 6 7.55 6 9a6 6 0 1 1-12 0c0-1.95 2.09-4.57 6-9z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Increased Efficiency</h3>
+                        <p class="text-lg text-customPink">Automate common guest inquiries and operational tasks, freeing up your staff to focus on more critical aspects of service.</p>
+                    </div>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="flex items-start">
+                    <div class="text-customPurple text-3xl mr-4">
+                        <!-- Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                            <path d="M8 3.5a.5.5 0 0 1 .5.5v3h2.5a.5.5 0 0 1 0 1H8a.5.5 0 0 1-.5-.5V4a.5.5 0 0 1 .5-.5z" />
+                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 13A6 6 0 1 1 8 2a6 6 0 0 1 0 12z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Enhanced Engagement</h3>
+                        <p class="text-lg text-customPink">Engage with your guests in a personalized and timely manner, making their stay more enjoyable and memorable.</p>
+                    </div>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="flex items-start">
+                    <div class="text-customPurple text-3xl mr-4">
+                        <!-- Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-piggy-bank" viewBox="0 0 16 16">
+                            <path d="M5.5 3a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Cost Saving</h3>
+                        <p class="text-lg text-customPink">Reduce overhead costs by streamlining customer service operations and minimizing the need for extensive staffing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Asked Questions Section -->
+    <section class="bg-black text-customPurple py-20">
+        <div class="max-w-screen-lg mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+            <p class="text-lg mb-12 text-customPink">Find answers to common queries about Hotel Chat AI and how it can benefit your hotel.</p>
+
+            <div class="grid gap-8 md:grid-cols-2">
+                <div>
+                    <h3 class="text-xl font-bold">How does Hotel Chat AI improve guest satisfaction?</h3>
+                    <p class="text-lg text-customPink">Hotel Chat AI offers instant, accurate responses to guests' questions, ensuring a smoother and more enjoyable stay experience, which leads to higher satisfaction ratings.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold">Is it easy to integrate with my current system?</h3>
+                    <p class="text-lg text-customPink">Absolutely! Hotel Chat AI is designed to seamlessly integrate with your existing website, with only one line of code!</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold">Can Hotel Chat AI handle multiple languages?</h3>
+                    <p class="text-lg text-customPink">Yes, our chatbot supports multiple languages, making it easier to cater to guests from diverse backgrounds.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold">What kind of support do you offer?</h3>
+                    <p class="text-lg text-customPink">We provide technical support to ensure that your chatbot runs smoothly and efficiently, addressing any issues that may arise promptly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-black text-customPurple py-6 text-center">
+        <div class="mx-auto max-w-screen-xl">
+            <p class="text-customPink">© 2024 Hotel Chat AI. All rights reserved.</p>
+        </div>
+
+        <div class="flex justify-center space-x-6 mt-6">
+            <a href="#" class="text-customPurple"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-customPurple"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-customPurple"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-customPurple"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <div class="flex justify-between mt-6 text-customPink">
+            <div class="text-left">
+                <ul>
+                    <li><a href="#" class="hover:underline">Features</a></li>
+                    <li><a href="#" class="hover:underline">Something Great</a></li>
+                    <li><a href="#" class="hover:underline">Another Thing</a></li>
+                    <li><a href="#" class="hover:underline">So Many Features</a></li>
+                    <li><a href="#" class="hover:underline">It's Amazing</a></li>
+                </ul>
+            </div>
+            <div class="text-left">
+                <ul>
+                    <li><a href="#" class="hover:underline">Company</a></li>
+                    <li><a href="#" class="hover:underline">Blog</a></li>
+                    <li><a href="#" class="hover:underline">About Us</a></li>
+                    <li><a href="#" class="hover:underline">Contact</a></li>
+                    <li><a href="#" class="hover:underline">Jobs</a></li>
+                </ul>
+            </div>
+            <div class="text-left">
+                <ul>
+                    <li><a href="#" class="hover:underline">Legal</a></li>
+                    <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:underline">Terms of Use</a></li>
+                    <li><a href="#" class="hover:underline">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Scripts -->
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
