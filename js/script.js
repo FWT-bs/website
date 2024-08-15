@@ -3,32 +3,35 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault(); // Prevent the default form submission
 
         // Capture form data
-        const hotelName = document.getElementById("hotel-name").value;
+        const companyName = document.getElementById("company-name").value;
         const email = document.getElementById("email").value;
         const phoneNumber = document.getElementById("phone-number").value;
+        const country = document.getElementById("country").value;
         const details = document.getElementById("details").value;
 
-        // Send the data to the Node.js backend hosted on Render
-        fetch('https://website-gn0e.onrender.com/submit-quote', {
+        // Validate required fields
+        if (!companyName || !email || !phoneNumber || !country) {
+            alert('Please fill out all required fields.');
+            return;
+        }
+
+        // Google Form Submission
+        const googleFormId = "1FAIpQLSfm_Y_IhFLXXdguXpTbXfu1mVdvw1mReql0YwVDR12mwaaI7w";  // Replace with your Google Form ID
+        const formData = new URLSearchParams();
+        formData.append("entry.1811141431", companyName); // Replace with your actual entry ID for company name
+        formData.append("entry.745877733", email); // Replace with your actual entry ID for email
+        formData.append("entry.1799827779", phoneNumber); // Replace with your actual entry ID for phone number
+        formData.append("entry.402324675", country); // Replace with your actual entry ID for country
+        formData.append("entry.920130168", details); // Replace with your actual entry ID for additional details
+
+        fetch(`https://docs.google.com/forms/d/e/${googleFormId}/formResponse`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                hotelName,
-                email,
-                phoneNumber,
-                details
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            document.getElementById("formDataDisplay").innerHTML = `<p>${data.message}</p>`;
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            document.getElementById("formDataDisplay").innerHTML = `<p>Error submitting form. Please try again.</p>`;
+            body: formData
+        }).then(response => {
+            console.log('Google Form submission successful.');
+        }).catch(error => {
+            console.error('Google Form submission error:', error);
         });
     });
 });
+

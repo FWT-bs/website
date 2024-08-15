@@ -82,24 +82,31 @@
         <div class="w-full max-w-lg">
             <form id="quoteForm" class="bg-dark shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <div class="mb-4">
-                    <label class="block text-black text-sm font-bold mb-2" for="hotel-name">
-                        Hotel Name
+                    <label class="block text-black text-sm font-bold mb-2" for="company-name">
+                        Company Name
                     </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" id="hotel-name" type="text" placeholder="Enter your hotel name" style="color: black;">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" id="company-name" type="text" placeholder="Enter your company name" style="color: black;" required>
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-black text-sm font-bold mb-2" for="email">
                         Email
                     </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" id="email" type="email" placeholder="Enter your email" style="color: black;">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" id="email" type="email" placeholder="Enter your email" style="color: black;" required>
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-black text-sm font-bold mb-2" for="phone-number">
                         Phone Number
                     </label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" id="phone-number" type="tel" placeholder="Enter your phone number" style="color: black;">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" id="phone-number" type="tel" placeholder="Enter your phone number" style="color: black;" required>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-black text-sm font-bold mb-2" for="country">
+                        Country
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" id="country" type="text" placeholder="Enter your country" style="color: black;" required>
                 </div>
 
                 <div class="mb-4">
@@ -142,6 +149,8 @@
             </div>
         </div>
     </footer>
+    <!-- Link to the external JavaScript file -->
+<script src="js/script.js"></script>
 
 </body>
 </html>
