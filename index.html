@@ -7,11 +7,13 @@
     <title>Hotel Chat AI</title>
     <link rel="stylesheet" href="output.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-
-
-
     
+    <!-- Step 3: Add Smooth Scrolling CSS -->
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         /*
 
         Headers: text-5xl text-violet-500
@@ -24,7 +26,6 @@
 
 <body class="font-sans antialiased bg-black text-white" style="font-family: 'Inter', sans-serif;">
     
-
     <!-- Header -->
     <header class="relative flex py-4 z-[99] items-center border-b border-black">
         
@@ -34,7 +35,8 @@
                 <span class="text-lg text-purple-400 ml-2">Hotel Chat AI</span>
             </div>
             <nav class="flex space-x-6">
-                <a href="features.html" class="font-medium hover:underline">Features</a>
+                <!-- Step 2: Update the href to link to the features section -->
+                <a href="#features" class="font-medium hover:underline">Features</a>
                 <a href="pricing.html" class="font-medium hover:underline">Pricing</a>
             </nav>
             <div class="flex space-x-4 ml-4">
@@ -57,14 +59,11 @@
                 
             </div>
         </div>
-        <!-- <div class="mt-10 md:mt-0 md:w-1/2 flex justify-center">
-            <img src="robot.png" alt="chaticon" class="rounded-lg shadow-lg max-w-full h-auto animate-fadeIn">
-        </div> -->
-        
     </section>
 
     <!-- Our Top Features Section -->
-    <section class="py-20 flex items-center">
+    <!-- Step 1: Add the ID 'features' to this section -->
+    <section id="features" class="py-20 flex items-center">
         <div class="max-w-5xl mx-auto px-6">
             <h2 class="text-5xl text-violet-500 font-bold mb-4">Our Top Features</h2>
             <p class="text-lg text-purple-400 mb-12 ">Hotel Chat AI's smart features transform your customer service into a seamless and efficient experience for your guests.</p>
@@ -108,14 +107,11 @@
                     </div>
                     <div>
                         <h3 class="text-lg text-purple-400 font-bold">Seamless Integration</h3>
-                        <p class="text-lg text-purple-400 ">Hotel Chat AI can be effortlessly integrated into your website with only one line of code, making sure the proccess is simple and easy as possible.</p>
+                        <p class="text-lg text-purple-400 ">Hotel Chat AI can be effortlessly integrated into your website with only one line of code, making sure the process is simple and easy as possible.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <div class="ml-10">
-            <img src="future.png" alt="ROBOT" class="shadow-lg rounded-lg">
-        </div> -->
     </section>
 
     <!-- Key Benefits Section -->
