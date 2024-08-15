@@ -12,17 +12,29 @@
         .text-violet {
             color: #7e3fef;
         }
+
         .text-purple {
             color: #BB86FC;
         }
+
         .bg-fuchsia {
             background-color: #ff7cfd;
         }
+
         .bg-dark {
             background-color: #121212;
         }
+
         .border-fuchsia {
             border-color: #ff7cfd;
+        }
+
+        /* Increase height */
+        .plan-card {
+            max-width: 20rem; /* Further increased width */
+            min-height: 28rem; /* Increased height */
+            padding: 2rem; /* Extra padding for spacing */
+            flex: 1; /* Ensure flex-grow for equal spacing */
         }
     </style>
 </head>
@@ -43,17 +55,15 @@
         </div>
     </header>
 
-<!-- Pricing Section -->
-<section class="flex flex-col items-center max-w-5xl mx-auto py-24 px-6 text-center">
-    <!-- Center the heading -->
-    <div class="w-full">
-        <h1 class="text-5xl text-violet font-bold">Our Pricing Plans</h1>
-    </div>
+    <!-- Heading Section -->
+    <section class="flex justify-center py-24">
+        <h1 class="text-5xl text-violet font-bold text-center">Our Pricing Plans</h1>
+    </section>
 
-    <!-- Pricing plans -->
-    <div class="grid gap-8 md:grid-cols-4 w-full justify-items-center mt-12">
+    <!-- Pricing Section -->
+    <section class="flex flex-wrap justify-center gap-8 w-full max-w-6xl mx-auto px-6 pt-32"> <!-- Adjusted Padding Top -->
         <!-- Basic Plan -->
-        <div class="p-8 bg-dark rounded-lg shadow-lg">
+        <div class="plan-card p-8 bg-dark rounded-lg shadow-lg">
             <h2 class="text-3xl text-purple font-bold mb-4">Basic</h2>
             <p class="text-2xl text-fuchsia mb-6">$100 <span class="text-lg text-purple">/ month</span></p>
             <ul class="text-lg text-purple mb-6">
@@ -66,7 +76,7 @@
         </div>
 
         <!-- Pro Plan -->
-        <div class="p-8 bg-dark rounded-lg shadow-lg">
+        <div class="plan-card p-8 bg-dark rounded-lg shadow-lg">
             <h2 class="text-3xl text-purple font-bold mb-4">Pro</h2>
             <p class="text-2xl text-fuchsia mb-6">$120 <span class="text-lg text-purple">/ month</span></p>
             <ul class="text-lg text-purple mb-6">
@@ -79,7 +89,7 @@
         </div>
 
         <!-- Enterprise Plan -->
-        <div class="p-8 bg-dark rounded-lg shadow-lg">
+        <div class="plan-card p-8 bg-dark rounded-lg shadow-lg">
             <h2 class="text-3xl text-purple font-bold mb-4">Enterprise</h2>
             <p class="text-2xl text-fuchsia mb-6">$150 <span class="text-lg text-purple">/ month</span></p>
             <ul class="text-lg text-purple mb-6">
@@ -92,7 +102,7 @@
         </div>
 
         <!-- Custom Plan -->
-        <div class="p-8 bg-dark rounded-lg shadow-lg">
+        <div class="plan-card p-8 bg-dark rounded-lg shadow-lg">
             <h2 class="text-3xl text-purple font-bold mb-4">Custom Plan</h2>
             <p class="text-2xl text-fuchsia mb-6">Contact Us</p>
             <ul class="text-lg text-purple mb-6">
@@ -103,9 +113,7 @@
             </ul>
             <a href="contact.html" class="bg-fuchsia text-white px-6 py-3 rounded-full hover:bg-violet transition transform hover:scale-105">Get a Quote</a>
         </div>
-    </div>
-</section>
-
+    </section>
 
     <!-- Footer Section -->
     <footer class="py-6 text-center">
