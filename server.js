@@ -1,15 +1,15 @@
-require('dotenv').config();  // Ensure this is at the top of the file
 const express = require('express');
 const bodyParser = require('body-parser');
-const axios = require('axios'); // Ensure axios is installed with 'npm install axios'
+const axios = require('axios');
+require('dotenv').config();  // Ensure this is at the top of the file
 
 const app = express();
-const PORT = process.env.PORT || 8080;  // Server port
+const PORT = process.env.PORT || 8080;  // Use the port provided by Render or default to 8080
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
-// Handle form submission
+// Define your routes, for example:
 app.post('/submit-quote', async (req, res) => {
     const { hotelName, email, phoneNumber, details } = req.body;
 
