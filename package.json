@@ -1,14 +1,18 @@
 {
-  "devDependencies": {
-    "tailwindcss": "^3.4.9"
+  "name": "hotel-chat-ai",
+  "version": "1.0.0",
+  "description": "A simple AI-powered hotel chat website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
   },
   "dependencies": {
     "axios": "^1.7.4",
-    "express": "^4.17.1",
-    "dotenv": "^10.0.0",
-    "body-parser": "^1.19.0"
+    "body-parser": "^1.19.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.17.1"
   },
-  "scripts": {
-    "start": "node server.js"
+  "devDependencies": {
+    "tailwindcss": "^3.4.9"
   }
 }

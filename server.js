@@ -1,15 +1,20 @@
+// server.js
+require('dotenv').config();  // Load environment variables from .env file
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
-require('dotenv').config();  // Ensure this is at the top of the file
+const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 8080;  // Use the port provided by Render or default to 8080
+const PORT = process.env.PORT || 8080;  // Use the PORT environment variable provided by Render
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
-// Define your routes, for example:
+// Serve static files (e.g., your HTML, CSS, JS)
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Handle form submission
 app.post('/submit-quote', async (req, res) => {
     const { hotelName, email, phoneNumber, details } = req.body;
 
@@ -40,7 +45,12 @@ app.post('/submit-quote', async (req, res) => {
     }
 });
 
+// Serve index.html or quote.html by default
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'quote.html'));
+});
+
 // Start the server
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
