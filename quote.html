@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Quote - Hotel Chat AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="output.css">
+    <style>
+        /* Custom colors */
+        .text-violet {
+            color: #7e3fef;
+        }
+
+        .text-purple {
+            color: #BB86FC;
+        }
+
+        .bg-fuchsia {
+            background-color: #ff7cfd;
+        }
+
+        .bg-dark {
+            background-color: #121212;
+        }
+
+        .text-gray-700 {
+            color: #000000; /* Set label text color to black */
+        }
+
+        .bg-gray-200 {
+            background-color: #e5e7eb; /* Lighter background for input fields */
+        }
+
+        .border-red-500 {
+            border-color: #ff7cfd; /* Adjusted for theme */
+        }
+
+        .bg-blue-500 {
+            background-color: #7e3fef; /* Matching primary color */
+        }
+
+        .hover\:bg-blue-700:hover {
+            background-color: #5b2ac3; /* Slightly darker violet for hover */
+        }
+
+        .text-blue-500 {
+            color: #BB86FC; /* Matching the secondary color */
+        }
+
+        .hover\:text-blue-800:hover {
+            color: #9b6dfb; /* Slightly darker purple for hover */
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased bg-black text-white" style="font-family: 'Inter', sans-serif;">
+
+    <!-- Header -->
+    <header class="relative flex py-4 z-[99] items-center border-b border-black">
+        <div class="h-full flex items-center mx-auto max-w-5xl w-full px-4">
+            <div class="mr-auto flex items-center">
+                <img src="logo.png" alt="Logo" style="width: 60px; height: 60px;">
+                <span class="text-lg text-purple ml-2">Hotel Chat AI</span>
+            </div>
+            
+            <nav class="flex space-x-6">
+                <a href="index.html" class="font-medium hover:underline">Home</a>
+                <a href="pricing.html" class="font-medium hover:underline">Pricing</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Get a Quote Heading Section -->
+    <section class="flex justify-center max-w-5xl mx-auto py-16 px-6">
+        <h1 class="text-5xl text-violet font-bold">Get a Quote</h1>
+    </section>
+    
+    <!-- Form Section -->
+    <section class="flex flex-col items-center max-w-5xl mx-auto py-16 px-6">
+        <div class="w-full max-w-lg">
+            <form id="quoteForm" class="bg-dark shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <div class="mb-4">
+                    <label class="block text-black text-sm font-bold mb-2" for="hotel-name">
+                        Hotel Name
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" id="hotel-name" type="text" placeholder="Enter your hotel name" style="color: black;">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-black text-sm font-bold mb-2" for="email">
+                        Email
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" id="email" type="email" placeholder="Enter your email" style="color: black;">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-black text-sm font-bold mb-2" for="phone-number">
+                        Phone Number
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" id="phone-number" type="tel" placeholder="Enter your phone number" style="color: black;">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-black text-sm font-bold mb-2" for="details">
+                        Additional Details
+                    </label>
+                    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-gray-200" id="details" placeholder="Provide any additional details" rows="4" style="color: black;"></textarea>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        Submit
+                    </button>
+                </div>
+            </form>
+            <!-- Display submitted data -->
+            <div id="formDataDisplay" class="text-white mt-4"></div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="py-6 text-center">
+        <div class="mx-auto max-w-5xl">
+            <p class="text-purple">© 2024 Hotel Chat AI. All rights reserved.</p>
+        </div>
+
+        <div class="flex justify-center space-x-6 mt-6">
+            <a href="#" class="text-purple"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-purple"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-purple"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-purple"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <div class="flex justify-center mt-6">
+            <div class="text-center">
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Help</a></li>
+                    <li><a href="#" class="hover:underline">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script to capture and display form data -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("quoteForm").addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Capture form data
+                const hotelName = document.getElementById("hotel-name").value;
+                const email = document.getElementById("email").value;
+                const phoneNumber = document.getElementById("phone-number").value;
+                const details = document.getElementById("details").value;
+
+                // Send the data to the server
+                fetch('/submit-quote', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        hotelName,
+                        email,
+                        phoneNumber,
+                        details
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    document.getElementById("formDataDisplay").innerHTML = `<p>${data.message}</p>`;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    document.getElementById("formDataDisplay").innerHTML = `<p>Error submitting form. Please try again.</p>`;
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
