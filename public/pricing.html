@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Hotel Chat AI</title>
+    <link rel="stylesheet" href="output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom colors */
+        .text-violet {
+            color: #7e3fef;
+        }
+
+        .text-purple {
+            color: #BB86FC;
+        }
+
+        .bg-fuchsia {
+            background-color: #ff7cfd;
+        }
+
+        .bg-dark {
+            background-color: #121212;
+        }
+
+        .border-fuchsia {
+            border-color: #ff7cfd;
+        }
+
+        /* Increase height */
+        .plan-card {
+            max-width: 20rem; /* Further increased width */
+            min-height: 28rem; /* Increased height */
+            padding: 2rem; /* Extra padding for spacing */
+            flex: 1; /* Ensure flex-grow for equal spacing */
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased bg-black text-white" style="font-family: 'Inter', sans-serif;">
+
+    <!-- Header -->
+    <header class="relative flex py-4 z-[99] items-center border-b border-black">
+        <div class="h-full flex items-center mx-auto max-w-5xl w-full px-4">
+            <div class="mr-auto flex items-center">
+                <img src="logo.png" alt="Logo" style="width: 60px; height: 60px;">
+                <span class="text-lg text-purple ml-2">Hotel Chat AI</span> <!-- Adjust text size slightly -->
+            </div>
+            <nav class="flex space-x-6">
+                <a href="index.html" class="font-medium hover:underline">Home</a>
+                <a href="pricing.html" class="font-medium hover:underline">Pricing</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Heading Section -->
+    <section class="flex justify-center py-24">
+        <h1 class="text-5xl text-violet font-bold text-center">Our Pricing Plans</h1>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="flex flex-wrap justify-center gap-8 w-full max-w-6xl mx-auto px-6 pt-32"> <!-- Adjusted Padding Top -->
+        <!-- Basic Plan -->
+        <div class="plan-card p-8 bg-dark rounded-lg shadow-lg">
+            <h2 class="text-3xl text-purple font-bold mb-4">Basic</h2>
+            <p class="text-2xl text-fuchsia mb-6">$100 <span class="text-lg text-purple">/ month</span></p>
+            <ul class="text-lg text-purple mb-6">
+                <li>1000 Cap Bot Responses Across All Hotels Per Month</li>
+                <li>Max of 10 Hotels</li>
+                <li>1 Language Bot</li>
+                <li>One time Update to Bot Knowledge</li>
+            </ul>
+            <a href="#" class="bg-fuchsia text-white px-6 py-3 rounded-full hover:bg-violet transition transform hover:scale-105">Choose Basic</a>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="plan-card p-8 bg-dark rounded-lg shadow-lg">
+            <h2 class="text-3xl text-purple font-bold mb-4">Pro</h2>
+            <p class="text-2xl text-fuchsia mb-6">$120 <span class="text-lg text-purple">/ month</span></p>
+            <ul class="text-lg text-purple mb-6">
+                <li>2000 Cap Bot Responses Across All Hotels Per Month</li>
+                <li>Max of 20 Hotels</li>
+                <li>2 Language Bot</li>
+                <li>1 Update to Bot Knowledge Per Month</li>
+            </ul>
+            <a href="#" class="bg-fuchsia text-white px-6 py-3 rounded-full hover:bg-violet transition transform hover:scale-105">Choose Pro</a>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="plan-card p-8 bg-dark rounded-lg shadow-lg">
+            <h2 class="text-3xl text-purple font-bold mb-4">Enterprise</h2>
+            <p class="text-2xl text-fuchsia mb-6">$150 <span class="text-lg text-purple">/ month</span></p>
+            <ul class="text-lg text-purple mb-6">
+                <li>UNLIMITED Cap Bot Responses Across All Hotels Per Month</li>
+                <li>UNLIMITED Hotels</li>
+                <li>Multilingual Language Bot</li>
+                <li>Constant Updates to Bot Knowledge</li>
+            </ul>
+            <a href="#" class="bg-fuchsia text-white px-6 py-3 rounded-full hover:bg-violet transition transform hover:scale-105">Choose Enterprise</a>
+        </div>
+
+        <!-- Custom Plan -->
+        <div class="plan-card p-8 bg-dark rounded-lg shadow-lg">
+            <h2 class="text-3xl text-purple font-bold mb-4">Custom Plan</h2>
+            <p class="text-2xl text-fuchsia mb-6">Contact Us</p>
+            <ul class="text-lg text-purple mb-6">
+                <li>Custom Cap Bot Responses Per Month</li>
+                <li>Custom Number of Hotels</li>
+                <li>Multilingual Language Bot</li>
+                <li>Custom Updates to Bot Knowledge</li>
+            </ul>
+            <a href="quote.html" class="bg-fuchsia text-white px-6 py-3 rounded-full hover:bg-violet transition transform hover:scale-105">Get a Quote</a>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="py-6 text-center">
+        <div class="mx-auto max-w-5xl">
+            <p class="text-purple">© 2024 Hotel Chat AI. All rights reserved.</p>
+        </div>
+
+        <div class="flex justify-center space-x-6 mt-6">
+            <a href="#" class="text-purple"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-purple"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-purple"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-purple"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <div class="flex justify-center mt-6">
+            <div class="text-center">
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Help</a></li>
+                    <li><a href="#" class="hover:underline">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
