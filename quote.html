@@ -155,8 +155,8 @@
                 const phoneNumber = document.getElementById("phone-number").value;
                 const details = document.getElementById("details").value;
 
-                // Send the data to the server
-                fetch('/submit-quote', {
+                // Send the data to the Render backend
+                fetch('https://website-gn0e.onrender.com/submit-quote', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
