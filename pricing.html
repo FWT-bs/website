@@ -45,13 +45,21 @@
     <header class="relative flex py-4 z-[99] items-center border-b border-black">
         <div class="h-full flex items-center mx-auto max-w-5xl w-full px-4">
             <div class="mr-auto flex items-center">
-                <img src="logo.png" alt="Logo" style="width: 60px; height: 60px;">
-                <span class="text-lg text-purple ml-2">Hotel Chat AI</span> <!-- Adjust text size slightly -->
+                <a href="index.html" class="flex items-center" style="text-decoration: none;">
+                    <img src="logo.png" alt="Logo" style="width: 60px; height: 60px;">
+                    <span class="text-lg text-purple ml-2">Hotel Chat AI</span>
+                </a>
             </div>
-            <nav class="flex space-x-6">
-                <a href="index.html" class="font-medium hover:underline">Home</a>
+            
+            <nav class="navbar-items md:flex md:flex-row space-x-6">
+                <a href="#features" class="font-medium hover:underline">Features</a>
                 <a href="pricing.html" class="font-medium hover:underline">Pricing</a>
             </nav>
+            
+            <div class="flex space-x-4 ml-4">
+                <a href="#" class="px-8 py-3 border border-fuchsia-400 rounded-full hover:bg-fuchsia-400/50 transition transform hover:scale-105">Sign In</a>
+                <a href="#" class="px-8 py-3 bg-fuchsia-400/50 rounded-full hover:bg-fuchsia-400/50 transition transform hover:scale-105">Get Started</a>
+            </div>
         </div>
     </header>
 
