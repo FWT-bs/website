@@ -1,25 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html"],  // Ensure this path is correct
+  content: [
+    "./index.html",  // Include your HTML file(s)
+  ],
   theme: {
     extend: {
       colors: {
         customPurple: '#7c3aed',
         customBlack: '#000000',
-        customPink: '#FF0077', // Custom pink color
+        customPink: '#FF0077',
       },
     },
   },
-  // Enable the default color palette by not overriding it entirely
-  purge: {
-    options: {
-      safelist: [
-        'bg-fuchsia-400',
-        'hover:bg-fuchsia-400',
-        'bg-fuchsia-500',
-        'hover:bg-fuchsia-500'
-      ],  // Safelist classes to prevent them from being purged
-    },
-  },
+  // Safelist any classes that are conditionally generated in the template
+  safelist: [
+    'bg-fuchsia-400',
+    'hover:bg-fuchsia-400',
+    'bg-fuchsia-500',
+    'hover:bg-fuchsia-500'
+  ],
   plugins: [],
 }
+
