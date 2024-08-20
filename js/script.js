@@ -35,3 +35,27 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const demoButton = document.getElementById('see-demo-btn');
+    if (demoButton) {
+        demoButton.addEventListener('click', function(event) {
+            showChat();  // Trigger the function to open the chatbot
+        });
+    }
+});
+
+function showChat() {
+    const chatBox = document.getElementById('helper-box');
+    const activateButton = document.getElementById('helper-activate');
+
+    if (chatBox && activateButton) {
+        // Hide the activate button and show the chat box
+        activateButton.classList.add('tw-hidden');
+        chatBox.classList.remove('tw-hidden');
+        chatBox.classList.add('helper-visible');
+    } else {
+        console.error('Chatbox or activate button not found.');
+    }
+}
+
+
