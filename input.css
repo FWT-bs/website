@@ -14,6 +14,36 @@
 .animate-fadeIn {
   animation: fadeIn 2s ease-in-out;
 }
+
 html {
   scroll-behavior: smooth;
+}
+
+/* Mobile responsiveness for navbar and text centering */
+@media (max-width: 768px) {
+  /* Ensure that the navigation bar items stack correctly */
+  .navbar-items {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+  }
+
+  /* Ensure that the buttons container takes full width */
+  .buttons-container {
+      width: 100%;
+      text-align: center;
+  }
+
+  /* Make sure buttons stack properly */
+  .buttons-container .flex {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  /* Adjust the width and spacing for buttons */
+  .buttons-container a {
+      width: 100%;
+      margin-bottom: 1rem;
+  }
 }
