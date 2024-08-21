@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /quote.html
+Allow: /index.html
+Allow: /pricing.html
+Sitemap: https://hotelchatai.com/sitemap.xml
+
