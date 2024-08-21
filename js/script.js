@@ -1,39 +1,45 @@
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("quoteForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent the default form submission
+    const quoteForm = document.getElementById("quoteForm");
 
-        // Capture form data
-        const companyName = document.getElementById("company-name").value;
-        const email = document.getElementById("email").value;
-        const phoneNumber = document.getElementById("phone-number").value;
-        const country = document.getElementById("country").value;
-        const details = document.getElementById("details").value;
+    // Ensure that the form exists before adding an event listener
+    if (quoteForm) {
+        quoteForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
 
-        // Validate required fields
-        if (!companyName || !email || !phoneNumber || !country) {
-            alert('Please fill out all required fields.');
-            return;
-        }
+            // Capture form data
+            const companyName = document.getElementById("company-name").value;
+            const email = document.getElementById("email").value;
+            const phoneNumber = document.getElementById("phone-number").value;
+            const country = document.getElementById("country").value;
+            const details = document.getElementById("details").value;
 
-        // Google Form Submission
-        const googleFormId = "1FAIpQLSfm_Y_IhFLXXdguXpTbXfu1mVdvw1mReql0YwVDR12mwaaI7w";  // Replace with your Google Form ID
-        const formData = new URLSearchParams();
-        formData.append("entry.1811141431", companyName); // Replace with your actual entry ID for company name
-        formData.append("entry.745877733", email); // Replace with your actual entry ID for email
-        formData.append("entry.1799827779", phoneNumber); // Replace with your actual entry ID for phone number
-        formData.append("entry.402324675", country); // Replace with your actual entry ID for country
-        formData.append("entry.920130168", details); // Replace with your actual entry ID for additional details
+            // Validate required fields
+            if (!companyName || !email || !phoneNumber || !country) {
+                alert('Please fill out all required fields.');
+                return;
+            }
 
-        fetch(`https://docs.google.com/forms/d/e/${googleFormId}/formResponse`, {
-            method: 'POST',
-            body: formData
-        }).then(response => {
-            console.log('Google Form submission successful.');
-        }).catch(error => {
-            console.error('Google Form submission error:', error);
+            // Google Form Submission
+            const googleFormId = "1FAIpQLSfm_Y_IhFLXXdguXpTbXfu1mVdvw1mReql0YwVDR12mwaaI7w"; // Your Google Form ID
+            const formData = new URLSearchParams();
+            formData.append("entry.1811141431", companyName);
+            formData.append("entry.745877733", email);
+            formData.append("entry.1799827779", phoneNumber);
+            formData.append("entry.402324675", country);
+            formData.append("entry.920130168", details);
+
+            fetch(`https://docs.google.com/forms/d/e/${googleFormId}/formResponse`, {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                console.log('Google Form submission successful.');
+            }).catch(error => {
+                console.error('Google Form submission error:', error);
+            });
         });
-    });
+    }
 });
+
 
 document.addEventListener('DOMContentLoaded', function() {
     const demoButton = document.getElementById('see-demo-btn');
