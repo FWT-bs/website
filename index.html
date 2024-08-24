@@ -12,14 +12,30 @@
     <link rel="stylesheet" href="output.css">
     <link rel="icon" href="/logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-
-    <style>
+        <style>
         html {
             scroll-behavior: smooth;
         }
 
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 2s ease-in-out;
+        }
+
         /* Responsive button and text sizes for various screen widths */
-        @media (min-width: 24px) {
+        @media (min-width: 1024px) {
             .button-lg {
                 padding: 0.75rem 2.5rem;
                 font-size: 1.25rem;
@@ -34,7 +50,7 @@
             }
         }
 
-        @media (min-width: 24px) and (max-width: 1023px) {
+        @media (max-width: 1024px) {
             .button-lg {
                 padding: 0.75rem 1.5rem;
                 font-size: 1.125rem;
@@ -47,9 +63,35 @@
             .title-lg {
                 font-size: 2.75rem;
             }
+
+            /* Ensure the navigation bar items stack correctly */
+            .navbar-items {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 5rem;
+            }
+
+            /* Ensure buttons container takes full width */
+            .buttons-container {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Make sure buttons stack properly */
+            .buttons-container .flex {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* Adjust width and spacing for buttons */
+            .buttons-container a {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
         }
 
-        @media (max-width: 24px) {
+        @media (max-width: 768px) {
             .button-lg {
                 padding: 0.75rem 1rem;
                 font-size: 1rem;
@@ -63,7 +105,7 @@
                 font-size: 2.25rem;
             }
 
-            /* Navbar responsive */
+            /* Navbar responsive adjustments */
             .navbar-items {
                 display: flex;
                 flex-direction: column;
