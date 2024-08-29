@@ -5,8 +5,6 @@ function loadScripts(urls, callback) {
   for (let url of urls) {
     let script = document.createElement('script');
     script.setAttribute('src', url);
-    script.setAttribute('async', true);
-    script.setAttribute('defer', true);
     script.addEventListener('load', () => {
       if (!--waiting) callback();
     });
@@ -25,7 +23,6 @@ loadScripts([
 $('head').append(`
   <script>tailwind.config = {darkMode: 'selector', prefix: 'tw-'}</script>
   <style>#helper *{z-index:1000000000;}.back_2_top{left:15px!important;}</style>
-  
 `);
 $('html').addClass('tw-dark').css('color-scheme', 'dark');
 
@@ -33,11 +30,12 @@ const TURNSTILE_KEYS = [
   '0x4AAAAAAAgUy1r4aTn9g0my',
   '0x4AAAAAAAgm1bM3TuyVObAy',
   '0x4AAAAAAAgm3UZQWSxcZ4wk',
+  '0x4AAAAAAAiB1b81_WCoFAmr',
 ];
 const HOTEL_TURNSTILES = {
   'b7': 0, 'journey': 0, 'bchic': 0, 'bfun': 0, 
   'b6': 1, 'bnight': 1, 'bstay': 1, 'ijourney': 1, 'roumei': 1,
-  'starbeauty': 2, 'website': 2,
+  'starbeauty': 2, 'website': 2, 'o09': 3,
 };
 
 const $script = $(hotelHelperScript);
@@ -72,11 +70,12 @@ $('body').append(`
             <div>Online</div>
           </div>
         </div>
-        <div class='tw-min-h-full tw-flex tw-items-start'>
-          <button id='helper-close-button' class='tw-text-neutral-600 dark:tw-text-neutral-300 hover:tw-opacity-80 active:tw-opacity-50 tw-duration-200 tw-ease-in-out'>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="tw-size-8">
-              <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
-            </svg>
+        <div class='tw-min-h-full tw-flex tw-items-center tw-gap-2'>
+          <button id='helper-reset-button' class='tw-p-1 tw-text-neutral-600 dark:tw-text-neutral-300 hover:tw-opacity-80 active:tw-opacity-50 tw-duration-200 tw-ease-in-out'>
+            <svg xmlns="http://www.w3.org/2000/svg" class="tw-size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> 
+          </button>
+          <button id='helper-close-button' class='tw-p-1 tw-text-neutral-600 dark:tw-text-neutral-300 hover:tw-opacity-80 active:tw-opacity-50 tw-duration-200 tw-ease-in-out'>
+            <svg xmlns="http://www.w3.org/2000/svg" class="tw-size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
           </button>
         </div>
       </div>
@@ -109,8 +108,9 @@ $('body').append(`
           <input type='submit' class='tw-hidden'>
         </form>
         <button id='helper-send-button' class='tw-pr-6 tw-pl-4 tw-flex tw-justify-center tw-items-center [&.helper-can-send]:hover:tw-opacity-80 disabled:tw-opacity-50 [&.helper-can-send]:active:tw-opacity-50 tw-duration-200 tw-ease-in-out' disabled='true'>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="tw-size-7">
-            <path class='!tw-text-blue-500 dark:!tw-text-blue-400 group-[.helper-can-send]:!tw-text-blue-500 dark:group-[.helper-can-send]:!tw-text-blue-400' d="M3.105 2.288a.75.75 0 0 0-.826.95l1.414 4.926A1.5 1.5 0 0 0 5.135 9.25h6.115a.75.75 0 0 1 0 1.5H5.135a1.5 1.5 0 0 0-1.442 1.086l-1.414 4.926a.75.75 0 0 0 .826.95 28.897 28.897 0 0 0 15.293-7.155.75.75 0 0 0 0-1.114A28.897 28.897 0 0 0 3.105 2.288Z" />
+          <svg xmlns="http://www.w3.org/2000/svg" class="tw-size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send-horizontal">
+            <path d="m3 3 3 9-3 9 19-9Z" class="!tw-text-blue-500 dark:!tw-text-blue-400 group-[.helper-can-send]:!tw-text-blue-500 dark:group-[.helper-can-send]:!tw-text-blue-400"/>
+            <path d="M6 12h16" class="!tw-text-blue-500 dark:!tw-text-blue-400 group-[.helper-can-send]:!tw-text-blue-500 dark:group-[.helper-can-send]:!tw-text-blue-400"/>
           </svg>
         </button>
       </div>
@@ -131,12 +131,17 @@ $('body').append(`
 let widgetId = turnstile.render('#helper', { sitekey: TURNSTILE_KEY });  // turnstile widget id
 
 const md = markdownit();
-function getMarkdown(text) {
+function getMarkdown(text, caret = false) {
   let $el = $('<div>'+md.render(text).trim()+'</div>');
-  $el.find('a').addClass('tw-underline tw-underline-offset-2 tw-decoration-neutral-400');
+  $el.find('a').addClass('tw-underline tw-underline-offset-2 tw-decoration-neutral-400').attr('target', '_blank');
   $el.find('ul').addClass('tw-list-disc tw-pl-4');
   $el.find('ol').addClass('tw-list-decimal tw-pl-4');
-  
+  if (caret) {
+    let descendants = $el.find('p:last-child, li:last-child')
+    if (descendants.length) {
+      descendants[descendants.length-1].innerHTML += '|';
+    }
+  }
   return $el;
 }
 
@@ -167,6 +172,32 @@ $('#helper-close-button').on('click', () => {
   setTimeout(showButton, 500);
 });
 
+function resetMessages() {
+  if (localStorage.getItem('messages') == undefined) {
+    localStorage.setItem('messages', JSON.stringify([
+      {
+        role: 'assistant',
+        content: 'Hello, how may I help you today? 😊 您好,今天有什麼需要幫忙的嗎? 😊',
+      },
+    ]));
+  }
+  updateBlockSends(false);
+  messages = JSON.parse(localStorage.getItem('messages'));
+  $('#helper-message-box > :not(#helper-ellipsis)').remove();
+  for (let n = messages.length, i = 0; i < n; i++) {
+    addMessage(messages[i].content, messages[i].role == 'user', false);
+    if (!i) {
+      addSuggestions();
+    }
+  }
+}
+
+$('#helper-reset-button').on('click', () => {
+  console.log('meow!');
+  localStorage.removeItem('messages');
+  resetMessages();
+});
+
 let blockSends = false;
 const enableSend = () => !blockSends && $('#helper-send-button').addClass('helper-can-send').attr('disabled', false);
 const disableSend = () => $('#helper-send-button').removeClass('helper-can-send').attr('disabled', true);
@@ -177,17 +208,6 @@ const updateBlockSends = (val) => {
 };
 
 $('#helper-input').on('input', refreshSend);
-
-if (localStorage.getItem('messages') == undefined) {
-  localStorage.setItem('messages', JSON.stringify([
-    {
-      role: 'assistant',
-      content: 'Welcome to Hotel Chat AI! How may I help you today?',
-    },
-  ]));
-}
-const messages = JSON.parse(localStorage.getItem('messages'));
-// console.log(messages.length);
 
 function scroll() {
   $('#helper-message-box').scrollTop($('#helper-message-box')[0].scrollHeight);
@@ -236,25 +256,30 @@ async function addMessageFromStream(stream, success) {
   const decoder = new TextDecoder();
   let text = '';
   for await (const chunk of asyncIterate(stream)) {
+    await new Promise(r => setTimeout(r, 40));
     text += decoder.decode(chunk);
     if (!text.length) continue;
-    msg.find('.helper-text-box').addClass('tw-py-3').html(getMarkdown(text));
+    msg.find('.helper-text-box').addClass('tw-py-3').html(getMarkdown(text, true));
     messages[idx].content = text;
     updateLocalStorage();
     scroll();
   }
+  msg.find('.helper-text-box').addClass('tw-py-3').html(getMarkdown(text));
   updateBlockSends(false);
   success(text);
 }
 function addSuggestions() {
   const suggestions = [
-    ['💸 Quote/Pricing', 'Where can I get a quote/custom pricing plan?'],
-    ['🤖 How it Works', 'How does the whole proccess of signing up for our services look like?'],
-    ['✨ Our Top Features', 'What are Hotel Chat AIs Top Features?'],
+    ['🛏️ Rooms', 'What rooms do you offer?'],
     ['🪴 Amenities', 'What are some amenities I can expect?'],
-    ['🗼 Attractions', 'What are some nearby attractions?'],
+    ['🗼 Attractions', 'What are some attractions I can visit nearby?'],
     ['🍽️ Restaurants', 'What are some nearby restaurants?'],
-    ['🚄 Transportation', 'What are some transportation methods near the hotel?'],
+    ['🚄 Transportation', 'What are some ways I can get to the hotel?'],
+    ['🛏️ 房間', '你們有提供什麼房間?'],
+    ['🪴 設施', '你們有提供哪些設施?'],
+    ['🗼 景點', '飯店附近有哪些景點?'],
+    ['🍽️ 餐廳', '飯店附近有哪些餐廳?'],
+    ['🚄 交通', '我可以透過哪些方式到達飯店?'],
   ];
   let suggestionContainer = $("<div class='tw-flex tw-flex-wrap tw-text-sm tw-gap-2'></div>");
   for (let [name, prompt] of suggestions) {
@@ -269,12 +294,9 @@ function addSuggestions() {
   }
   $('#helper-message-box').append(suggestionContainer);
 }
-for (let n = messages.length, i = 0; i < n; i++) {
-  addMessage(messages[i].content, messages[i].role == 'user', false);
-  if (!i) {
-    addSuggestions();
-  }
-}
+
+let messages;
+resetMessages();
 
 let resetting = 0;
 async function getTurnstile() {
