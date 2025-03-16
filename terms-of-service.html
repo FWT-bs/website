@@ -1,129 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hotel Chat AI – Privacy Policy</title>
-  <meta name="description" content="Privacy Policy for Hotel Chat AI"/>
-  <link rel="icon" href="/logo.png" type="image/png"/>
-  
-  <!-- Tailwind CSS (linked from your output.css) -->
-  <link rel="stylesheet" href="output.css">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Chat AI - Terms of Service</title>
+    <meta name="description" content="Hotel Chat AI offers an innovative AI-powered chatbot solution designed to transform hotel customer service. Providing 24/7 support, multilingual capabilities, and fast, accurate responses, our chatbot enhances guest experiences while improving operational efficiency. Seamlessly integrate Hotel Chat AI with a single line of code and automate guest inquiries to boost engagement, save costs, and streamline service. Whether you manage a boutique hotel or a large chain, Hotel Chat AI tailors to your unique needs for superior customer satisfaction and revenue growth.">
+    <meta name="keywords" content="Ai, Hotel, chatbot, aichatbot, chatGPT, OpenAI, Elon Musk, Hotel Chatbot, AI assisstance, replacing human, Hotel chatbot, AI-powered chatbot, 24/7 customer support,Multilingual chatbot ,Seamless integration ,Guest engagement, Hotel automation, Customer service automation,Increase hotel efficiency, Reduce operational costs, Boost hotel revenue, Instant responses, Hotel chatbot features ,Chatbot for hotels, Enhance guest experience">
+    <meta name="author" content="Hotel Chat AI">
+    <link rel="stylesheet" href="output.css">
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+        <style>
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <!-- Google Font: Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
 
-  <!-- Additional custom styling -->
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
 
+        .animate-fadeIn {
+            animation: fadeIn 2s ease-in-out;
+        }
 
-    /* Keyframe for fadeIn animation */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .animate-fadeIn {
-      animation: fadeIn 2s ease-in-out;
-    }
+        /* Responsive button and text sizes for various screen widths */
+        @media (min-width: 1024px) {
+            .button-lg {
+                padding: 0.75rem 2.5rem;
+                font-size: 1.25rem;
+            }
 
-    /* Responsive button and text sizes for various screen widths */
-    @media (min-width: 1024px) {
-      .button-lg {
-        padding: 0.75rem 2.5rem;
-        font-size: 1.25rem;
-      }
-      .text-balance {
-        font-size: 1.25rem;
-      }
-      .title-lg {
-        font-size: 3.5rem;
-      }
-    }
+            .text-balance {
+                font-size: 1.25rem;
+            }
 
-    @media (max-width: 1024px) {
-      .button-lg {
-        padding: 0.75rem 1.5rem;
-        font-size: 1.125rem;
-      }
-      .text-balance {
-        font-size: 1.125rem;
-      }
-      .title-lg {
-        font-size: 2.75rem;
-      }
-      .navbar-items {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 5rem;
-      }
-    }
+            .title-lg {
+                font-size: 3.5rem;
+            }
+        }
 
-    @media (max-width: 768px) {
-      .button-lg {
-        padding: 0.75rem 1rem;
-        font-size: 1rem;
-      }
-      .text-balance {
-        font-size: 1rem;
-      }
-      .title-lg {
-        font-size: 2.25rem;
-      }
-      .navbar-items {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.75rem;
-        margin-top: 1rem;
-      }
-      .navbar-items a {
-        display: block;
-        width: 100%;
-        text-align: center;
-      }
-    }
-  </style>
+        @media (max-width: 1024px) {
+            .button-lg {
+                padding: 0.75rem 1.5rem;
+                font-size: 1.125rem;
+            }
+
+            .text-balance {
+                font-size: 1.125rem;
+            }
+
+            .title-lg {
+                font-size: 2.75rem;
+            }
+
+            /* Ensure the navigation bar items stack correctly */
+            .navbar-items {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .button-lg {
+                padding: 0.75rem 1rem;
+                font-size: 1rem;
+            }
+
+            .text-balance {
+                font-size: 1rem;
+            }
+
+            .title-lg {
+                font-size: 2.25rem;
+            }
+
+            /* Navbar responsive adjustments */
+            .navbar-items {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+                margin-top: 1rem;
+            }
+
+            .navbar-items a {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 
 <body class="font-sans antialiased bg-black text-white" style="font-family: 'Inter', sans-serif;">
 
-  <!-- Header / Navbar -->
-  <div class="w-full max-w-5xl mx-auto px-6">
-    <nav class="w-full py-4 flex flex-row items-center gap-2 sm:gap-8">
-      <a href="index.html" class="flex items-center font-bold tracking-tight">
-        <img src="logo.png" alt="Logo" class="w-12 h-12" />
-        <span class="text-lg text-violet-500 ml-2">Hotel Chat AI</span>
-      </a>
+    <!-- Header -->
+    <div class="w-full max-w-5xl mx-auto px-6">
+        <nav class="w-full py-4 flex flex-row items-center gap-2 sm:gap-8">
+            <a href="index.html" class="flex items-center font-bold tracking-tight">
+                <img src="logo.png" alt="Logo" class='w-12 h-12'>
+                <span class="text-lg text-violet-500 ml-2">Hotel Chat AI</span>
+            </a>
 
-      <div class="flex-1"></div>
+            <div class='flex-1'></div>
 
-      <!-- Nav Items -->
-      <div class="hidden md:flex space-x-6 navbar-items">
-        <a href="index.html#features" class="text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">
-          Features
-        </a>
-        <a href="pricing.html" class="text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">
-          Pricing
-        </a>
-        <a href="privacy.html" class="text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">
-          Privacy
-        </a>
-      </div>
-
-      <!-- Get Started Button -->
-      <a href="pricing.html">
-        <button class="px-4 py-2 text-fuchsia-400 border border-fuchsia-400 rounded-full hover:bg-fuchsia-400/50 transition hover:shadow-lg hover:shadow-fuchsia-400/20">
-          Get Started
-        </button>
-      </a>
-    </nav>
-  </div>
-
-  
+            <a href="#features" class="hidden md:block text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">Features</a>
+            <a href="/pricing.html" class="hidden md:block text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">Pricing</a>
+            
+            <a href='/pricing.html'>
+                <button class='px-4 py-2 text-fuchsia-400 border border-fuchsia-400 rounded-full hover:bg-fuchsia-400/50 transition hover:shadow-lg hover:shadow-fuchsia-400/20'>
+                    Get started
+                </button>
+            </a>
+        </nav>
+    </div>
+    
+    
+    
   <div class="px-6 py-4 w-full max-w-5xl mx-auto">
     <h1 class="text-3xl font-bold mb-4">Terms of Service</h1>
     <p class="mb-6"><strong>Last Updated:</strong> 3/15/2025</p>
@@ -154,7 +160,7 @@
     <h2 class="text-2xl font-semibold mt-6 mb-2">3. Privacy</h2>
     <p class="mb-4">
       Your use of the Service is governed by our 
-      <a href="#" class="hover:underline">Privacy Policy</a>, which explains how we handle data.
+      <a href="/privacy-policy" class="hover:underline">Privacy Policy</a>, which explains how we handle data.
     </p>
   
     <h2 class="text-2xl font-semibold mt-6 mb-2">4. Limitation of Liability</h2>
@@ -193,28 +199,37 @@
       <a href="mailto:hotelchatai@gmail.com" class="hover:underline">hotelchatai@gmail.com</a>.
     </p>
   
-    <p class="mt-6">
-      <em>Final Note: Replace <strong>Taipei, Taiwan</strong> with your business’s legal jurisdiction if it ever changes.</em>
-    </p>
   </div>
   
   
-
-  <!-- Footer -->
-  <footer class="py-6 text-center bg-black text-white">
-    <div class="max-w-5xl mx-auto">
-      <p class="text-lg">© 2025 Hotel Chat AI. All rights reserved.</p>
-    </div>
-    <div class="flex justify-center space-x-6 mt-6">
-      <a href="quote.html" class="hover:underline text-fuchsia-400">Help</a>
-      <a href="quote.html" class="hover:underline text-fuchsia-400">Contact Us</a>
-    </div>
     
-  </footer>
 
-  <!-- Optional Custom Scripts -->
-  <script src="./js/script.js"></script>
-  <!-- Example chatbot script (remove or adjust if not needed) -->
-  <script src="https://v2-bot.pages.dev/bot.js" data-bot="website"></script>
+    <!-- Footer Section -->
+<footer class="py-6 text-center bg-black text-white">
+    <div class="max-w-5xl mx-auto">
+        <p class="text-violet-500">© 2024 Hotel Chat AI. All rights reserved.</p>
+    </div>
+
+    <div class="flex justify-center space-x-6 mt-6">
+        <a href="quote.html" class="hover:underline text-fuchsia-400">Help</a>
+        <a href="quote.html" class="hover:underline text-fuchsia-400">Contact Us</a>
+    </div>
+
+    
+
+    <div class="flex justify-center space-x-6 mt-6">
+        <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-youtube"></i></a>
+    </div>
+</footer>
+
+
+   <!-- Custom Scripts -->
+<script src="./js/script.js"></script>
+<script src='https://v2-bot.pages.dev/bot.js' data-bot='website'></script>
 </body>
+</body>
+
 </html>
