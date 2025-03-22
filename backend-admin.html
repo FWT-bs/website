@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Chat AI - Backend Admin</title>
+    <meta name="description" content="Backend admin for Hotel Chat AI system.">
+    <link rel="stylesheet" href="output.css">
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Responsive button and text sizes for various screen widths */
+        @media (min-width: 1024px) {
+            .button-lg {
+                padding: 0.75rem 2.5rem;
+                font-size: 1.25rem;
+            }
+
+            .text-balance {
+                font-size: 1.25rem;
+            }
+
+            .title-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .button-lg {
+                padding: 0.75rem 1.5rem;
+                font-size: 1.125rem;
+            }
+
+            .text-balance {
+                font-size: 1.125rem;
+            }
+
+            .title-lg {
+                font-size: 2.75rem;
+            }
+
+            /* Ensure the navigation bar items stack correctly */
+            .navbar-items {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .button-lg {
+                padding: 0.75rem 1rem;
+                font-size: 1rem;
+            }
+
+            .text-balance {
+                font-size: 1rem;
+            }
+
+            .title-lg {
+                font-size: 2.25rem;
+            }
+
+            /* Navbar responsive adjustments */
+            .navbar-items {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+                margin-top: 1rem;
+            }
+
+            .navbar-items a {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased bg-black text-white" style="font-family: 'Inter', sans-serif;">
+
+    <!-- Header -->
+    <div class="w-full max-w-5xl mx-auto px-6">
+        <nav class="w-full py-4 flex flex-row items-center gap-2 sm:gap-8">
+            <a href="/" class="flex items-center font-bold tracking-tight">
+                <img src="logo.png" alt="Logo" class='w-12 h-12'>
+                <span class="text-lg text-violet-500 ml-2">Hotel Chat AI</span>
+            </a>
+
+            <div class='flex-1'></div>
+        </nav>
+    </div>
+    
+    <!-- API Content -->
+    <div class="px-6 py-12 w-full max-w-xl mx-auto">
+        <h1 class="text-3xl font-bold mb-6 text-center">Backend API</h1>
+        
+        <div class="p-6 bg-gray-900 rounded-lg mb-6">
+            <h2 class="text-xl font-semibold mb-4 text-fuchsia-400">create-bot-secret</h2>
+            
+            <form id="create-bot-form">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Password</label>
+                    <input type="password" id="password" class="bg-gray-800 text-white rounded-md px-3 py-2 w-full" placeholder="Enter password">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Bot (comma-separated for multiple)</label>
+                    <input type="text" id="bot" class="bg-gray-800 text-white rounded-md px-3 py-2 w-full" placeholder="Enter bot name or names">
+                </div>
+                
+                <button id="submit-btn" type="submit" class="w-full mt-4 px-4 py-2 bg-fuchsia-400 text-white rounded-md hover:bg-fuchsia-500 transition">
+                    Submit API Request
+                </button>
+            </form>
+        </div>
+        
+        <div class="p-6 bg-gray-900 rounded-lg">
+            <h2 class="text-xl font-semibold mb-4 text-fuchsia-400">Response</h2>
+            <pre id="response" class="bg-gray-800 text-white rounded-md p-3 overflow-auto max-h-60">No response yet</pre>
+        </div>
+        <div class="p-6 bg-gray-900 rounded-lg">
+            <h2 class="text-xl font-semibold mb-4 text-fuchsia-400">Link</h2>
+            <pre id="link" class="bg-gray-800 text-white rounded-md p-3 overflow-auto max-h-60">No response yet</pre>
+        </div>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer class="py-6 text-center bg-black text-white">
+        <div class="max-w-5xl mx-auto">
+            <p class="text-violet-500">© 2024 Hotel Chat AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Scripts -->
+    <script>
+        $(document).ready(function() {
+            $('#create-bot-form').submit(function(e) {
+                e.preventDefault();
+                
+                const password = $('#password').val();
+                const botInput = $('#bot').val();
+                
+                // Handle bot as string or list based on comma separation
+                let bot = botInput;
+                if (botInput.includes(',')) {
+                    bot = botInput.split(',').map(item => item.trim());
+                }
+                
+                // Prepare the data
+                const requestData = {
+                    password: password,
+                    bot: bot,
+                };
+                
+                // Show loading indicator
+                $('#response').text('Loading...');
+                
+                // Make the API call
+                $.ajax({
+                    url: 'https://messenger-hcai.fly.dev/messenger/auth/create-bot-secret',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(requestData),
+                    success: function(response) {
+                        console.log('Success:', response);
+                        $('#response').text(JSON.stringify(response, null, 2));
+                        const [bot, bot_secret] = Object.entries(response)[0];
+                        $('#link').text(window.location.origin + '/messenger/start?bot_secret=' + encodeURIComponent(bot_secret) + '&bot=' + encodeURIComponent(bot));
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', xhr.responseText);
+                        $('#response').text('Error: ' + xhr.responseText);
+                        $('#link').text('[no link available]');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html> 

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Chat AI - Facebook Messenger Integration</title>
+    <meta name="description" content="Connect your Facebook Page to Hotel Chat AI and start communicating with your guests through Messenger.">
+    <meta name="keywords" content="Facebook Messenger, Hotel Chat AI, chatbot integration, hotel communication">
+    <meta name="author" content="Hotel Chat AI">
+    <link rel="stylesheet" href="/output.css">
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Responsive button and text sizes for various screen widths */
+        @media (min-width: 1024px) {
+            .button-lg {
+                padding: 0.75rem 2.5rem;
+                font-size: 1.25rem;
+            }
+
+            .text-balance {
+                font-size: 1.25rem;
+            }
+
+            .title-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .button-lg {
+                padding: 0.75rem 1.5rem;
+                font-size: 1.125rem;
+            }
+
+            .text-balance {
+                font-size: 1.125rem;
+            }
+
+            .title-lg {
+                font-size: 2.75rem;
+            }
+
+            /* Ensure the navigation bar items stack correctly */
+            .navbar-items {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .button-lg {
+                padding: 0.75rem 1rem;
+                font-size: 1rem;
+            }
+
+            .text-balance {
+                font-size: 1rem;
+            }
+
+            .title-lg {
+                font-size: 2.25rem;
+            }
+
+            /* Navbar responsive adjustments */
+            .navbar-items {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+                margin-top: 1rem;
+            }
+
+            .navbar-items a {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased bg-black text-white" style="font-family: 'Inter', sans-serif;">
+
+    <!-- Header -->
+    <div class="w-full max-w-5xl mx-auto px-6">
+        <nav class="w-full py-4 flex flex-row items-center gap-2 sm:gap-8">
+            <a href="/" class="flex items-center font-bold tracking-tight">
+                <img src="/logo.png" alt="Logo" class='w-12 h-12'>
+                <span class="text-lg text-violet-500 ml-2">Hotel Chat AI</span>
+            </a>
+
+            <div class='flex-1'></div>
+
+            <a href="/#features" class="hidden md:block text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">Features</a>
+            <a href="/pricing" class="hidden md:block text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">Pricing</a>
+            
+            <a href="/pricing">
+                <button class='px-4 py-2 text-fuchsia-400 border border-fuchsia-400 rounded-full hover:bg-fuchsia-400/50 transition hover:shadow-lg hover:shadow-fuchsia-400/20'>
+                    Get started
+                </button>
+            </a>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="px-6 py-4 w-full max-w-5xl mx-auto">
+        <h1 class="text-3xl font-bold mb-6 text-center">Connect Your Facebook Page <span id="bot-name" class="text-fuchsia-400"></span></h1>
+        
+        <div class="max-w-2xl mx-auto bg-gray-900 rounded-lg p-8 mb-10">
+            <div class="mb-8 text-center">
+                <img src="/logo.png" alt="Hotel Chat AI" class="w-20 h-20 mx-auto mb-4">
+                <h2 class="text-2xl font-semibold mb-4">Facebook Messenger Integration</h2>
+                <p class="mb-6">Connect your Facebook Page to Hotel Chat AI and start communicating with your guests through Messenger.</p>
+            </div>
+            
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold mb-3 text-fuchsia-400">What you'll get:</h3>
+                <ul class="list-disc ml-6 mb-4 space-y-2">
+                    <li>24/7 automated responses to guest inquiries</li>
+                    <li>Seamless integration with your existing Facebook Page</li>
+                    <li>AI-powered conversation that reflects your hotel's brand</li>
+                    <li>Multilingual support for international guests</li>
+                    <li>Advanced analytics on conversation trends</li>
+                </ul>
+            </div>
+            
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold mb-3 text-fuchsia-400">How it works:</h3>
+                <ol class="list-decimal ml-6 mb-4 space-y-2">
+                    <li>Click the "Connect with Facebook" button below</li>
+                    <li>Log in to your Facebook account if required</li>
+                    <li>Select the Facebook Page you want to connect</li>
+                    <li>Approve the necessary permissions</li>
+                    <li>Return to Hotel Chat AI to complete the setup</li>
+                </ol>
+            </div>
+            
+            <div class="text-center">
+                <a href="https://www.facebook.com/v22.0/dialog/oauth?client_id=616056274680223&redirect_uri=https%3A%2F%2Fmessenger-hcai.fly.dev%2Fmessenger%2Fauth%2Fcallback&scope=pages_show_list,pages_messaging" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition">
+                    <span class="flex items-center">
+                        <span class="mr-2">Connect with Facebook</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/>
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="max-w-2xl mx-auto bg-gray-900 rounded-lg p-8">
+            <h3 class="text-xl font-semibold mb-4 text-fuchsia-400">Important Privacy Information</h3>
+            <p class="mb-4">
+                By connecting your Facebook Page, you grant Hotel Chat AI permission to:
+            </p>
+            <ul class="list-disc ml-6 mb-4 space-y-2">
+                <li>Access your business management information</li>
+                <li>View your Facebook Pages</li>
+                <li>Send and receive messages on behalf of your Page</li>
+            </ul>
+            <p class="mb-4">
+                We value your privacy and will only use these permissions to provide the service you've requested. 
+                For more information, please refer to our <a href="/privacy-policy" class="text-fuchsia-400 hover:underline">Privacy Policy</a>.
+            </p>
+        </div>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer class="py-6 text-center bg-black text-white mt-12">
+        <div class="max-w-5xl mx-auto">
+            <p class="text-violet-500">© 2024 Hotel Chat AI. All rights reserved.</p>
+        </div>
+
+        <div class="flex justify-center space-x-6 mt-6">
+            <a href="/quote" class="hover:underline text-fuchsia-400">Help</a>
+            <a href="/quote" class="hover:underline text-fuchsia-400">Contact Us</a>
+        </div>
+
+        <div class="flex justify-center space-x-6 mt-6">
+            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            const params = new URLSearchParams(window.location.search);
+            localStorage.setItem('auth_url', window.location.href);
+            localStorage.setItem('bot_secret', params.get('bot_secret'));
+            localStorage.setItem('auth_started', JSON.stringify(new Date()));
+            $('#bot-name').text(params.get('bot'));
+        });
+    </script>
+
+    <!-- Custom Scripts -->
+    <script src="/js/script.js"></script>
+</body>
+
+</html> 

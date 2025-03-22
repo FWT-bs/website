@@ -1,6 +1,3 @@
 User-agent: *
-Allow: /quote.html
-Allow: /index.html
-Allow: /pricing.html
+Disallow: 
 Sitemap: https://hotelchatai.com/sitemap.xml
-
