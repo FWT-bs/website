@@ -144,9 +144,6 @@
 </head>
 
 <body class="font-sans antialiased bg-black text-white" style="font-family: 'Inter', sans-serif;">
-    <!-- Facebook SDK -->
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v22.0&appId=616056274680223" nonce="RandomNonce"></script>
 
     <!-- Header -->
     <div class="w-full max-w-5xl mx-auto px-6">
@@ -170,14 +167,14 @@
     </div>
     
     <!-- Main Content -->
-    <div class="px-6 py-16 w-full max-w-5xl mx-auto">
-        <h1 class="text-4xl font-bold mb-10 text-center text-violet-500">Connect Your Facebook Page <span id="bot-name" class="text-fuchsia-400"></span></h1>
+    <div class="px-6 py-12 w-full max-w-5xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-center text-violet-500">Connect Your Facebook Page <span id="bot-name" class="text-fuchsia-400"></span></h1>
         
         <div class="max-w-2xl mx-auto bg-gray-900 rounded-lg p-8 mb-10 shadow-lg">
             <div class="mb-8 text-center">
                 <img src="/logo.png" alt="Hotel Chat AI" class="w-20 h-20 mx-auto mb-4">
                 <h2 class="text-2xl font-semibold mb-4 text-fuchsia-400">Facebook Messenger Integration</h2>
-                <p class="mb-6 text-lg text-balance">Connect your Facebook Page to Hotel Chat AI and start communicating with your guests through Messenger.</p>
+                <p class="mb-6 text-lg">Connect your Facebook Page to Hotel Chat AI and start communicating with your guests through Messenger.</p>
             </div>
             
             <div class="mb-8">
@@ -203,36 +200,14 @@
             </div>
             
             <div class="text-center">
-                <!-- Facebook Login Button -->
-                <div id="fb-login-button" class="fb-login-button" 
-                     data-width="" 
-                     data-size="large" 
-                     data-button-type="login_with" 
-                     data-layout="rounded" 
-                     data-auto-logout-link="false" 
-                     data-use-continue-as="true"
-                     data-scope="public_profile,email,pages_show_list,pages_messaging"
-                     data-onlogin="checkLoginState()">
-                </div>
-                
-                <!-- Custom Facebook Login Button -->
-                <button id="custom-fb-login" class="mt-4 inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition cursor-pointer hover:shadow-lg hover:shadow-blue-600/20">
+                <a href="https://www.facebook.com/v22.0/dialog/oauth?client_id=616056274680223&redirect_uri=https%3A%2F%2Fmessenger-hcai.fly.dev%2Fmessenger%2Fauth%2Fcallback&scope=pages_show_list,pages_messaging" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition cursor-pointer hover:shadow-lg hover:shadow-blue-600/20">
                     <span class="flex items-center">
                         <span class="mr-2">Connect with Facebook</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/>
                         </svg>
                     </span>
-                </button>
-            </div>
-            
-            <div id="login-status" class="mt-6 text-center hidden">
-                <div id="success-message" class="bg-green-700 bg-opacity-30 border border-green-500 rounded-md p-4 hidden">
-                    <p class="text-green-400 font-medium">Successfully connected with Facebook! Redirecting...</p>
-                </div>
-                <div id="error-message" class="bg-red-700 bg-opacity-30 border border-red-500 rounded-md p-4 hidden">
-                    <p class="text-red-400 font-medium">Connection failed. Please try again.</p>
-                </div>
+                </a>
             </div>
         </div>
         
@@ -273,77 +248,6 @@
     </footer>
 
     <script>
-        // Initialize the Facebook SDK
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId: '616056274680223',
-                cookie: true,
-                xfbml: true,
-                version: 'v22.0'
-            });
-            
-            FB.AppEvents.logPageView();
-            
-            // Check login status on page load
-            FB.getLoginStatus(function(response) {
-                statusChangeCallback(response);
-            });
-        };
-        
-        // Handle login status changes
-        function statusChangeCallback(response) {
-            console.log('Facebook login status:', response);
-            if (response.status === 'connected') {
-                // User is logged in and has authenticated your app
-                console.log('User is logged in and authenticated');
-                console.log('Access Token:', response.authResponse.accessToken);
-                
-                // Store the access token
-                localStorage.setItem('fb_access_token', response.authResponse.accessToken);
-                
-                // Show success message
-                document.getElementById('login-status').classList.remove('hidden');
-                document.getElementById('success-message').classList.remove('hidden');
-                
-                // Get user pages
-                getUserPages(response.authResponse.accessToken);
-                
-                // Redirect to complete page after a delay
-                setTimeout(function() {
-                    window.location.href = "/messenger/complete";
-                }, 3000);
-            } else {
-                // User is not logged in or has not authenticated your app
-                console.log('User is not logged in or not authenticated');
-            }
-        }
-        
-        // Check login state
-        function checkLoginState() {
-            FB.getLoginStatus(function(response) {
-                statusChangeCallback(response);
-            });
-        }
-        
-        // Get user's Facebook pages
-        function getUserPages(accessToken) {
-            FB.api('/me/accounts', function(response) {
-                console.log('User pages:', response);
-                if (response && !response.error) {
-                    localStorage.setItem('fb_pages', JSON.stringify(response.data));
-                }
-            });
-        }
-        
-        // Custom Facebook login button
-        document.getElementById('custom-fb-login').addEventListener('click', function() {
-            FB.login(function(response) {
-                statusChangeCallback(response);
-            }, {
-                scope: 'public_profile,email,pages_show_list,pages_messaging'
-            });
-        });
-
         $(document).ready(function() {
             const params = new URLSearchParams(window.location.search);
             const bot = JSON.parse(decodeURIComponent(params.get('bot')));
