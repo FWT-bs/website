@@ -122,49 +122,66 @@
     </div>
     
     <!-- Main Content -->
-    <div class="px-6 py-12 w-full max-w-5xl mx-auto">
-        <h1 class="text-3xl font-bold mb-6 text-center">Facebook Integration</h1>
+    <div class="px-6 py-16 w-full max-w-5xl mx-auto">
+        <h1 class="text-3xl font-bold mb-10 text-center text-violet-500">Facebook Integration</h1>
         
         <!-- Status container -->
-        <div class="max-w-2xl mx-auto bg-gray-900 rounded-lg p-8 mb-10" id='status-container'>
+        <div class="max-w-2xl mx-auto bg-gray-900 rounded-lg p-8 mb-10 shadow-lg" id='status-container'>
             <div id="loading" class="text-center">
-                <div class="animate-pulse mb-4">
-                    <div class="mx-auto h-12 w-12 rounded-full bg-violet-500"></div>
+                <div class="animate-pulse mb-6">
+                    <div class="mx-auto h-16 w-16 rounded-full bg-violet-500"></div>
                 </div>
                 <p class="text-lg">Processing your Facebook integration...</p>
             </div>
             
+            <div id="page-selection" class="hidden">
+                <h2 class="text-2xl font-semibold mb-6 text-center text-fuchsia-400">Connect Pages to Chatbots</h2>
+                <p class="mb-8 text-center text-balance">Select which chatbot to assign to each Facebook page</p>
+                
+                <div id="form-error" class="hidden mb-6 p-4 bg-red-500/20 text-red-400 rounded-md text-center"></div>
+                
+                <div id="page-boxes" class="space-y-6">
+                    <!-- Page boxes will be added here dynamically -->
+                </div>
+                
+                <div class="mt-10 text-center">
+                    <button id="continue-btn" disabled class="px-6 py-3 bg-gray-600 text-white rounded-md transition cursor-not-allowed">
+                        Continue
+                    </button>
+                </div>
+            </div>
+            
             <div id="success" class="text-center hidden">
-                <div class="mx-auto h-12 w-12 mb-4 text-green-500">
+                <div class="mx-auto h-16 w-16 mb-6 text-green-500">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                     </svg>
                 </div>
-                <h2 class="text-2xl font-semibold mb-4 text-green-500">Integration Successful!</h2>
-                <p class="mb-6">Your Facebook Page has been successfully connected to Hotel Chat AI.</p>
-                <div class="mt-6">
-                    <a href="/" class="px-6 py-2 bg-fuchsia-400 text-white rounded-md hover:bg-fuchsia-500 transition">Return to Dashboard</a>
+                <h2 class="text-2xl font-semibold mb-6 text-green-500">Integration Successful!</h2>
+                <p class="mb-8 text-balance">Your Facebook Pages have been successfully connected to Hotel Chat AI.</p>
+                <div class="mt-8">
+                    <a href="/" class="px-6 py-3 bg-fuchsia-400 text-white rounded-md hover:bg-fuchsia-500 transition cursor-pointer hover:shadow-lg hover:shadow-fuchsia-400/20">Return to Dashboard</a>
                 </div>
             </div>
             
             <div id="error" class="text-center hidden">
-                <div class="mx-auto h-12 w-12 mb-4 text-red-500">
+                <div class="mx-auto h-16 w-16 mb-6 text-red-500">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </div>
-                <h2 class="text-2xl font-semibold mb-4 text-red-500">Integration Failed</h2>
-                <p id="error-message" class="mb-6">There was an error connecting your Facebook Page.</p>
-                <div class="mt-6">
-                    <a href="start" class="px-6 py-2 bg-fuchsia-400 text-white rounded-md hover:bg-fuchsia-500 transition">Try Again</a>
+                <h2 class="text-2xl font-semibold mb-6 text-red-500">Integration Failed</h2>
+                <p id="error-message" class="mb-8 text-balance">There was an error connecting your Facebook Page.</p>
+                <div class="mt-8">
+                    <a href="start" class="px-6 py-3 bg-fuchsia-400 text-white rounded-md hover:bg-fuchsia-500 transition cursor-pointer hover:shadow-lg hover:shadow-fuchsia-400/20">Try Again</a>
                 </div>
             </div>
         </div>
     </div>
     
     <!-- Footer Section -->
-    <footer class="py-6 text-center bg-black text-white mt-12">
-        <div class="max-w-5xl mx-auto">
+    <footer class="py-10 text-center bg-black text-white mt-16">
+        <div class="max-w-5xl mx-auto px-6">
             <p class="text-violet-500">© 2024 Hotel Chat AI. All rights reserved.</p>
         </div>
 
@@ -191,21 +208,23 @@
                 };
             }
 
-            const bot_secret = localStorage.getItem('bot_secret');
+            localStorage.setItem('pageTokenSetups', JSON.stringify(pageTokenSetups));
+
+            const bots = JSON.parse(localStorage.getItem('bot'));
+            const botSecrets = JSON.parse(localStorage.getItem('bot_secret'));
             const auth_url = localStorage.getItem('auth_url');
-            const auth_started = localStorage.getItem('auth_started');
+            const auth_started = JSON.parse(localStorage.getItem('auth_started'));
 
             let errorMessage = '';
 
-            if (JSON.parse(auth_started) > new Date(Date.now() - 1000 * 60 * 60 * 24 * 7)) {
+            if (auth_started > new Date(Date.now() - 1000 * 60 * 60 * 24 * 7)) {
                 errorMessage = 'Authentication timed out. Please try again.';
-            } else if (!bot_secret || !auth_url) {
+            } else if (!bots || !botSecrets || !auth_url) {
                 errorMessage = 'Something went wrong with authentication. Please try again.';
-            } else if (!Object.values(pageTokenSetups).length) {
+            } else if (Object.values(pageTokenSetups).length === 0) {
                 errorMessage = 'No pages found. Please try again.';
-            } else if (Object.values(pageTokenSetups).length > 1) {
-                errorMessage = 'Please select only one page. If you have multiple pages, please try them separately on different starting links.';
             }
+            
             if (errorMessage) {
                 $('#loading').addClass('hidden');
                 $('#error').removeClass('hidden');
@@ -213,28 +232,131 @@
                 return;
             }
 
-            const pageTokenSetup = Object.values(pageTokenSetups)[0];
-
-            $.ajax({
-                url: 'https://messenger-hcai.fly.dev/messenger/auth/set_page_tokens',
-                type: 'POST',
-                headers: {
-                    'accept': 'application/json'
-                },
-                contentType: 'application/json',
-                data: JSON.stringify({...pageTokenSetup, bot_secret})
-            })
-            .done(function(response) {
-                console.log('Success:', response);
-                console.log(JSON.stringify(response));
-                $('#loading').addClass('hidden');
-                $('#success').removeClass('hidden');
-            })
-            .fail(function(xhr, status, error) {
-                console.error('Error:', xhr.responseText);
-                $('#loading').addClass('hidden');
-                $('#error').removeClass('hidden');
+            // Show page selection UI
+            $('#loading').addClass('hidden');
+            $('#page-selection').removeClass('hidden');
+            
+            // Create page selection boxes
+            const pageBoxes = $('#page-boxes');
+            
+            Object.values(pageTokenSetups).forEach((page, index) => {
+                const pageBox = $(`
+                    <div class="page-box bg-gray-800 p-6 rounded-md shadow-md">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-fuchsia-400">${page.page_name}</h3>
+                        </div>
+                        <div class="form-group">
+                            <label class="block mb-3 text-balance">Select chatbot:</label>
+                            <select class="bot-selector w-full p-3 bg-gray-700 rounded-md text-white" data-page-id="${page.page_id}">
+                                <option value="none">None</option>
+                                ${bots.map((bot, i) => `<option value="${i}">${bot}</option>`).join('')}
+                            </select>
+                        </div>
+                    </div>
+                `);
+                
+                pageBoxes.append(pageBox);
             });
+            
+            // Check for duplicates and enable/disable continue button
+            function validateForm() {
+                const selectedBots = {};
+                let hasSelection = false;
+                let duplicateFound = false;
+                
+                $('.bot-selector').each(function() {
+                    const value = $(this).val();
+                    if (value !== 'none') {
+                        hasSelection = true;
+                        
+                        if (selectedBots[value]) {
+                            duplicateFound = true;
+                        } else {
+                            selectedBots[value] = true;
+                        }
+                    }
+                });
+                
+                if (duplicateFound) {
+                    $('#form-error').removeClass('hidden').text('Cannot assign same chatbot to different pages. Please select different chatbots.');
+                    $('#continue-btn').prop('disabled', true).addClass('bg-gray-600 cursor-not-allowed').removeClass('bg-fuchsia-400 hover:bg-fuchsia-500 hover:shadow-lg hover:shadow-fuchsia-400/20');
+                } else {
+                    $('#form-error').addClass('hidden');
+                    
+                    if (hasSelection) {
+                        $('#continue-btn').prop('disabled', false).removeClass('bg-gray-600 cursor-not-allowed').addClass('bg-fuchsia-400 hover:bg-fuchsia-500 cursor-pointer hover:shadow-lg hover:shadow-fuchsia-400/20');
+                    } else {
+                        $('#continue-btn').prop('disabled', true).addClass('bg-gray-600 cursor-not-allowed').removeClass('bg-fuchsia-400 hover:bg-fuchsia-500 cursor-pointer hover:shadow-lg hover:shadow-fuchsia-400/20');
+                    }
+                }
+            }
+            
+            // Add event listeners
+            $('.bot-selector').on('change', validateForm);
+            
+            // Continue button click handler
+            $('#continue-btn').on('click', async function() {
+                $(this).prop('disabled', true).text('Processing...');
+                
+                const pageBotMappings = [];
+                
+                $('.bot-selector').each(function() {
+                    const pageId = $(this).data('page-id');
+                    const botIndex = $(this).val();
+                    
+                    if (botIndex !== 'none') {
+                        const page = pageTokenSetups[pageId];
+                        pageBotMappings.push({
+                            page_id: pageId,
+                            page_access_token: page.page_access_token,
+                            page_name: page.page_name,
+                            bot_secret: botSecrets[botIndex],
+                            bot_name: bots[botIndex]
+                        });
+                    }
+                });
+                
+                let allSuccess = true;
+                
+                // Process all page-bot mappings
+                for (const mapping of pageBotMappings) {
+                    try {
+                        const response = await $.ajax({
+                            url: 'https://messenger-hcai.fly.dev/messenger/auth/set_page_tokens',
+                            type: 'POST',
+                            headers: {
+                                'accept': 'application/json'
+                            },
+                            contentType: 'application/json',
+                            data: JSON.stringify({
+                                page_id: String(mapping.page_id),
+                                page_access_token: mapping.page_access_token,
+                                page_name: mapping.page_name,
+                                bot_secret: mapping.bot_secret
+                            })
+                        });
+                        
+                        console.log('Success for ' + mapping.page_name + ':', response);
+                    } catch (error) {
+                        console.error('Error for ' + mapping.page_name + ':', error);
+                        allSuccess = false;
+                        break;
+                    }
+                }
+                
+                // Show final status
+                $('#page-selection').addClass('hidden');
+                
+                if (allSuccess) {
+                    $('#success').removeClass('hidden');
+                } else {
+                    $('#error').removeClass('hidden');
+                    $('#error-message').text('There was an error connecting one or more Facebook Pages.');
+                }
+            });
+            
+            // Initial validation
+            validateForm();
         });
     </script>
 </body>

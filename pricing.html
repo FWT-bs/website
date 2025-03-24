@@ -6,35 +6,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing - Hotel Chat AI</title>
     <link rel="stylesheet" href="output.css">
+    <link rel="icon" href="/logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        /* Custom colors */
-        .text-violet {
-            color: #7e3fef;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .text-purple {
-            color: #BB86FC;
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
-        .bg-fuchsia {
-            background-color: #ff7cfd;
+        .animate-fadeIn {
+            animation: fadeIn 2s ease-in-out;
         }
 
-        .bg-dark {
-            background-color: #121212;
+        /* Responsive button and text sizes for various screen widths */
+        @media (min-width: 1024px) {
+            .button-lg {
+                padding: 0.75rem 2.5rem;
+                font-size: 1.25rem;
+            }
+
+            .text-balance {
+                font-size: 1.25rem;
+            }
+
+            .title-lg {
+                font-size: 3.5rem;
+            }
         }
 
-        .border-fuchsia {
-            border-color: #ff7cfd;
+        @media (max-width: 1024px) {
+            .button-lg {
+                padding: 0.75rem 1.5rem;
+                font-size: 1.125rem;
+            }
+
+            .text-balance {
+                font-size: 1.125rem;
+            }
+
+            .title-lg {
+                font-size: 2.75rem;
+            }
+
+            /* Ensure the navigation bar items stack correctly */
+            .navbar-items {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 5rem;
+            }
         }
 
-        /* Increase height */
+        @media (max-width: 768px) {
+            .button-lg {
+                padding: 0.75rem 1rem;
+                font-size: 1rem;
+            }
+
+            .text-balance {
+                font-size: 1rem;
+            }
+
+            .title-lg {
+                font-size: 2.25rem;
+            }
+
+            /* Navbar responsive adjustments */
+            .navbar-items {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+                margin-top: 1rem;
+            }
+
+            .navbar-items a {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Custom pricing styles */
         .plan-card {
-            max-width: 20rem; /* Further increased width */
-            min-height: 28rem; /* Increased height */
-            padding: 2rem; /* Extra padding for spacing */
-            flex: 1; /* Ensure flex-grow for equal spacing */
+            max-width: 20rem;
+            min-height: 28rem;
+            padding: 2rem;
+            flex: 1;
         }
     </style>
 </head>
@@ -42,112 +112,84 @@
 <body class="font-sans antialiased bg-black text-white" style="font-family: 'Inter', sans-serif;">
 
     <!-- Header -->
-    <header class="relative flex py-4 z-[99] items-center border-b border-black">
-        <div class="h-full flex items-center mx-auto max-w-5xl w-full px-4">
-            <div class="mr-auto flex items-center">
-                <a href="/" class="flex items-center" style="text-decoration: none;">
-                    <img src="logo.png" alt="Logo" style="width: 60px; height: 60px;">
-                    <span class="text-lg text-violet-500 ml-2">Hotel Chat AI</span>
-                </a>
-            </div>
+    <div class="w-full max-w-5xl mx-auto px-6">
+        <nav class="w-full py-4 flex flex-row items-center gap-2 sm:gap-8">
+            <a href="/" class="flex items-center font-bold tracking-tight">
+                <img src="logo.png" alt="Logo" class='w-12 h-12'>
+                <span class="text-lg text-violet-500 ml-2">Hotel Chat AI</span>
+            </a>
+
+            <div class='flex-1'></div>
+
+            <a href="/#features" class="hidden md:block text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">Features</a>
+            <a href="/pricing" class="hidden md:block text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">Pricing</a>
             
-            <nav class="navbar-items md:flex md:flex-row space-x-6">
-                <a href="/" class="font-medium hover:underline text-violet-500">Home</a>
-                <a href="/#features" class="font-medium hover:underline text-violet-500">Features</a>
-                <a href="pricing" class="font-medium hover:underline text-violet-500">Pricing</a>
-            </nav>
-            
-            <div class="flex space-x-4 ml-4">
-                <a href="#" class="px-8 py-3 border border-fuchsia-400 text-fuchsia-400 rounded-full hover:bg-fuchsia-400 transition transform hover:scale-105">Sign In</a>
-                
-            </div>
-            
-        </div>
-    </header>
-    
-    
+            <a href="/pricing">
+                <button class='px-4 py-2 text-fuchsia-400 border border-fuchsia-400 rounded-full hover:bg-fuchsia-400/50 transition hover:shadow-lg hover:shadow-fuchsia-400/20 cursor-pointer'>
+                    Get started
+                </button>
+            </a>
+        </nav>
+    </div>
 
     <!-- Heading Section -->
-    <section class="flex justify-center py-24">
-        <h1 class="text-5xl text-violet font-bold text-center">Our Pricing Plans</h1>
+    <section class="px-6 py-16 max-w-5xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold text-center text-violet-500 mb-4">Our Pricing Plans</h1>
+        <p class="text-xl text-center text-purple-400 mb-12 text-balance">Choose the perfect plan for your hotel's needs</p>
     </section>
 
     <!-- Pricing Section -->
-    <section class="flex flex-wrap justify-center gap-8 w-full max-w-6xl mx-auto px-6 pt-32"> <!-- Adjusted Padding Top -->
-        <!-- Basic Plan -->
-        <!--
-<div class="plan-card p-8 bg-dark rounded-lg shadow-lg">
-    <h2 class="text-3xl text-purple font-bold mb-4">Basic</h2>
-    <p class="text-2xl text-fuchsia mb-6">$100 <span class="text-lg text-purple">/ month</span></p>
-    <ul class="text-lg text-purple mb-6">
-        <li>1000 Cap Bot Responses Across All Hotels Per Month</li>
-        <li>Max of 10 Hotels</li>
-        <li>1 Language Bot</li>
-        <li>One time Update to Bot Knowledge</li>
-    </ul>
-    <a href="#" class="bg-fuchsia text-white px-6 py-3 rounded-full hover:bg-violet transition transform hover:scale-105">Choose Basic</a>
-</div>
-
-<div class="plan-card p-8 bg-dark rounded-lg shadow-lg">
-    <h2 class="text-3xl text-purple font-bold mb-4">Pro</h2>
-    <p class="text-2xl text-fuchsia mb-6">$120 <span class="text-lg text-purple">/ month</span></p>
-    <ul class="text-lg text-purple mb-6">
-        <li>2000 Cap Bot Responses Across All Hotels Per Month</li>
-        <li>Max of 20 Hotels</li>
-        <li>2 Language Bot</li>
-        <li>1 Update to Bot Knowledge Per Month</li>
-    </ul>
-    <a href="#" class="bg-fuchsia text-white px-6 py-3 rounded-full hover:bg-violet transition transform hover:scale-105">Choose Pro</a>
-</div>
-
-<div class="plan-card p-8 bg-dark rounded-lg shadow-lg">
-    <h2 class="text-3xl text-purple font-bold mb-4">Enterprise</h2>
-    <p class="text-2xl text-fuchsia mb-6">$150 <span class="text-lg text-purple">/ month</span></p>
-    <ul class="text-lg text-purple mb-6">
-        <li>UNLIMITED Cap Bot Responses Across All Hotels Per Month</li>
-        <li>UNLIMITED Hotels</li>
-        <li>Multilingual Language Bot</li>
-        <li>Constant Updates to Bot Knowledge</li>
-    </ul>
-    <a href="#" class="bg-fuchsia text-white px-6 py-3 rounded-full hover:bg-violet transition transform hover:scale-105">Choose Enterprise</a>
-</div>
--->
-
-
+    <section class="flex flex-wrap justify-center gap-8 w-full max-w-6xl mx-auto px-6 pb-16">
         <!-- Custom Plan -->
-        <div class="plan-card p-8 bg-dark rounded-lg shadow-lg">
-            <h2 class="text-3xl text-purple font-bold mb-4">Custom Plan</h2>
-            <p class="text-2xl text-fuchsia mb-6">Contact Us</p>
-            <ul class="text-lg text-purple mb-6">
-                <li>Custom Cap Bot Responses Per Month</li>
-                <li>Custom Number of Hotels</li>
-                <li>Multilingual Language Bot</li>
-                <li>Custom Updates to Bot Knowledge</li>
+        <div class="plan-card bg-gray-900 rounded-lg shadow-lg">
+            <h2 class="text-3xl text-fuchsia-400 font-bold mb-4">Custom Plan</h2>
+            <p class="text-2xl text-violet-500 mb-6">Contact Us</p>
+            <ul class="text-lg text-purple-400 mb-8 space-y-3">
+                <li class="flex items-start">
+                    <svg class="h-6 w-6 text-fuchsia-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Custom Cap Bot Responses Per Month
+                </li>
+                <li class="flex items-start">
+                    <svg class="h-6 w-6 text-fuchsia-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Custom Number of Hotels
+                </li>
+                <li class="flex items-start">
+                    <svg class="h-6 w-6 text-fuchsia-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Multilingual Language Bot
+                </li>
+                <li class="flex items-start">
+                    <svg class="h-6 w-6 text-fuchsia-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Custom Updates to Bot Knowledge
+                </li>
             </ul>
-            <a href="quote" class="bg-fuchsia text-white px-6 py-3 rounded-full hover:bg-violet transition transform hover:scale-105">Get a Quote</a>
+            <a href="quote" class="inline-block w-full text-center bg-fuchsia-400 text-white px-6 py-3 rounded-md hover:bg-fuchsia-500 transition cursor-pointer hover:shadow-lg hover:shadow-fuchsia-400/20">Get a Quote</a>
         </div>
     </section>
 
     <!-- Footer Section -->
-    <footer class="py-6 text-center">
-        <div class="mx-auto max-w-5xl">
-            <p class="text-purple">© 2024 Hotel Chat AI. All rights reserved.</p>
+    <footer class="py-10 text-center bg-black text-white mt-16">
+        <div class="max-w-5xl mx-auto px-6">
+            <p class="text-violet-500">© 2024 Hotel Chat AI. All rights reserved.</p>
         </div>
 
         <div class="flex justify-center space-x-6 mt-6">
-            <a href="#" class="text-purple"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="text-purple"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="text-purple"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-purple"><i class="fab fa-youtube"></i></a>
+            <a href="/quote" class="hover:underline text-fuchsia-400">Help</a>
+            <a href="/quote" class="hover:underline text-fuchsia-400">Contact Us</a>
         </div>
 
-        <div class="flex justify-center mt-6">
-            <div class="text-center">
-                <ul class="space-y-2">
-                    <li><a href="quote" class="hover:underline">Help</a></li>
-                    <li><a href="quote" class="hover:underline">Contact Us</a></li>
-                </ul>
-            </div>
+        <div class="flex justify-center space-x-6 mt-6">
+            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-youtube"></i></a>
         </div>
     </footer>
 

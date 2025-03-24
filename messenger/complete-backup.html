@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Chat AI - Facebook Integration Complete</title>
+    <meta name="description" content="Complete your Facebook Messenger integration with Hotel Chat AI.">
+    <link rel="stylesheet" href="/output.css">
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Responsive button and text sizes for various screen widths */
+        @media (min-width: 1024px) {
+            .button-lg {
+                padding: 0.75rem 2.5rem;
+                font-size: 1.25rem;
+            }
+
+            .text-balance {
+                font-size: 1.25rem;
+            }
+
+            .title-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .button-lg {
+                padding: 0.75rem 1.5rem;
+                font-size: 1.125rem;
+            }
+
+            .text-balance {
+                font-size: 1.125rem;
+            }
+
+            .title-lg {
+                font-size: 2.75rem;
+            }
+
+            /* Ensure the navigation bar items stack correctly */
+            .navbar-items {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .button-lg {
+                padding: 0.75rem 1rem;
+                font-size: 1rem;
+            }
+
+            .text-balance {
+                font-size: 1rem;
+            }
+
+            .title-lg {
+                font-size: 2.25rem;
+            }
+
+            /* Navbar responsive adjustments */
+            .navbar-items {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+                margin-top: 1rem;
+            }
+
+            .navbar-items a {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased bg-black text-white" style="font-family: 'Inter', sans-serif;">
+
+    <!-- Header -->
+    <div class="w-full max-w-5xl mx-auto px-6">
+        <nav class="w-full py-4 flex flex-row items-center gap-2 sm:gap-8">
+            <a href="/" class="flex items-center font-bold tracking-tight">
+                <img src="/logo.png" alt="Logo" class='w-12 h-12'>
+                <span class="text-lg text-violet-500 ml-2">Hotel Chat AI</span>
+            </a>
+
+            <div class='flex-1'></div>
+
+            <a href="/#features" class="hidden md:block text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">Features</a>
+            <a href="/pricing" class="hidden md:block text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">Pricing</a>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="px-6 py-12 w-full max-w-5xl mx-auto">
+        <h1 class="text-3xl font-bold mb-6 text-center">Facebook Integration</h1>
+        
+        <!-- Status container -->
+        <div class="max-w-2xl mx-auto bg-gray-900 rounded-lg p-8 mb-10" id='status-container'>
+            <div id="loading" class="text-center">
+                <div class="animate-pulse mb-4">
+                    <div class="mx-auto h-12 w-12 rounded-full bg-violet-500"></div>
+                </div>
+                <p class="text-lg">Processing your Facebook integration...</p>
+            </div>
+            
+            <div id="success" class="text-center hidden">
+                <div class="mx-auto h-12 w-12 mb-4 text-green-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-semibold mb-4 text-green-500">Integration Successful!</h2>
+                <p class="mb-6">Your Facebook Page has been successfully connected to Hotel Chat AI.</p>
+                <div class="mt-6">
+                    <a href="/" class="px-6 py-2 bg-fuchsia-400 text-white rounded-md hover:bg-fuchsia-500 transition">Return to Dashboard</a>
+                </div>
+            </div>
+            
+            <div id="error" class="text-center hidden">
+                <div class="mx-auto h-12 w-12 mb-4 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-semibold mb-4 text-red-500">Integration Failed</h2>
+                <p id="error-message" class="mb-6">There was an error connecting your Facebook Page.</p>
+                <div class="mt-6">
+                    <a href="start" class="px-6 py-2 bg-fuchsia-400 text-white rounded-md hover:bg-fuchsia-500 transition">Try Again</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer class="py-6 text-center bg-black text-white mt-12">
+        <div class="max-w-5xl mx-auto">
+            <p class="text-violet-500">© 2024 Hotel Chat AI. All rights reserved.</p>
+        </div>
+
+        <div class="flex justify-center space-x-6 mt-6">
+            <a href="/quote" class="hover:underline text-fuchsia-400">Help</a>
+            <a href="/quote" class="hover:underline text-fuchsia-400">Contact Us</a>
+        </div>
+    </footer>
+
+    <!-- Custom Scripts -->
+    <script>
+        $(document).ready(async function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const callbackResults = JSON.parse(urlParams.get('callback_results'));
+            console.log(callbackResults);
+
+            const pageTokenSetups = {};
+            for (const [page_id, obj] of Object.entries(callbackResults.page_tokens)) {
+                pageTokenSetups[page_id] = {
+                    page_id: page_id,
+                    page_access_token: obj.access_token,
+                    page_name: obj.name,
+                };
+            }
+
+            localStorage.setItem('pageTokenSetups', JSON.stringify(pageTokenSetups));
+
+            const bot = JSON.parse(localStorage.getItem('bot'));
+            const bot_secret = JSON.parse(localStorage.getItem('bot_secret'));
+            const auth_url = localStorage.getItem('auth_url');
+            const auth_started = JSON.parse(localStorage.getItem('auth_started'));
+
+            let errorMessage = '';
+
+            if (auth_started > new Date(Date.now() - 1000 * 60 * 60 * 24 * 7)) {
+                errorMessage = 'Authentication timed out. Please try again.';
+            } else if (bot == null || bot_secret == null || auth_url == null) {
+                errorMessage = 'Something went wrong with authentication. Please try again.';
+            } else if (Object.values(pageTokenSetups).length == 0) {
+                errorMessage = 'No pages found. Please try again.';
+            } else if (Object.values(pageTokenSetups).length > 1) {
+                errorMessage = 'Please select only one page. If you have multiple pages, please try them separately on different starting links.';
+            }
+            if (errorMessage) {
+                $('#loading').addClass('hidden');
+                $('#error').removeClass('hidden');
+                $('#error-message').text(errorMessage);
+                return;
+            }
+
+            const pageTokenSetup = Object.values(pageTokenSetups)[0];
+
+            $.ajax({
+                url: 'https://messenger-hcai.fly.dev/messenger/auth/set_page_tokens',
+                type: 'POST',
+                headers: {
+                    'accept': 'application/json'
+                },
+                contentType: 'application/json',
+                data: JSON.stringify({...pageTokenSetup, bot_secret})
+            })
+            .done(function(response) {
+                console.log('Success:', response);
+                console.log(JSON.stringify(response));
+                $('#loading').addClass('hidden');
+                $('#success').removeClass('hidden');
+            })
+            .fail(function(xhr, status, error) {
+                console.error('Error:', xhr.responseText);
+                $('#loading').addClass('hidden');
+                $('#error').removeClass('hidden');
+            });
+        });
+    </script>
+</body>
+
+</html> 
