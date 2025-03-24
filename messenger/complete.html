@@ -159,6 +159,10 @@
                 </div>
                 <h2 class="text-2xl font-semibold mb-6 text-green-500">Integration Successful!</h2>
                 <p class="mb-8 text-balance">Your Facebook Pages have been successfully connected to Hotel Chat AI.</p>
+                
+                <!-- Test buttons will be added here dynamically -->
+                <div class="border-t border-gray-700 pt-8 mt-6"></div>
+                
                 <div class="mt-8">
                     <a href="/" class="px-6 py-3 bg-fuchsia-400 text-white rounded-md hover:bg-fuchsia-500 transition cursor-pointer hover:shadow-lg hover:shadow-fuchsia-400/20">Return to Dashboard</a>
                 </div>
@@ -348,6 +352,36 @@
                 $('#page-selection').addClass('hidden');
                 
                 if (allSuccess) {
+                    // Create test buttons for each connected page
+                    let testButtonsHtml = '';
+                    pageBotMappings.forEach(page => {
+                        testButtonsHtml += `
+                            <a href="https://messenger.com/t/${page.page_id}" target="_blank" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition cursor-pointer hover:shadow-lg hover:shadow-blue-600/20 mx-2 mb-3">
+                                <span class="flex items-center">
+                                    <span class="mr-2">Test ${page.page_name}</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                </span>
+                            </a>
+                        `;
+                    });
+
+                    // Add test buttons section to success block
+                    const testButtonsSection = $(`
+                        <div class="test-buttons-container mt-6 mb-8">
+                            <h3 class="text-xl font-semibold mb-4 text-fuchsia-400">Test Your Connected Pages</h3>
+                            <p class="mb-4 text-balance">Click on the buttons below to open each page in Messenger and test your chatbot:</p>
+                            <div class="flex flex-wrap justify-center mt-4">
+                                ${testButtonsHtml}
+                            </div>
+                        </div>
+                    `);
+                    
+                    // Add the test buttons before the Return to Dashboard button
+                    $('#success').find('div.mt-8').before(testButtonsSection);
                     $('#success').removeClass('hidden');
                 } else {
                     $('#error').removeClass('hidden');
