@@ -55,7 +55,13 @@ class HotelChataiWidget extends HTMLElement {
 
     // Save reference for later use and append it to the shadow DOM.
     this.iframeEl = iframeEl;
-    shadow.appendChild(iframeEl);
+    if (document.readyState === 'complete') {
+      shadow.appendChild(iframeEl);
+    } else {
+      window.addEventListener('load', () => {
+        shadow.appendChild(iframeEl);
+      });
+    }
   }
 
   disconnectedCallback() {
