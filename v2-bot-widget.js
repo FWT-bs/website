@@ -1,5 +1,27 @@
 class HotelChataiWidget extends HTMLElement {
   connectedCallback() {
+    this.connected = true;
+    this.attached = false;
+
+    if (document.readyState === 'complete') {
+      this.attach_();
+    } else {
+      this.attach_fn = () => this.attach_();
+      window.addEventListener('load', this.attach_fn);
+    }
+  }
+
+  disconnectedCallback() {
+    this.connected = false;
+    // Clean up the event listener when the element is removed.
+    window.removeEventListener('load', this.attach_fn);
+    if (this.attached) {
+      window.removeEventListener('message', this.messageHandler, false);
+    }
+  }
+
+  attach_() {
+    this.attached = true;
     // Create a shadow DOM to encapsulate the component.
     const shadow = this.attachShadow({ mode: 'open' });
 
@@ -55,18 +77,7 @@ class HotelChataiWidget extends HTMLElement {
 
     // Save reference for later use and append it to the shadow DOM.
     this.iframeEl = iframeEl;
-    if (document.readyState === 'complete') {
-      shadow.appendChild(iframeEl);
-    } else {
-      window.addEventListener('load', () => {
-        shadow.appendChild(iframeEl);
-      });
-    }
-  }
-
-  disconnectedCallback() {
-    // Clean up the event listener when the element is removed.
-    window.removeEventListener('message', this.messageHandler, false);
+    shadow.appendChild(iframeEl);
   }
 }
 
