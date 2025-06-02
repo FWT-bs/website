@@ -5,156 +5,482 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Hotel Chat AI</title>
-    <link rel="stylesheet" href="output.css">
-    <link rel="icon" href="/logo.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap');
+        
+        /* Custom daisyUI theme for chatbot */
+        :root:has(input.theme-controller[value=hotelchat]:checked), [data-theme="hotelchat"] {
+            color-scheme: light;
+            --color-primary: #2196f3;
+            --color-primary-content: #ffffff;
+            --color-secondary: #1976d2;
+            --color-secondary-content: #ffffff;
+            --color-accent: #60a5fa;
+            --color-accent-content: #0a0a23;
+            --color-neutral: #374151;
+            --color-neutral-content: #ffffff;
+            --color-base-100: #ffffff;
+            --color-base-200: #f8fafc;
+            --color-base-300: #e2e8f0;
+            --color-base-content: #0a0a23;
+            --color-info: #2196f3;
+            --color-info-content: #ffffff;
+            --color-success: #10b981;
+            --color-success-content: #ffffff;
+            --color-warning: #f59e0b;
+            --color-warning-content: #ffffff;
+            --color-error: #ef4444;
+            --color-error-content: #ffffff;
+            --radius-selector: 0.75rem;
+            --radius-field: 0.5rem;
+            --radius-box: 0.75rem;
+            --border: 1px;
+        }
+        
+        :root {
+            --main-bg: #FFFFFF;
+            --gradient-bg: #FFFFFF;
+            --section-bg: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --section-glow: 0 0 32px 0 rgba(59, 130, 246, 0.08);
+            --accent: #3B82F6;
+            --accent2: #64748B;
+            --accent3: #3B82F6;
+            --text-main: #374151;
+            --text-light: #4B5563;
+            --text-muted: #6B7280;
+            --navy: #374151;
+            --navy-light: #4B5563;
+            --navy-lighter: #6B7280;
+            --blue: #3B82F6;
+            --blue-light: #60A5FA;
+            --blue-dark: #2563EB;
+            --white: #FFFFFF;
+            --gray: #F3F4F6;
+            --sidebar-bg: rgba(255, 255, 255, 0.98);
+            --sidebar-border: #E5E7EB;
+            --accent-blue: #3B82F6;
+        }
+
         html {
             scroll-behavior: smooth;
+            background: var(--main-bg) !important;
         }
 
-        @tailwind base;
-        @tailwind components;
-        @tailwind utilities;
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--main-bg) !important;
+            color: var(--text-main) !important;
+            min-height: 100vh;
+            overflow-x: hidden;
+            box-sizing: border-box;
         }
 
-        .animate-fadeIn {
-            animation: fadeIn 2s ease-in-out;
+        .topbar {
+            position: sticky !important;
+            top: 0;
+            left: 0;
+            margin: 0 auto;
+            width: calc(100vw - 64px);
+            max-width: 1200px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 32px;
+            height: 64px;
+            border-bottom: 1px solid var(--sidebar-border);
         }
 
-        /* Responsive button and text sizes for various screen widths */
-        @media (min-width: 1024px) {
-            .button-lg {
-                padding: 0.75rem 2.5rem;
-                font-size: 1.25rem;
-            }
-
-            .text-balance {
-                font-size: 1.25rem;
-            }
-
-            .title-lg {
-                font-size: 3.5rem;
-            }
+        .logo-group {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+            min-width: 0;
         }
 
-        @media (max-width: 1024px) {
-            .button-lg {
-                padding: 0.75rem 1.5rem;
-                font-size: 1.125rem;
-            }
+        .logo {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent) !important;
+            letter-spacing: 0.04em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+        }
 
-            .text-balance {
-                font-size: 1.125rem;
-            }
+        .logo:hover {
+            color: var(--accent2) !important;
+        }
 
-            .title-lg {
-                font-size: 2.75rem;
-            }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+        }
 
-            /* Ensure the navigation bar items stack correctly */
-            .navbar-items {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 5rem;
-            }
+        .nav-link {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-main) !important;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--gray) !important;
+            color: var(--accent) !important;
+        }
+
+        .navbar-logo {
+            height: 50px;
+            width: auto;
+            max-width: 55px;
+            margin-right: 12px;
+            vertical-align: middle;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .navbar-logo:hover {
+            transform: scale(1.12);
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0 auto;
+            padding: 40px 20px 60px 20px;
+            max-width: 800px;
+            width: 100%;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+        }
+
+        .privacy-hero {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .privacy-hero.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .privacy-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2196f3;
+            margin-bottom: 1.2rem;
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.2;
+        }
+
+        .privacy-subtitle {
+            font-size: 1.25rem;
+            color: #2196f3;
+            margin-bottom: 2rem;
+            font-family: 'DM Sans', sans-serif;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .privacy-container {
+            background: var(--section-bg);
+            border-radius: 24px;
+            box-shadow: 0 8px 40px rgba(33,150,243,0.10);
+            padding: 3rem 2.5rem;
+            width: 100%;
+            max-width: 700px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s, transform 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s;
+        }
+
+        .privacy-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .privacy-section {
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .privacy-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2196f3;
+            margin-bottom: 1rem;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .section-content {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .section-content ul {
+            padding-left: 1.5rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .section-content strong {
+            color: #2196f3;
+            font-weight: 600;
+        }
+
+        .section-content a {
+            color: #2196f3;
+            text-decoration: none;
+        }
+
+        .section-content a:hover {
+            text-decoration: underline;
+        }
+
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Progress Indicator Styles */
+        .progress-indicator {
+            position: fixed;
+            left: 80px;
+            top: 0;
+            width: 3px;
+            height: 100vh;
+            background: var(--gray);
+            z-index: 2;
+            transition: left 0.5s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--accent);
+            height: 0%;
+            transition: height 0.1s ease-out;
+            box-shadow: none;
         }
 
         @media (max-width: 768px) {
-            .button-lg {
-                padding: 0.75rem 1rem;
-                font-size: 1rem;
+            .privacy-title {
+                font-size: 2.2rem;
             }
 
-            .text-balance {
-                font-size: 1rem;
+            .privacy-container {
+                padding: 2rem 1.5rem;
             }
 
-            .title-lg {
-                font-size: 2.25rem;
+            .section-heading {
+                font-size: 1.3rem;
             }
+        }
 
-            /* Navbar responsive adjustments */
-            .navbar-items {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 0.75rem;
-                margin-top: 1rem;
+        /* Dropdown Navigation Styles */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            color: var(--text-main);
+            transition: transform 0.3s ease, color 0.2s ease;
+        }
+
+        .dropdown-trigger:hover .dropdown-arrow {
+            color: var(--accent);
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            border: 1px solid var(--sidebar-border);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            padding: 8px 0;
+            margin-top: 8px;
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-main) !important;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-radius: 0;
+        }
+
+        .dropdown-item:hover {
+            background: #f8fafc !important;
+            color: var(--accent) !important;
+            padding-left: 24px;
+        }
+
+        /* Responsive dropdown */
+        @media (max-width: 768px) {
+            .nav-dropdown {
+                position: static;
             }
-
-            .navbar-items a {
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: transparent;
+                margin-top: 0;
+                padding: 0;
+            }
+            
+            .nav-dropdown:hover .dropdown-menu {
                 display: block;
-                width: 100%;
-                text-align: center;
+            }
+            
+            .dropdown-item {
+                padding: 8px 0;
+                padding-left: 20px;
+                border-left: 2px solid var(--gray);
+                margin-left: 10px;
             }
         }
     </style>
 </head>
 
-<body class="font-sans antialiased bg-black text-white" style="font-family: 'Inter', sans-serif;">
-
-    <!-- Header -->
-    <div class="w-full max-w-5xl mx-auto px-6">
-        <nav class="w-full py-4 flex flex-row items-center gap-2 sm:gap-8">
-            <a href="/" class="flex items-center font-bold tracking-tight">
-                <img src="logo.png" alt="Logo" class='w-12 h-12'>
-                <span class="text-lg text-violet-500 ml-2">Hotel Chat AI</span>
-            </a>
-
-            <div class='flex-1'></div>
-
-            <a href="/#features" class="hidden md:block text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">Features</a>
-            <a href="/pricing" class="hidden md:block text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">Pricing</a>
-            
-            <a href="/pricing">
-                <button class='px-4 py-2 text-fuchsia-400 border border-fuchsia-400 rounded-full hover:bg-fuchsia-400/50 transition hover:shadow-lg hover:shadow-fuchsia-400/20 cursor-pointer'>
-                    Get started
-                </button>
-            </a>
-        </nav>
+<body>
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-bar"></div>
     </div>
 
-    <!-- Heading Section -->
-    <section class="px-6 py-16 max-w-5xl mx-auto">
-        <h1 class="text-4xl md:text-5xl font-bold text-center text-violet-500 mb-4">Privacy Policy</h1>
-        <p class="text-xl text-center text-purple-400 mb-12 text-balance">Last Updated: January 1, 2024</p>
-    </section>
-
-    <!-- Privacy Policy Content -->
-    <section class="max-w-4xl mx-auto px-6 pb-16">
-        <div class="bg-gray-900 rounded-lg shadow-lg p-8">
-            <div class="space-y-8">
-                <div>
-                    <h2 class="text-2xl font-bold text-fuchsia-400 mb-4">1. Introduction</h2>
-                    <p class="text-gray-300 mb-4">At Hotel Chat AI ("we," "our," or "us"), we respect your privacy and are committed to protecting the personal information you provide to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website, products, and services (collectively, the "Services").</p>
-                    <p class="text-gray-300">Please read this Privacy Policy carefully. By accessing or using our Services, you acknowledge that you have read, understood, and agree to be bound by this Privacy Policy.</p>
+    <div class="topbar">
+        <a href="index.html" class="logo logo-link">
+            <img src="assets/images/logo.png" alt="Logo" class="navbar-logo">
+            <span class="logo-text">Hotel Chat AI</span>
+        </a>
+        <div class="nav-links">
+            <a class="nav-link" href="index.html">Home</a>
+            <div class="nav-dropdown">
+                <a class="nav-link dropdown-trigger" href="#">
+                    Platform Features
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="chatbot.html">Chatbot</a>
+                    <a class="dropdown-item" href="mobile-check-in.html">Mobile Check-In</a>
+                    <a class="dropdown-item" href="booking-engine.html">Booking Engine</a>
+                    <a class="dropdown-item" href="social-media-integrations.html">Social Media Integrations</a>
                 </div>
+            </div>
+            <a class="nav-link" href="pricing.html">Pricing</a>
+            <a class="nav-link" href="demo.html">Get Demo</a>
+        </div>
+    </div>
 
-                <div>
-                    <h2 class="text-2xl font-bold text-fuchsia-400 mb-4">2. Information We Collect</h2>
-                    <p class="text-gray-300 mb-4">We may collect several types of information from and about users of our Services, including:</p>
-                    <ul class="list-disc list-inside text-gray-300 ml-4 space-y-2">
-                        <li><strong class="text-fuchsia-400">Personal Information:</strong> This may include your name, email address, phone number, company name, and other information you provide when you create an account, subscribe to our services, or contact us.</li>
-                        <li><strong class="text-fuchsia-400">Usage Data:</strong> Information about how you use our Services, including your interaction with the AI chatbot, features you use, and time spent on our Services.</li>
-                        <li><strong class="text-fuchsia-400">Chat Conversations:</strong> When hotel guests interact with our AI chatbot on your hotel website, we collect and process the content of these conversations to provide automated responses.</li>
-                        <li><strong class="text-fuchsia-400">Technical Data:</strong> Information about your device, browser, IP address, and other technical details when you access our Services.</li>
+    <main class="main-content">
+        <div class="privacy-hero scroll-animate">
+            <h1 class="privacy-title">Privacy Policy</h1>
+            <p class="privacy-subtitle">How we protect and handle your personal information.</p>
+        </div>
+
+        <div class="privacy-container scroll-animate">
+            <div class="privacy-section scroll-animate">
+                <h2 class="section-heading">1. Introduction</h2>
+                <div class="section-content">
+                    <p>At Hotel Chat AI ("we," "our," or "us"), we respect your privacy and are committed to protecting the personal information you provide to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website, products, and services (collectively, the "Services").</p>
+                    <p>Please read this Privacy Policy carefully. By accessing or using our Services, you acknowledge that you have read, understood, and agree to be bound by this Privacy Policy.</p>
+                </div>
+            </div>
+
+            <div class="privacy-section scroll-animate">
+                <h2 class="section-heading">2. Information We Collect</h2>
+                <div class="section-content">
+                    <p>We may collect several types of information from and about users of our Services, including:</p>
+                    <ul>
+                        <li><strong>Personal Information:</strong> This may include your name, email address, phone number, company name, and other information you provide when you create an account, subscribe to our services, or contact us.</li>
+                        <li><strong>Usage Data:</strong> Information about how you use our Services, including your interaction with the AI chatbot, features you use, and time spent on our Services.</li>
+                        <li><strong>Chat Conversations:</strong> When hotel guests interact with our AI chatbot on your hotel website, we collect and process the content of these conversations to provide automated responses.</li>
+                        <li><strong>Technical Data:</strong> Information about your device, browser, IP address, and other technical details when you access our Services.</li>
                     </ul>
                 </div>
+            </div>
 
-                <div>
-                    <h2 class="text-2xl font-bold text-fuchsia-400 mb-4">3. How We Use Your Information</h2>
-                    <p class="text-gray-300 mb-4">We use the information we collect for various purposes, including to:</p>
-                    <ul class="list-disc list-inside text-gray-300 ml-4 space-y-2">
+            <div class="privacy-section scroll-animate">
+                <h2 class="section-heading">3. How We Use Your Information</h2>
+                <div class="section-content">
+                    <p>We use the information we collect for various purposes, including to:</p>
+                    <ul>
                         <li>Provide, maintain, and improve our Services</li>
                         <li>Process your subscriptions and payments</li>
                         <li>Train and improve our AI models to better respond to hotel guest inquiries</li>
@@ -164,74 +490,125 @@
                         <li>Comply with legal obligations</li>
                     </ul>
                 </div>
+            </div>
 
-                <div>
-                    <h2 class="text-2xl font-bold text-fuchsia-400 mb-4">4. Sharing of Information</h2>
-                    <p class="text-gray-300 mb-4">We may share your information in the following circumstances:</p>
-                    <ul class="list-disc list-inside text-gray-300 ml-4 space-y-2">
-                        <li><strong class="text-fuchsia-400">Service Providers:</strong> We may share your information with third-party vendors, service providers, and contractors who perform services on our behalf and need access to your information to deliver those services.</li>
-                        <li><strong class="text-fuchsia-400">Business Transfers:</strong> If we are involved in a merger, acquisition, or sale of all or a portion of our assets, your information may be transferred as part of that transaction.</li>
-                        <li><strong class="text-fuchsia-400">Legal Requirements:</strong> We may disclose your information if required to do so by law or in response to valid requests by public authorities.</li>
-                        <li><strong class="text-fuchsia-400">With Your Consent:</strong> We may share your information with third parties when you have provided your consent to do so.</li>
+            <div class="privacy-section scroll-animate">
+                <h2 class="section-heading">4. Sharing of Information</h2>
+                <div class="section-content">
+                    <p>We may share your information in the following circumstances:</p>
+                    <ul>
+                        <li><strong>Service Providers:</strong> We may share your information with third-party vendors, service providers, and contractors who perform services on our behalf and need access to your information to deliver those services.</li>
+                        <li><strong>Business Transfers:</strong> If we are involved in a merger, acquisition, or sale of all or a portion of our assets, your information may be transferred as part of that transaction.</li>
+                        <li><strong>Legal Requirements:</strong> We may disclose your information if required to do so by law or in response to valid requests by public authorities.</li>
+                        <li><strong>With Your Consent:</strong> We may share your information with third parties when you have provided your consent to do so.</li>
                     </ul>
                 </div>
+            </div>
 
-                <div>
-                    <h2 class="text-2xl font-bold text-fuchsia-400 mb-4">5. Data Security</h2>
-                    <p class="text-gray-300 mb-4">We implement appropriate technical and organizational measures to protect the security of your personal information. However, please be aware that no method of transmission over the Internet or method of electronic storage is 100% secure.</p>
-                    <p class="text-gray-300">While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security.</p>
+            <div class="privacy-section scroll-animate">
+                <h2 class="section-heading">5. Data Security</h2>
+                <div class="section-content">
+                    <p>We implement appropriate technical and organizational measures to protect the security of your personal information. However, please be aware that no method of transmission over the Internet or method of electronic storage is 100% secure.</p>
+                    <p>While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security.</p>
                 </div>
+            </div>
 
-                <div>
-                    <h2 class="text-2xl font-bold text-fuchsia-400 mb-4">6. Your Rights</h2>
-                    <p class="text-gray-300 mb-4">Depending on your location, you may have certain rights regarding your personal information, including:</p>
-                    <ul class="list-disc list-inside text-gray-300 ml-4 space-y-2">
+            <div class="privacy-section scroll-animate">
+                <h2 class="section-heading">6. Your Rights</h2>
+                <div class="section-content">
+                    <p>Depending on your location, you may have certain rights regarding your personal information, including:</p>
+                    <ul>
                         <li>The right to access the personal information we hold about you</li>
                         <li>The right to request correction of any inaccurate personal information</li>
                         <li>The right to request deletion of your personal information</li>
                         <li>The right to object to or restrict the processing of your personal information</li>
                         <li>The right to data portability</li>
                     </ul>
-                    <p class="text-gray-300 mt-4">To exercise these rights, please contact us using the information provided in the "Contact Us" section below.</p>
+                    <p>To exercise these rights, please contact us using the information provided in the "Contact Us" section below.</p>
                 </div>
+            </div>
 
-                <div>
-                    <h2 class="text-2xl font-bold text-fuchsia-400 mb-4">7. Children's Privacy</h2>
-                    <p class="text-gray-300">Our Services are not intended for individuals under the age of 16. We do not knowingly collect personal information from children under 16. If you become aware that a child has provided us with personal information, please contact us, and we will take steps to remove such information.</p>
+            <div class="privacy-section scroll-animate">
+                <h2 class="section-heading">7. Children's Privacy</h2>
+                <div class="section-content">
+                    <p>Our Services are not intended for individuals under the age of 16. We do not knowingly collect personal information from children under 16. If you become aware that a child has provided us with personal information, please contact us, and we will take steps to remove such information.</p>
                 </div>
+            </div>
 
-                <div>
-                    <h2 class="text-2xl font-bold text-fuchsia-400 mb-4">8. Changes to This Privacy Policy</h2>
-                    <p class="text-gray-300">We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top of this Privacy Policy.</p>
-                    <p class="text-gray-300">You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+            <div class="privacy-section scroll-animate">
+                <h2 class="section-heading">8. Changes to This Privacy Policy</h2>
+                <div class="section-content">
+                    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top of this Privacy Policy.</p>
+                    <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
                 </div>
+            </div>
 
-                <div>
-                    <h2 class="text-2xl font-bold text-fuchsia-400 mb-4">9. Contact Us</h2>
-                    <p class="text-gray-300">If you have any questions about this Privacy Policy, please contact us at privacy@hotelchatai.com.</p>
+            <div class="privacy-section scroll-animate">
+                <h2 class="section-heading">9. Contact Us</h2>
+                <div class="section-content">
+                    <p>If you have any questions about this Privacy Policy, please contact us at privacy@hotelchatai.com.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- Footer Section -->
-    <footer class="py-10 text-center bg-black text-white mt-16">
-        <div class="max-w-5xl mx-auto px-6">
-            <p class="text-violet-500">© 2024 Hotel Chat AI. All rights reserved.</p>
-        </div>
+    <script>
+        // Progress Indicator
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBar = document.querySelector('.progress-bar');
+            
+            function updateProgressBar() {
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight - windowHeight;
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const progress = (scrollTop / documentHeight) * 100;
+                
+                if (progressBar) {
+                    progressBar.style.height = Math.min(progress, 100) + '%';
+                }
+            }
 
-        <div class="flex justify-center space-x-6 mt-6">
-            <a href="/quote" class="hover:underline text-fuchsia-400">Help</a>
-            <a href="/quote" class="hover:underline text-fuchsia-400">Contact Us</a>
-        </div>
+            window.addEventListener('scroll', updateProgressBar);
+            updateProgressBar();
+        });
 
-        <div class="flex justify-center space-x-6 mt-6">
-            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-youtube"></i></a>
-        </div>
-    </footer>
+        // Scroll animations with replay functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Staggered animations for privacy sections
+            setTimeout(() => {
+                const privacySections = document.querySelectorAll('.privacy-section');
+                privacySections.forEach((section, index) => {
+                    setTimeout(() => {
+                        section.classList.add('visible');
+                    }, index * 150);
+                });
+            }, 800);
+        });
+    </script>
+
+    <!-- Chatbot Integration -->
+    <div id="chatbot-wrapper">
+        <script src='https://v2-bot.pages.dev/bot.js' data-theme="corporate" data-bot='website' onerror="console.error('Failed to load chatbot script')"></script>
+    </div>
 
 </body>
 

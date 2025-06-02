@@ -11,6 +11,7 @@ Make sure we don't send server.py when we update the website :sob:
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 app = FastAPI()
 
@@ -24,6 +25,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Serve index.html as the main page
+@app.get("/")
+async def read_index():
+    return FileResponse('index.html')
+
+# Mount static files for all other files
 app.mount('/', StaticFiles(directory='./'))
 
 if __name__ == '__main__':

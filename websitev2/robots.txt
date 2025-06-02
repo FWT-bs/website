@@ -1,3 +1,0 @@
-User-agent: *
-Disallow: 
-Sitemap: https://hotelchatai.com/sitemap.xml

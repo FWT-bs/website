@@ -5,323 +5,1868 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Chat AI</title>
-    <meta name="description" content="Hotel Chat AI offers an innovative AI-powered chatbot solution designed to transform hotel customer service. Providing 24/7 support, multilingual capabilities, and fast, accurate responses, our chatbot enhances guest experiences while improving operational efficiency. Seamlessly integrate Hotel Chat AI with a single line of code and automate guest inquiries to boost engagement, save costs, and streamline service. Whether you manage a boutique hotel or a large chain, Hotel Chat AI tailors to your unique needs for superior customer satisfaction and revenue growth.">
-    <meta name="keywords" content="Ai, Hotel, chatbot, aichatbot, chatGPT, OpenAI, Elon Musk, Hotel Chatbot, AI assisstance, replacing human, Hotel chatbot, AI-powered chatbot, 24/7 customer support,Multilingual chatbot ,Seamless integration ,Guest engagement, Hotel automation, Customer service automation,Increase hotel efficiency, Reduce operational costs, Boost hotel revenue, Instant responses, Hotel chatbot features ,Chatbot for hotels, Enhance guest experience">
-    <meta name="author" content="Hotel Chat AI">
-    <link rel="stylesheet" href="output.css">
-    <link rel="icon" href="/logo.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-        <style>
+    <title>HotelChatAI Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Merriweather:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap');
+        
+        /* Custom daisyUI theme for chatbot */
+        :root:has(input.theme-controller[value=hotelchat]:checked), [data-theme="hotelchat"] {
+            color-scheme: light;
+            --color-primary: #2196f3;
+            --color-primary-content: #ffffff;
+            --color-secondary: #1976d2;
+            --color-secondary-content: #ffffff;
+            --color-accent: #2196f3;
+            --color-accent-content: #ffffff;
+            --color-neutral: #f8fafc;
+            --color-neutral-content: #374151;
+            --color-base-100: #ffffff;
+            --color-base-200: #f8fafc;
+            --color-base-300: #e5e7eb;
+            --color-base-content: #374151;
+            --color-info: #2196f3;
+            --color-info-content: #ffffff;
+            --color-success: #10b981;
+            --color-success-content: #ffffff;
+            --color-warning: #f59e0b;
+            --color-warning-content: #ffffff;
+            --color-error: #ef4444;
+            --color-error-content: #ffffff;
+            --rounded-box: 0.5rem;
+            --rounded-btn: 0.5rem;
+            --rounded-badge: 1rem;
+            --animation-btn: 0.25s;
+            --animation-input: 0.2s;
+            --btn-text-case: uppercase;
+            --btn-focus-scale: 0.95;
+            --border-btn: 1px;
+            --tab-border: 1px;
+            --tab-radius: 0.5rem;
+        }
+        
+        /* Additional specific overrides for chatbot colors */
+        [data-theme="hotelchat"] .btn-primary {
+            background-color: #2196f3 !important;
+            border-color: #2196f3 !important;
+            color: #ffffff !important;
+        }
+        
+        [data-theme="hotelchat"] .btn-outline {
+            background-color: transparent !important;
+            border-color: #2196f3 !important;
+            color: #2196f3 !important;
+        }
+        
+        [data-theme="hotelchat"] .btn-outline:hover {
+            background-color: #2196f3 !important;
+            border-color: #2196f3 !important;
+            color: #ffffff !important;
+        }
+        
+        [data-theme="hotelchat"] .chat-bubble-primary {
+            background-color: #2196f3 !important;
+            color: #ffffff !important;
+        }
+        
+        [data-theme="hotelchat"] .chat-bubble-secondary {
+            background-color: #ffffff !important;
+            color: #374151 !important;
+            border: 1px solid #e5e7eb !important;
+        }
+        
+        [data-theme="hotelchat"] .badge-primary {
+            background-color: #2196f3 !important;
+            color: #ffffff !important;
+        }
+        
+        [data-theme="hotelchat"] .badge-outline {
+            background-color: transparent !important;
+            border-color: #2196f3 !important;
+            color: #2196f3 !important;
+        }
+        
+        :root {
+            --main-bg: #FFFFFF;
+            --gradient-bg: #FFFFFF;
+            --section-bg: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --section-glow: 0 0 32px 0 rgba(59, 130, 246, 0.08);
+            --accent: #3B82F6;
+            --accent2: #64748B;
+            --accent3: #3B82F6;
+            --text-main: #374151;
+            --text-light: #4B5563;
+            --text-muted: #6B7280;
+            --navy: #374151;
+            --navy-light: #4B5563;
+            --navy-lighter: #6B7280;
+            --blue: #3B82F6;
+            --blue-light: #60A5FA;
+            --blue-dark: #2563EB;
+            --white: #FFFFFF;
+            --gray: #F3F4F6;
+            --sidebar-bg: rgba(255, 255, 255, 0.98);
+            --sidebar-border: #E5E7EB;
+            --accent-blue: #3B82F6;
+        }
         html {
             scroll-behavior: smooth;
+            background: var(--main-bg) !important;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--main-bg) !important;
+            color: var(--text-main) !important;
+            min-height: 100vh;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+        .topbar {
+            position: sticky !important;
+            top: 0;
+            left: 0;
+            margin: 0 auto;
+            width: calc(100vw - 64px);
+            max-width: 1200px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 32px 0 0;
+            height: 64px;
+            border-bottom: 1px solid var(--sidebar-border);
+        }
+        .logo-group {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+            min-width: 0;
+        }
+        .logo {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent) !important;
+            letter-spacing: 0.04em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .logo:hover {
+            color: var(--accent2) !important;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+        }
+        .nav-link {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-main) !important;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            background: var(--gray) !important;
+            color: var(--accent) !important;
+        }
+        .clock {
+            display: none;
+        }
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0 auto;
+            padding: 40px 20px 60px 20px;
+            max-width: 1000px;
+            width: 100%;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+        }
+        .section {
+            min-height: 80vh;
+            margin-bottom: 80px;
+            background: var(--section-bg) !important;
+            border-radius: 4px;
+            box-shadow: var(--section-glow);
+            padding: 64px 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.2;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-title, .section-desc, .hero-title, .hero-desc {
+            color: #2196f3 !important;
+        }
+        .section-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            text-shadow: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section.visible .section-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-desc {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text-light) !important;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out 0.4s, transform 0.6s ease-out 0.4s;
+            line-height: 1.6;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .section.visible .section-desc {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .feature-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-item, .plan-card {
+            background: var(--card-bg) !important;
+            color: var(--text-main) !important;
+            border: 1.5px solid rgba(214, 168, 106, 0.2);
+            box-shadow: 0 2px 12px rgba(214, 168, 106, 0.08);
+            border-radius: 24px;
+        }
+        .feature-item.strong {
+            background: var(--card-bg) !important;
+            color: var(--text-main) !important;
+            font-weight: 700;
+            border-left: 4px solid var(--accent);
+            border: 1.5px solid rgba(214, 168, 106, 0.2);
+            grid-column: 1 / -1;
+            transition: background 0.3s, color 0.3s;
+        }
+        .feature-item.expanded {
+            border: none;
+            border-radius: 24px;
+            box-shadow: 0 0 32px 0 var(--accent) !important;
+            z-index: 10;
+        }
+        .feature-item {
+            color: #2196f3 !important;
+            background: #fff !important;
+            border: 1.5px solid #2196f3;
+            box-shadow: 0 2px 12px rgba(33,150,243,0.08);
+            border-radius: 24px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            padding: 24px 32px;
+            margin-bottom: 20px;
+            text-align: center;
+            transition: box-shadow 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .feature-item:hover {
+            box-shadow: 0 8px 30px rgba(33,150,243,0.18);
+            border-color: #1976d2;
+            color: #1976d2 !important;
+        }
+        .feature-item .feature-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-main) !important;
+            position: relative;
+            z-index: 2;
+        }
+        .feature-item .feature-title {
+            margin: 0;
+            padding-right: 20px;
+            color: var(--text-main) !important;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+        .feature-item .feature-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.4s ease-out;
+            margin-top: 0;
+            color: var(--text-light) !important;
+            font-size: 1rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+            padding-top: 0;
+            border-top: none;
+        }
+        .feature-item.expanded .feature-details {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .feature-icon {
+            opacity: 1;
+            transition: opacity 0.2s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .review-card {
+            font-family: 'DM Sans', sans-serif;
+            background: #FFFFFF !important;
+            color: var(--text-main) !important;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+            border: 2px solid var(--accent);
+            min-width: 280px;
+            max-width: 320px;
+            padding: 2.7rem 1.5rem 1.5rem 1.5rem;
+            margin-top: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            position: relative;
+            overflow: visible;
+            z-index: 1;
+        }
+        .review-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+            border-color: var(--accent);
+        }
+        .review-stars {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 2;
+        }
+        .review-text {
+            font-size: 1rem;
+            color: var(--text-main) !important;
+            margin-bottom: 0.7rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+        .review-author {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.875rem;
+            color: var(--accent) !important;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+        @media (max-width: 1200px) {
+            .main-content {
+                width: calc(100vw - 240px);
+                padding: 30px 20px;
+            }
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 900px) {
+            .main-content {
+                width: calc(100vw - 180px);
+                padding: 20px 15px;
+            }
+            .section {
+                padding: 40px 30px;
+            }
+            .section-title {
+                font-size: 2.3rem;
+            }
+        }
+        @media (max-width: 700px) {
+            .main-content {
+                width: 100%;
+                padding: 20px 15px;
+            }
+            .section {
+                padding: 30px 20px;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
         }
 
-        @tailwind base;
-        @tailwind components;
-        @tailwind utilities;
+        /* Progress Indicator Styles */
+        .progress-indicator {
+            position: fixed;
+            left: 80px;
+            top: 0;
+            width: 3px;
+            height: 100vh;
+            background: var(--gray);
+            z-index: 2;
+            transition: left 0.5s cubic-bezier(0.4,0,0.2,1);
+        }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--accent);
+            height: 0%;
+            transition: height 0.1s ease-out;
+            box-shadow: none;
+        }
+
+        .plan-title {
+            color: #fff;
+        }
+        .plan-price {
+            color: #fff;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            max-width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 10px;
+            border: 1.5px solid #444;
+            background: #0a0a0f;
+            color: var(--text-main);
+            font-size: 1rem;
+            margin-top: 0.2rem;
+            margin-bottom: 0.5rem;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #fff;
+            background: #181824;
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.08);
+        }
+
+        /* 2. Logo font: use Montserrat, Inter, or Segoe UI */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+        .logo-text {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif !important;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent) !important;
+            letter-spacing: 0.04em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            text-decoration: none;
+            transition: transform 0.2s;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* 6. Prevent logo/nav-link color change, animate scale on hover/active */
+        .logo-link:hover .logo-text, .logo-link:active .logo-text {
+            color: var(--accent) !important;
+            transform: scale(1.08);
+        }
+        .nav-link:hover, .nav-link:active {
+            color: #fff !important;
+            background: none !important;
+            transform: scale(1.08);
+        }
+        .nav-link {
+            transition: transform 0.2s, color 0.2s;
+        }
+        .navbar-logo {
+            height: 50px;
+            width: auto;
+            max-width: 55px;
+            margin-right: 12px;
+            vertical-align: middle;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .navbar-logo:hover {
+            transform: scale(1.12);
+        }
+
+        /* Add .get-started-btn styles */
+        .get-started-btn {
+            display: inline-block;
+            margin: 24px auto 0 auto;
+            padding: 1rem 2.5rem;
+            font-size: 1.18rem;
+            font-weight: 700;
+            color: #fff;
+            background: #6b2fc7;
+            border: none;
+            border-radius: 22px;
+            box-shadow: 0 2px 16px rgba(143,92,255,0.12);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+        }
+        .get-started-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 24px rgba(143,92,255,0.18);
+        }
+        /* Center the button and text in the hero section */
+        #home .section-desc, #home .get-started-btn {
+            text-align: center;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #bot-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px auto;
+            width: 100%;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+        #bot-image-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #bot-image {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 4px;
+            border: 1px solid var(--sidebar-border);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            background: var(--white);
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Review Carousel Styles */
+        .reviews-section {
+            margin: 64px 0 32px 0;
+            padding: 0 0 32px 0;
+            width: 100%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        .reviews-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-main) !important;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+        .reviews-carousel {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            margin-bottom: 18px;
+        }
+        .reviews-row {
+            display: flex;
+            gap: 1.5rem;
+            width: max-content;
+            animation: scroll-left 24s linear infinite;
+        }
+        .reviews-row.row2 {
+            animation-duration: 32s;
+            animation-direction: reverse;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .review-card {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--card-bg);
+            color: var(--text-main) !important;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.08);
+            border: 1px solid var(--sidebar-border);
+            min-width: 280px;
+            max-width: 320px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .review-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+            border-color: var(--accent);
+        }
+        .review-stars {
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .review-text {
+            font-size: 1rem;
+            color: var(--text-light) !important;
+            margin-bottom: 0.7rem;
+            line-height: 1.6;
+        }
+        .review-author {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.875rem;
+            color: var(--accent2);
+            font-weight: 500;
+        }
+        @media (max-width: 900px) {
+            .reviews-section { max-width: 100%; }
+            .review-card { min-width: 180px; max-width: 200px; }
+        }
+        .hero-btns {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            margin: 32px auto 0 auto;
+            width: 100%;
+            max-width: 600px;
+        }
+        .hero-btn {
+            font-family: 'DM Sans', sans-serif;
+            display: inline-block;
+            padding: 1.1rem 2.2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 18px;
+            min-width: 180px;
+            transition: transform 0.18s cubic-bezier(0.4,0,0.2,1), box-shadow 0.18s cubic-bezier(0.4,0,0.2,1);
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        .hero-btn-primary {
+            background: #2196f3 !important;
+            color: #fff !important;
+            border: none;
+        }
+        .hero-btn-primary:hover {
+            background: #60a5fa !important;
+            color: #fff !important;
+        }
+        .hero-btn-outline {
+            background: transparent;
+            color: #0a0a23 !important;
+            border: 2px solid #0a0a23;
+        }
+        .hero-btn-outline:hover {
+            background: rgba(10,10,35,0.08);
+        }
+        @media (max-width: 600px) {
+            .hero-btns { flex-direction: column; gap: 12px; }
+            .hero-title { font-size: 2rem; }
+        }
+        body, html {
+            background: #fff !important;
+            margin: 0;
+            padding: 0;
+        }
+        main.main-content {
+            background: transparent !important;
+            margin-top: 40px;
+            padding-top: 0;
+        }
+        .hero-title {
+            color: #2196f3;
+            font-size: 2.7rem;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 1.2rem;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .hero-desc {
+            color: #2196f3;
+            font-size: 1.15rem;
+            text-align: center;
+            margin-bottom: 2.2rem;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .content-block {
+            max-width: 900px;
+            margin: 64px auto 0 auto;
+            padding: 0 20px;
+        }
+        .tab-btn {
+            background: #fff;
+            color: #2196f3;
+            border: 2px solid #e3f0fd;
+            border-radius: 8px;
+            padding: 1.1rem 2.2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0 8px 16px 0;
+            box-shadow: 0 1px 4px rgba(33,150,243,0.06);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+            outline: none;
+        }
+        .tab-btn.active, .tab-btn:focus {
+            background: #2196f3;
+            color: #fff;
+            border: 2px solid #2196f3;
+            box-shadow: 0 2px 8px rgba(33,150,243,0.12);
+        }
+        .tab-btn.active:hover, .tab-btn.active:focus {
+            background: #2196f3;
+            color: #fff;
+        }
+        .tab-btn:hover {
+            background: #e3f0fd;
+            color: #2196f3;
+            border: 2px solid #2196f3;
+        }
+        .tab-content { display: none; width: 100%; }
+        .tab-content.active { display: block; }
+
+        /* Tab content animation styles */
+        .tab-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tab-content.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Tab section button styles */
+        .tab-section-btn {
+            font-family: 'DM Sans', sans-serif;
+            display: inline-block;
+            padding: 0.9rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 12px;
+            margin: 0 8px 0 0;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.15);
+        }
+        .tab-section-btn-primary {
+            background: #2196f3;
+            color: #fff;
+        }
+        .tab-section-btn-primary:hover {
+            background: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(33, 150, 243, 0.25);
+        }
+        .tab-section-btn-outline {
+            background: transparent;
+            color: #2196f3;
+            border: 2px solid #2196f3;
+        }
+        .tab-section-btn-outline:hover {
+            background: #2196f3;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(33, 150, 243, 0.25);
+        }
+        .tab-buttons-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 0.6rem; /* Much reduced from 1.2rem to 0.6rem */
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+        }
+        .tab-content.active .tab-buttons-container {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .tab-buttons-container {
+                flex-direction: column;
+                align-items: center;
             }
-            to {
-                opacity: 1;
+            .tab-section-btn {
+                width: 200px;
+                text-align: center;
             }
         }
 
-        .animate-fadeIn {
-            animation: fadeIn 2s ease-in-out;
+        /* --- Add/Update for Large Review Section --- */
+        .large-review-section {
+            width: 100%;
+            max-width: 1000px; /* Slightly smaller */
+            margin: 80px auto 0 auto;
+            text-align: center;
+            position: relative;
+        }
+        
+        #large-review-slides {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            width: max-content;
+        }
+        .large-review-slide {
+            display: none;
+        }
+        .large-review-slide.active {
+            display: block;
+        }
+        .large-review-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: none;
+            background: #e3f0fd;
+            box-shadow: 0 1px 4px rgba(33,150,243,0.06);
+            cursor: pointer;
+            transition: background 0.2s;
+            margin: 0 4px;
+        }
+        .large-review-dot.active,
+        .large-review-dot:focus {
+            background: #2196f3;
+        }
+        #large-review-dots {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 32px auto 0 auto;
+            position: relative;
+            z-index: 3;
+        }
+        /* New styles for navigation arrows */
+        .large-review-nav-arrow {
+            position: absolute;
+            top: 42%; /* Moved up slightly */
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 4; /* Ensure arrows are above the image */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+        .large-review-nav-arrow:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .large-review-prev {
+            left: -24px; /* Middle of button on the edge of the picture */
+        }
+        .large-review-next {
+            right: -24px; /* Middle of button on the edge of the picture */
+        }
+        @media (max-width: 700px) {
+            .large-review-nav-arrow {
+                top: 28%; /* Moved up slightly on mobile */
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+             .large-review-prev {
+                left: -20px; /* Middle of button on the edge (mobile) */
+            }
+            .large-review-next {
+                right: -20px; /* Middle of button on the edge (mobile) */
+            }
+        }
+        /* --- End Large Review Section --- */
+
+        /* Video Container Styles */
+        .video-container {
+            width: 80%; /* Reduced from 100% to 80% */
+            max-width: 480px; /* Reduced from 600px to 80% (480px) */
+            margin: 0rem auto 0rem auto; /* Extremely tight spacing - no margin */
+            /* Add more rounded corners for video */
+            border-radius: 24px; /* More rounded than previous 16px */
+            overflow: hidden;
+            /* Remove white border effect */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+            /* Let container adapt to video's natural dimensions */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Responsive button and text sizes for various screen widths */
-        @media (min-width: 1024px) {
-            .button-lg {
-                padding: 0.75rem 2.5rem;
-                font-size: 1.25rem;
-            }
-
-            .text-balance {
-                font-size: 1.25rem;
-            }
-
-            .title-lg {
-                font-size: 3.5rem;
-            }
+        /* Higher specificity to ensure margins are enforced */
+        .tab-content .video-container,
+        #tab-content-area .video-container,
+        div.tab-content div.video-container {
+            margin: 0 auto !important;
+            padding: 0 !important;
         }
 
-        @media (max-width: 1024px) {
-            .button-lg {
-                padding: 0.75rem 1.5rem;
-                font-size: 1.125rem;
-            }
+        .tab-content.active .video-container {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-            .text-balance {
-                font-size: 1.125rem;
-            }
+        .video-container video {
+            width: 100%;
+            max-width: 100%;
+            height: auto; /* Let video maintain its natural aspect ratio */
+            border: none;
+            /* Add more rounded corners for video element */
+            border-radius: 24px; /* More rounded corners */
+            display: block;
+            /* Ensure video uses its natural dimensions */
+            object-fit: contain; /* Maintain aspect ratio without cropping */
+            /* Scale video to 80% of its natural size */
+            transform: scale(0.8);
+            transform-origin: center;
+            /* Ensure no margin/padding on video element */
+            margin: 0 !important;
+            padding: 0 !important;
+        }
 
-            .title-lg {
-                font-size: 2.75rem;
-            }
+        .video-container iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            /* Add more rounded corners for iframe */
+            border-radius: 24px;
+            display: block;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
 
-            /* Ensure the navigation bar items stack correctly */
-            .navbar-items {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 5rem;
+        /* Hide video controls for seamless integration */
+        .video-container video {
+            outline: none;
+            background: transparent;
+        }
+
+        .video-container video::-webkit-media-controls {
+            display: none !important;
+        }
+
+        .video-container video::-webkit-media-controls-panel {
+            display: none !important;
+        }
+
+        .video-container video::-webkit-media-controls-play-button {
+            display: none !important;
+        }
+
+        .video-container video::-webkit-media-controls-start-playback-button {
+            display: none !important;
+        }
+
+        .video-container video::-moz-media-controls {
+            display: none !important;
+        }
+
+        .video-container video::-ms-media-controls {
+            display: none !important;
+        }
+
+        /* Disable right-click context menu on video */
+        .video-container video {
+            pointer-events: none;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #e3f0fd 0%, #f0f7ff 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #2196f3;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border: 2px dashed #2196f3;
+            margin: 0 !important;
+            padding: 1rem !important;
+        }
+
+        .video-placeholder-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .video-container {
+                width: 90%; /* Slightly larger on mobile for better visibility */
+                max-width: 90%;
+                margin: 0rem auto 0rem auto; /* No margin on mobile either */
+                border-radius: 20px; /* Slightly less rounded on mobile */
+            }
+            
+            /* Higher specificity for mobile */
+            .tab-content .video-container,
+            #tab-content-area .video-container,
+            div.tab-content div.video-container {
+                margin: 0 auto !important;
+                padding: 0 !important;
+            }
+            
+            .video-container video {
+                /* Add rounded corners for mobile video */
+                border-radius: 20px;
+                transform: scale(0.85); /* Slightly less scaling on mobile */
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .video-container iframe,
+            .video-placeholder {
+                height: 220px;
+                margin: 0 !important;
             }
         }
 
         @media (max-width: 768px) {
-            .button-lg {
-                padding: 0.75rem 1rem;
-                font-size: 1rem;
+            .reviews-section { max-width: 100%; }
+            .review-card { min-width: 180px; max-width: 200px; }
+            
+            /* Hero section mobile responsiveness */
+            #home.hero-area {
+                flex-direction: column !important;
+                padding: 60px 20px !important;
+                text-align: center !important;
+                min-height: auto !important;
             }
-
-            .text-balance {
-                font-size: 1rem;
+            
+            .hero-side-left {
+                margin-right: 0 !important;
+                margin-bottom: 40px !important;
+                flex: none !important;
             }
-
-            .title-lg {
-                font-size: 2.25rem;
+            
+            .hero-side-left > div {
+                width: 280px !important;
+                height: 240px !important;
             }
-
-            /* Navbar responsive adjustments */
-            .navbar-items {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 0.75rem;
-                margin-top: 1rem;
+            
+            .hero-center {
+                max-width: 100% !important;
+                text-align: center !important;
             }
+            
+            .hero-title {
+                font-size: 2.2rem !important;
+            }
+            
+            .hero-desc {
+                font-size: 1.1rem !important;
+            }
+            
+            .hero-btns {
+                justify-content: center !important;
+                flex-direction: column !important;
+                align-items: center !important;
+            }
+            
+            .hero-btn {
+                width: 200px !important;
+                text-align: center !important;
+            }
+            
+            .video-container {
+                width: 90%; /* Slightly larger on mobile for better visibility */
+                max-width: 90%;
+                margin: 0rem auto 0rem auto; /* No margin on mobile either */
+                border-radius: 20px; /* Slightly less rounded on mobile */
+            }
+            
+            /* Higher specificity for mobile */
+            .tab-content .video-container,
+            #tab-content-area .video-container,
+            div.tab-content div.video-container {
+                margin: 0 auto !important;
+                padding: 0 !important;
+            }
+            
+            .video-container video {
+                /* Add rounded corners for mobile video */
+                border-radius: 20px;
+                transform: scale(0.85); /* Slightly less scaling on mobile */
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .video-container iframe,
+            .video-placeholder {
+                height: 220px;
+                margin: 0 !important;
+            }
+        }
 
-            .navbar-items a {
+        /* Ensure hero text is white */
+        #home .hero-title,
+        #home .hero-desc {
+            color: #ffffff !important;
+        }
+
+        /* Dropdown Navigation Styles */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            color: var(--text-main);
+            transition: transform 0.3s ease, color 0.2s ease;
+        }
+
+        .dropdown-trigger:hover .dropdown-arrow {
+            color: var(--accent);
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            border: 1px solid var(--sidebar-border);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            padding: 8px 0;
+            margin-top: 8px;
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-main) !important;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-radius: 0;
+        }
+
+        .dropdown-item:hover {
+            background: #f8fafc !important;
+            color: var(--accent) !important;
+            padding-left: 24px;
+        }
+
+        /* Responsive dropdown */
+        @media (max-width: 768px) {
+            .nav-dropdown {
+                position: static;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: transparent;
+                margin-top: 0;
+                padding: 0;
+            }
+            
+            .nav-dropdown:hover .dropdown-menu {
                 display: block;
-                width: 100%;
-                text-align: center;
+            }
+            
+            .dropdown-item {
+                padding: 8px 0;
+                padding-left: 20px;
+                border-left: 2px solid var(--gray);
+                margin-left: 10px;
             }
         }
     </style>
 </head>
 
-<body class="font-sans antialiased bg-black text-white" style="font-family: 'Inter', sans-serif;">
-
-    <!-- Header -->
-    <div class="w-full max-w-5xl mx-auto px-6">
-        <nav class="w-full py-4 flex flex-row items-center gap-2 sm:gap-8">
-            <a href="/" class="flex items-center font-bold tracking-tight">
-                <img src="logo.png" alt="Logo" class='w-12 h-12'>
-                <span class="text-lg text-violet-500 ml-2">Hotel Chat AI</span>
-            </a>
-
-            <div class='flex-1'></div>
-
-            <a href="#features" class="hidden md:block text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">Features</a>
-            <a href="/pricing" class="hidden md:block text-violet-500 font-medium hover:underline underline-offset-2 hover:decoration-violet-500/50">Pricing</a>
-            
-            <a href='/pricing'>
-                <button class='px-4 py-2 text-fuchsia-400 border border-fuchsia-400 rounded-full hover:bg-fuchsia-400/50 transition hover:shadow-lg hover:shadow-fuchsia-400/20'>
-                    Get started
-                </button>
-            </a>
-        </nav>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-
-    <!-- Main Section (Hero Section) -->
-    <section class="py-20 bg-black">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center px-6 gap-8">
-            <!-- Text Content on the Left -->
-            <div>
-                <h1 class="title-lg text-violet-500 font-bold mb-6">Unlock the future of hotel customer service.</h1>
-                <p class="text-lg md:text-2xl text-purple-400 mb-8">
-                    Our AI-powered hotel chatbot revolutionizes customer service by answering your guests' questions instantly and accurately, 24/7. Enhance their experience and boost your revenue.
-                </p>
-                <div class="flex left-0 lg:justify-start space-x-4">
-                    <a href="#how-it-works" class="button-lg border border-fuchsia-400 rounded-full hover:bg-fuchsia-400/50 transition transform hover:scale-105">
-                        See How It Works
-                    </a>
-                </div>
-            </div>
-    
-            <!-- Image on the Right -->
-            <img src="bot.png" alt="Chatbot" class="rounded-lg shadow-lg w-full md:w-1/3 h-auto">
-        </div>
-    </section>
-
-    <!-- Our Top Features Section -->
-<section id="features" class="py-20 flex items-center">
-    <div class="max-w-5xl mx-auto px-6">
-        <h2 class="title-lg text-violet-500 font-bold mb-4">Our Top Features</h2>
-        <p class="text-balance text-purple-400 mb-12">Hotel Chat AI's smart features transform your customer service into a seamless and efficient experience for your guests.</p>
-
-        <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-left">
-            <div>
-                <h3 class="text-balance font-bold">24/7 Support</h3>
-                <p class="text-balance text-purple-400">Our chatbot provides unparalleled customer support around the clock for your customers, ensuring no guest inquiry goes unanswered.</p>
-            </div>
-            <div>
-                <h3 class="text-balance font-bold">Multi-Language</h3>
-                <p class="text-balance text-purple-400">Break language barriers with our multilingual support, catering to diverse guests from all over the world, making it easier to communicate and attract guests globally.</p>
-            </div>
-            <div>
-                <h3 class="text-balance font-bold">Seamless Integration</h3>
-                <p class="text-balance text-purple-400">Hotel Chat AI can be effortlessly integrated into your website with only one line of code, making sure the process is simple and easy as possible.</p>
-            </div>
-            <div>
-                <h3 class="text-balance font-bold">Customizable Chatbots</h3>
-                <p class="text-balance text-purple-400">Hotel Chat AI's chatbots can be easily customizable to tailor to your website's style and layout. Based on your plan and requests, we will be able to change the color, the name, the chat icon, etc.</p>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Section with See It In Action Button -->
-<section class="relative -mt-2"> <!-- Reduced the margin-top to 0 -->
-    <div class="max-w-5xl mx-auto px-6 flex justify-left md:justify-end">
-        <a id="see-demo-btn" class="button-lg border border-fuchsia-400 rounded-full hover:bg-fuchsia-400/50 transition transform hover:scale-105">
-            See It In Action
+<body>
+    <div class="topbar">
+        <a href="index.html" class="logo logo-link">
+            <img src="assets/images/logo.png" alt="Logo" class="navbar-logo">
+            <span class="logo-text">Hotel Chat AI</span>
         </a>
+        <div class="nav-links">
+            <a class="nav-link" href="index.html">Home</a>
+            <div class="nav-dropdown">
+                <a class="nav-link dropdown-trigger" href="#">
+                    Platform Features
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="chatbot.html">Chatbot</a>
+                    <a class="dropdown-item" href="mobile-check-in.html">Mobile Check-In</a>
+                    <a class="dropdown-item" href="booking-engine.html">Booking Engine</a>
+                    <a class="dropdown-item" href="social-media-integrations.html">Social Media Integrations</a>
+                </div>
+            </div>
+            <a class="nav-link" href="pricing.html">Pricing</a>
+            <a class="nav-link" href="demo.html">Get Demo</a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <div id="home" class="hero-area scroll-animate" style="position:relative; min-height:600px; display:flex; align-items:center; justify-content:flex-start; background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%); width: 100%; padding: 60px 120px; /* Increased side padding to 120px */ box-sizing: border-box; flex-wrap: wrap; gap: 20px;">
+        <!-- Scattered Icon Placeholders - Right Side Only -->
+        <img src="assets/images/1.png" alt="Icon 1" style="position: absolute; top: 100px; right: 200px; width: 36px; height: 36px; opacity: 0.6; z-index: 10;">
+        <img src="assets/images/2.png" alt="Icon 2" style="position: absolute; top: 150px; right: 120px; width: 32px; height: 32px; opacity: 0.5; z-index: 10;">
+        <img src="assets/images/3.png" alt="Icon 3" style="position: absolute; bottom: 180px; right: 250px; width: 40px; height: 40px; opacity: 0.7; z-index: 10;">
+        <img src="assets/images/4.png" alt="Icon 4" style="position: absolute; top: 200px; right: 160px; width: 34px; height: 34px; opacity: 0.6; z-index: 10;">
+        <img src="assets/images/5.png" alt="Icon 5" style="position: absolute; bottom: 150px; right: 180px; width: 38px; height: 38px; opacity: 0.5; z-index: 10;">
+        <img src="assets/images/6.png" alt="Icon 6" style="position: absolute; top: 120px; right: 280px; width: 35px; height: 35px; opacity: 0.4; z-index: 10;">
         
+        <!-- Left: Image Placeholders (Stacked) -->
+        <div class="hero-image-placeholder" style="flex-shrink: 0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:60px;">
+            <img src="assets/images/nice.png" alt="Nice Image" style="width:196px; height:auto; border-radius:12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+            <img src="assets/images/skib.png" alt="Skib Image" style="width:320px; height:auto; border-radius:12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+        </div>
+        <!-- Right: Text Content + Icon -->
+        <div class="hero-center" style="flex-grow: 1; text-align:center; max-width: 700px; display:flex; align-items:center; justify-content:center; gap: 20px;">
+            <div class="hero-text-content" style="text-align:center; margin-left: 0px;">
+                <div class="hero-title" style="font-size:2.7rem; font-weight:700; color:#ffffff; margin-bottom:1.2rem; line-height: 1.2;">Hotel Chat AI gives hotels unbeatable guest engagement.</div>
+                <div class="hero-desc" style="font-size:1.25rem; color:#ffffff; margin-bottom:2.2rem; line-height: 1.5;">Driving better guest satisfaction and more direct bookings for your hotel.</div>
+                <div class="hero-btns" style="display:flex; flex-direction:row; gap:18px; justify-content:center; flex-wrap: nowrap;">
+                    <a href="demo.html" class="hero-btn hero-btn-primary" style="padding:1.1rem 2.2rem; font-size:1.1rem; border-radius:18px; background:#ffffff; color:#2196f3; border:none; font-weight:600; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">Start free trial</a>
+                    <a href="#whats-included" class="hero-btn hero-btn-outline" style="padding:1.1rem 2.2rem; font-size:1.1rem; border-radius:18px; border:2px solid #ffffff; color:#ffffff; background:transparent; font-weight:500; text-decoration: none; transition: all 0.2s ease;">Learn more</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <main class="main-content">
+        <!-- MAIN CONTENT -->
         
-    </div>
-</section>
-
-<!-- How It Works Section-->
-<section id="how-it-works" class="py-20 flex items-center">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="title-lg text-violet-500 font-bold mb-4">How It Works</h2>
-            <p class="text-balance text-purple-400 mb-12">Customizing your chatbot with Hotel Chat AI is simple and efficient. Follow these steps to tailor the bot to your hotel's specific needs.</p>
-    
-            <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-left">
-                <div>
-                    <h3 class="text-balance font-bold">1. Contact Us</h3>
-                    <p class="text-balance text-purple-400">Select a plan or request a custom quote tailored to your hotel's unique needs and requirements. Whether you're a small hotel or a large chain, we have options that can be customized to match your price range and service goals. Based on your plan, you may be able to have more features.</p>
+        <!-- BEGIN FEATURE CARDS SECTION -->
+        <div id="features" class="feature-cards-section" style="margin:80px auto 0 auto; max-width:1200px; text-align:center;">
+            <div style="font-size:2.7rem; font-weight:800; color:#2196f3; margin-bottom:0.5rem;">Always Available. Always Helpful.<br>Always Efficient.</div>
+            <div style="font-size:2.7rem; font-weight:800; color:#0a0a23; margin-bottom:2.5rem;">Only with Hotel Chat AI.</div>
+            <div class="feature-cards-row" style="display:flex; flex-wrap:nowrap; gap:30px; justify-content:center;">
+                <div class="feature-card" style="background:#fff; border-radius:16px; box-shadow:0 8px 40px rgba(33,150,243,0.10); padding:2.5rem 2rem 2.5rem 2.5rem; max-width:320px; min-width:240px; text-align:left; position:relative; flex:1;">
+                    <div style="position:absolute; left:0; top:0; bottom:0; width:18px; background:#eaf4ff; border-top-left-radius:16px; border-bottom-left-radius:16px;"></div>
+                    <div style="position:relative; z-index:1;">
+                        <div style="font-size:2rem; font-weight:700; color:#0a0a23; margin-bottom:1.2rem;">Speed</div>
+                        <div style="font-size:1.15rem; color:#0a0a23;">Guests get answers in seconds, not minutes. Faster responses mean more satisfied customers and fewer missed bookings.</div>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="text-balance font-bold">2. Wait For Us To Reply</h3>
-                    <p class="text-balance text-purple-400">After sending us a custome quote or selecting a plan, we will contact you back with the information you filled out as soon as we can. Then, we will be able to further compromise and talk about pricing and all the exclusive features we can offer.</p>
+                <div class="feature-card" style="background:#fff; border-radius:16px; box-shadow:0 8px 40px rgba(33,150,243,0.10); padding:2.5rem 2rem 2.5rem 2.5rem; max-width:320px; min-width:240px; text-align:left; position:relative; flex:1;">
+                    <div style="position:absolute; left:0; top:0; bottom:0; width:18px; background:#eaf4ff; border-top-left-radius:16px; border-bottom-left-radius:16px;"></div>
+                    <div style="position:relative; z-index:1;">
+                        <div style="font-size:2rem; font-weight:700; color:#0a0a23; margin-bottom:1.2rem;">Multilingual</div>
+                        <div style="font-size:1.15rem; color:#0a0a23;">Communicate fluently with travelers from around the world. We break language barriers so your guests feel at home.</div>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="text-balance font-bold">3. Add Your Information</h3>
-                    <p class="text-balance text-purple-400">After we confirm the plan that you are on, you will need to provide us with the essential details about your hotel or hotels, including room types, amenities, services, and more. This information will help shape the chatbot's responses and enhance its accuracy, ensuring it answers all your customers' questions correctly. </p>
-                </div>
-                <div>
-                    <h3 class="text-balance font-bold">4. Customize Your Bot Further</h3>
-                    <p class="text-balance text-purple-400">Depending on the plan you have, you will be able to customize your bot, including the chat icon, the color of the bot, etc. Hotel Chat AI's chatbots are easily customizable to fit the style and needs of your websites.</p>
-                </div>
-                <div>
-                    <h3 class="text-balance font-bold">5. Integrate Into Your Website</h3>
-                    <p class="text-balance text-purple-400">After you confirm that all the information you want the bot to have is correct, we will send you the single line of code that you can copy and paste into your website.</p>
-                </div>
-                <div>
-                    <h3 class="text-balance font-bold">6. That's it!</h3>
-                    <p class="text-balance text-purple-400">Our integration is seamless and fast, ensuring no downtime during setup.</p>
-                </div>
-                <div class="flex left-0 lg:justify-start space-x-4">
-                    <a href="pricing" class="button-lg border border-fuchsia-400 rounded-full hover:bg-fuchsia-500 transition transform hover:scale-105">
-                        Get Started
-                    </a>
-                </div>
-    </section>
-    
-    
-    <!-- Key Benefits Section -->
-<section class="py-20">
-    <div class="max-w-5xl mx-auto flex flex-col lg:flex-row items-center">
-        <div class="md:w-1/4 flex justify-center mb-8 lg:mb-0">
-            <img src="key.png" alt="key" class="rounded-lg shadow-lg w-full h-auto">
-        </div>
-        <div class="md:w-3/4 text-left">
-            <h2 class="title-lg text-violet-500 font-bold mb-4">Key Benefits</h2>
-            <p class="text-balance text-purple-400 mb-12">Unveil the advantages of utilizing Hotel Chat AI and see how it can improve guest experience and your hotel's operations.</p>
-
-            <div class="grid gap-8 md:grid-cols-3 text-left">
-                <div>
-                    <h3 class="text-balance font-bold">Increased Efficiency</h3>
-                    <p class="text-balance text-purple-400">Automate common guest inquiries and operational tasks, freeing up your staff to focus on more critical aspects of service.</p>
-                </div>
-                <div>
-                    <h3 class="text-balance font-bold">Enhanced Engagement</h3>
-                    <p class="text-balance text-purple-400">Engage with your guests in a personalized and timely manner, making their stay more enjoyable and memorable.</p>
-                </div>
-                <div>
-                    <h3 class="text-balance font-bold">Cost Saving</h3>
-                    <p class="text-balance text-purple-400">Reduce overhead costs by streamlining customer service operations and minimizing the need for extensive staffing.</p>
+                <div class="feature-card" style="background:#fff; border-radius:16px; box-shadow:0 8px 40px rgba(33,150,243,0.10); padding:2.5rem 2rem 2.5rem 2.5rem; max-width:320px; min-width:240px; text-align:left; position:relative; flex:1;">
+                    <div style="position:absolute; left:0; top:0; bottom:0; width:18px; background:#eaf4ff; border-top-left-radius:16px; border-bottom-left-radius:16px;"></div>
+                    <div style="position:relative; z-index:1;">
+                        <div style="font-size:2rem; font-weight:700; color:#0a0a23; margin-bottom:1.2rem;">Automation</div>
+                        <div style="font-size:1.15rem; color:#0a0a23;">Let AI handle the FAQs, confirmations, check-in and late-night questions, so your staff can focus on what matters most.</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-
-
-
-
-
-    <!-- Frequently Asked Questions Section -->
-    <!-- Frequently Asked Questions Section -->
-<!-- Frequently Asked Questions Section -->
-<section class="py-20">
-    <div class="max-w-5xl mx-auto px-6">
-        <h2 class="title-lg text-violet-500 font-bold mb-4 text-left">Frequently Asked Questions</h2>
-        <p class="text-balance text-purple-400 mb-12 text-left">Find answers to common queries about Hotel Chat AI and how it can benefit your hotel.</p>
-
-        <div class="grid gap-8 md:grid-cols-2 text-left">
-            <div>
-                <h3 class="text-balance font-bold">How does Hotel Chat AI improve guest satisfaction?</h3>
-                <p class="text-balance text-purple-400">Hotel Chat AI offers instant, accurate responses to guests' questions, ensuring a smoother and more enjoyable stay experience, which leads to higher satisfaction ratings.</p>
+        <!-- END FEATURE CARDS SECTION -->
+         <!-- BEGIN NEW WHAT'S INCLUDED SECTION -->
+        <div id="whats-included" class="main-content-block scroll-animate" style="margin-top:80px;">
+            <div class="section-title" style="font-size:2.5rem; font-weight:700; color:#222; text-align:center; margin-bottom:2.5rem;">What's included?</div>
+            <div class="offer-title" style="font-size:1.5rem; font-weight:600; color:#2196f3; text-align:center; margin-bottom:1.5rem;">What we offer:</div>
+            <div class="tab-row" id="tab-row" style="display:flex; flex-wrap:wrap; gap:18px; justify-content:center; margin-bottom:2.5rem;">
+                <button class="tab-btn" data-tab="0">On-Demand Chatbot</button>
+                <button class="tab-btn" data-tab="1">Integration on Social Media</button>
+                <button class="tab-btn" data-tab="2">Contactless Check-In System</button>
+                <button class="tab-btn" data-tab="3">Smart Booking Engine + OTA Sync</button>
             </div>
-            <div>
-                <h3 class="text-balance font-bold">Is it easy to integrate with my current system?</h3>
-                <p class="text-balance text-purple-400">Absolutely! Hotel Chat AI is designed to seamlessly integrate with your existing website, with only one line of code!</p>
-            </div>
-            <div>
-                <h3 class="text-balance font-bold">Can Hotel Chat AI handle multiple languages?</h3>
-                <p class="text-balance text-purple-400">Yes, our chatbot supports multiple languages, making it easier to cater to guests from diverse backgrounds.</p>
-            </div>
-            <div>
-                <h3 class="text-balance font-bold">What kind of support do you offer?</h3>
-                <p class="text-balance text-purple-400">We provide technical support to ensure that your chatbot runs smoothly and efficiently, addressing any issues that may arise promptly.</p>
+            <div id="tab-content-area" style="background:#f7fbff; border-radius:24px; box-shadow:0 4px 24px rgba(33,150,243,0.08); padding:2.5rem 2rem; min-height:400px; max-width:1100px; margin:0 auto;">
+                <div class="tab-content" data-tab="0">
+                    <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 30px;">
+                        <!-- Left: Text content -->
+                        <div style="flex: 1; min-width: 300px; margin-bottom: 20px;">
+                            <div style="font-size:2rem; font-weight:700; color:#222; margin-bottom:0.8rem;">AI Hotel Chatbot</div>
+                            <div style="font-size:1.15rem; color:#222; margin-bottom:1.5rem; line-height: 1.6;">Your 24/7 virtual front desk that can answer guest inquiries instantly and precisely. With the ability to display real time prices and room availability, our chatbot helps you handle all guest problems.</div>
+                        </div>
+                        <!-- Right: Video -->
+                        <div style="flex: 1; min-width: 300px; display: flex; justify-content: center; align-items: center;">
+                            <div class="video-container" style="width: 100%; max-width: 420px; margin:0 auto;">
+                                <video autoplay muted loop playsinline id="chatbot-video" style="border-radius: 12px;">
+                                    <source src="assets/videos/final.mp4?v=" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Buttons below text and video -->
+                    <div class="tab-buttons-container" style="clear:both; margin-top: 20px; width: 100%;">
+                        <a href="chatbot-details.html" class="tab-section-btn tab-section-btn-primary">Learn More</a>
+                        <a href="chatbot.html" class="tab-section-btn tab-section-btn-outline">See It In Action</a>
+                    </div>
+                </div>
+                <div class="tab-content" data-tab="1">
+                    <div style="font-size:2rem; font-weight:700; color:#222; margin-bottom:1rem;">Social Media Integration</div>
+                    <div style="font-size:1.15rem; color:#222; margin-bottom:1.5rem;">Seamless chatbot access through Facebook and Instagram DMs.</div>
+                    
+                    <div class="tab-buttons-container">
+                        <a href="chatbot-details.html" class="tab-section-btn tab-section-btn-primary">Learn More</a>
+                        <a href="demo.html" class="tab-section-btn tab-section-btn-outline">See It In Action</a>
+                    </div>
+                </div>
+                <div class="tab-content" data-tab="2">
+                    <div style="font-size:2rem; font-weight:700; color:#222; margin-bottom:1rem;">Online Check-In System</div>
+                    <div style="font-size:1.15rem; color:#222; margin-bottom:1.5rem;">Streamlined digital check-in to reduce front desk traffic.</div>
+                    
+                    <div class="tab-buttons-container">
+                        <a href="chatbot-details.html" class="tab-section-btn tab-section-btn-primary">Learn More</a>
+                        <a href="demo.html" class="tab-section-btn tab-section-btn-outline">See It In Action</a>
+                    </div>
+                </div>
+                <div class="tab-content" data-tab="3">
+                    <div style="font-size:2rem; font-weight:700; color:#222; margin-bottom:1rem;">Smart Booking Engine + OTA Sync</div>
+                    <div style="font-size:1.15rem; color:#222; margin-bottom:1.5rem;">Direct bookings with real-time availability across all platforms.</div>
+                    
+                    <div class="tab-buttons-container">
+                        <a href="chatbot-details.html" class="tab-section-btn tab-section-btn-primary">Learn More</a>
+                        <a href="demo.html" class="tab-section-btn tab-section-btn-outline">See It In Action</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-
-    <!-- Footer Section -->
-    <footer class="py-10 text-center bg-black text-white">
-        <div class="max-w-5xl mx-auto px-6">
-            <p class="text-violet-500">© 2024 Hotel Chat AI. All rights reserved.</p>
+        <!-- END NEW WHAT'S INCLUDED SECTION -->
+        <!-- BEGIN NEW LARGE REVIEW SECTION -->
+        <div id="reviews" class="large-review-section" style="width:100%; max-width:1000px; margin:80px auto 0 auto; text-align:center; position:relative;">
+            <!-- Navigation Arrows -->
+            <button class="large-review-nav-arrow large-review-prev" aria-label="Previous review">&#8592;</button>
+            <button class="large-review-nav-arrow large-review-next" aria-label="Next review">&#8594;</button>
+            <!-- Slides container -->
+            <div id="large-review-slides">
+                <!-- Slide 1 -->
+                <div class="large-review-slide" style="display:block;">
+                    <div style="width:100%; max-width:1000px; margin:0 auto; overflow:hidden; border-radius:48px; box-shadow:0 8px 40px rgba(33,150,243,0.10); background:#eaf4ff; min-height:340px; display:flex; align-items:center; justify-content:center;">
+                        <img src="assets/images/roumei.jpg" alt="Hotel" style="width:100%; display:block; border-radius:48px; min-height:340px; object-fit:cover;">
+                    </div>
+                    <div style="background:#fff; width:90%; max-width:800px; margin:-70px auto 0 auto; border-radius:24px; box-shadow:0 4px 32px rgba(33,150,243,0.10); padding:48px 35px 35px 35px; text-align:center; display:flex; align-items:center; gap:40px; position:relative; z-index:2; min-height:200px;">
+                        <div style="flex:0 0 180px; text-align:center;">
+                            <img src="assets/images/beautyhotelslogo.png" alt="Hotel Logo" style="max-width:120px; margin-bottom:18px;">
+                        </div>
+                        <div style="flex:1; text-align:center;">
+                            <div style="font-size:1.15rem; color:#222; margin-bottom:1.5rem;">"Before using Hotel Chat AI, we couldn't offer instant responses or manage promotions flexibly across our online channels. Now, with their chatbot integrated on our website, Facebook, and LINE, we can answer guest questions 24/7 and adjust pricing or availability as needed. It's fully adaptable and guides customers directly to our booking site, which has made the entire reservation process smoother and more efficient — all without needing extra staff."</div>
+                            <div style="font-size:1rem; color:#1976d2; font-weight:500;">Ken, Roumei Beauty Hotel General Manager</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="large-review-slide" style="display:none;">
+                    <div style="width:100%; max-width:1000px; margin:0 auto; overflow:hidden; border-radius:48px; box-shadow:0 8px 40px rgba(33,150,243,0.10); background:#eaf4ff; min-height:340px; display:flex; align-items:center; justify-content:center;">
+                        <img src="assets/images/mrt.png" alt="Hotel" style="width:100%; display:block; border-radius:48px; min-height:340px; object-fit:cover;">
+                    </div>
+                    <div style="background:#fff; width:90%; max-width:800px; margin:-70px auto 0 auto; border-radius:24px; box-shadow:0 4px 32px rgba(33,150,243,0.10); padding:48px 35px 35px 35px; text-align:center; display:flex; align-items:center; gap:40px; position:relative; z-index:2; min-height:200px;">
+                        <div style="flex:0 0 180px; text-align:center;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Vala_logo.png" alt="Hotel Logo" style="max-width:120px; margin-bottom:18px;">
+                        </div>
+                        <div style="flex:1; text-align:center;">
+                            <div style="font-size:1.15rem; color:#222; margin-bottom:1.5rem;">"We started using the AI-powered check-in system a few months ago and it has been a game-changer. Guests love being able to check in online before they even arrive. It saves them time and eliminates the need to wait at the front desk. For us, it has streamlined operations and reduced the pressure on staff, especially during peak hours. We've also noticed that international travelers appreciate how easy it is to use, even without face-to-face assistance. It is fast, accurate, and just works. This has helped us focus more on guest experience and less on repetitive admin tasks."</div>
+                            <div style="font-size:1rem; color:#1976d2; font-weight:500;">David, MRT Stay Manager</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Navigation dots -->
+            <div id="large-review-dots" style="display:flex; justify-content:center; gap:12px; margin:32px auto 0 auto; position:relative; z-index:3;">
+                <span class="large-review-dot active" data-slide="0" style="width:14px; height:14px; border-radius:50%; background:#2196f3; display:inline-block; cursor:pointer;"></span>
+                <span class="large-review-dot" data-slide="1" style="width:14px; height:14px; border-radius:50%; background:#e3f0fd; display:inline-block; cursor:pointer;"></span>
+            </div>
         </div>
+        <!-- END NEW LARGE REVIEW SECTION -->
+    </main>
 
-        <div class="flex justify-center space-x-6 mt-6">
-            <a href="/quote" class="hover:underline text-fuchsia-400">Help</a>
-            <a href="/quote" class="hover:underline text-fuchsia-400">Contact Us</a>
-            <a href="/privacy-policy" class="hover:underline text-fuchsia-400">Privacy Policy</a>
-            <a href="/terms-of-service" class="hover:underline text-fuchsia-400">Terms of Service</a>
-        </div>
+    <!-- FOOTER SECTION -->
+    <footer id="footer" style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); color: #ffffff; padding: 80px 0 40px 0; margin-top: 80px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 48px;">
+                
+                <!-- Hotel Chat AI -->
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 24px; color: #ffffff;">Hotel Chat AI</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;"><a href="index.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Home</a></li>
+                        <li style="margin-bottom: 12px;"><a href="pricing.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Pricing</a></li>
+                        <li style="margin-bottom: 12px;"><a href="demo.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Get Demo</a></li>
+                        <li style="margin-bottom: 12px;"><a href="chatbot.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Try Chatbot</a></li>
+                        <li style="margin-bottom: 12px;"><a href="chatbot-details.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Chatbot Features</a></li>
+                    </ul>
+                </div>
 
-        <div class="flex justify-center space-x-6 mt-6">
-            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="hover:text-fuchsia-400 transition-colors"><i class="fab fa-youtube"></i></a>
+                <!-- Platform Features -->
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 24px; color: #ffffff;">Platform Features</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;"><a href="chatbot.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">AI Chatbot</a></li>
+                        <li style="margin-bottom: 12px;"><a href="mobile-check-in.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Mobile Check-In</a></li>
+                        <li style="margin-bottom: 12px;"><a href="booking-engine.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Booking Engine</a></li>
+                        <li style="margin-bottom: 12px;"><a href="social-media-integrations.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Social Media Integrations</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 24px; color: #ffffff;">Support</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;"><a href="faq.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">FAQ</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Help Center</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 24px; color: #ffffff;">Legal</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;"><a href="privacy-policy.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Privacy Policy</a></li>
+                        <li style="margin-bottom: 12px;"><a href="terms-of-service.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom section with social links -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255, 255, 255, 0.1); flex-wrap: wrap; gap: 24px;">
+                
+                <!-- Left side - Copyright -->
+                <div style="color: #cbd5e1; font-size: 0.875rem;">
+                    © Hotel Chat AI 2025. All rights reserved.
+                </div>
+
+                <!-- Right side - Social links -->
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <span style="color: #cbd5e1; font-size: 0.95rem; margin-right: 8px;">Follow Us</span>
+                    <a href="#" style="color: #cbd5e1; font-size: 1.25rem; transition: color 0.2s; text-decoration: none;" title="Instagram">📷</a>
+                    <a href="#" style="color: #cbd5e1; font-size: 1.25rem; transition: color 0.2s; text-decoration: none;" title="Facebook">📘</a>
+                    <a href="#" style="color: #cbd5e1; font-size: 1.25rem; transition: color 0.2s; text-decoration: none;" title="Twitter">🐦</a>
+                    <a href="#" style="color: #cbd5e1; font-size: 1.25rem; transition: color 0.2s; text-decoration: none;" title="LinkedIn">💼</a>
+                    <a href="#" style="color: #cbd5e1; font-size: 1.25rem; transition: color 0.2s; text-decoration: none;" title="YouTube">📺</a>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            // Set first tab as active by default
+            if (tabBtns.length > 0 && tabContents.length > 0) {
+                tabBtns[0].classList.add('active');
+                tabContents[0].classList.add('active');
+            }
+            
+            tabBtns.forEach((btn, index) => {
+            btn.addEventListener('click', function() {
+                    // Remove active class from all tabs and content
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    const targetTab = this.getAttribute('data-tab');
+                    const targetContent = document.querySelector(`[data-tab="${targetTab}"].tab-content`);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                }
+            });
+        });
+        });
 
-   <!-- Custom Scripts -->
-<script src="./js/script.js"></script>
-<script src='https://v2-bot.pages.dev/bot.js' data-bot='website'></script>
-</body>
-</body>
+        // Progress Indicator
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBar = document.querySelector('.progress-bar');
+            
+            // Update progress bar on scroll
+            function updateProgressBar() {
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight - windowHeight;
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const progress = (scrollTop / documentHeight) * 100;
+                
+                if (progressBar) {
+                    progressBar.style.height = Math.min(progress, 100) + '%';
+                }
+            }
 
+            // Scroll event listener
+            window.addEventListener('scroll', updateProgressBar);
+
+            // Initial call
+            updateProgressBar();
+        });
+
+        // Large Review Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.large-review-slide');
+            const dots = document.querySelectorAll('.large-review-dot');
+            const prevBtn = document.querySelector('.large-review-prev');
+            const nextBtn = document.querySelector('.large-review-next');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                // Hide all slides
+                slides.forEach(slide => {
+                    slide.style.display = 'none';
+                    slide.classList.remove('active');
+                });
+                
+                // Remove active class from all dots
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                    dot.style.background = '#e3f0fd';
+                });
+                
+                // Show current slide
+                if (slides[index]) {
+                    slides[index].style.display = 'block';
+                    slides[index].classList.add('active');
+                }
+                
+                // Activate current dot
+                if (dots[index]) {
+                    dots[index].classList.add('active');
+                    dots[index].style.background = '#2196f3';
+                }
+            }
+
+            // Initialize first slide
+            showSlide(0);
+
+            // Previous button
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function() {
+                    currentSlide = currentSlide > 0 ? currentSlide - 1 : slides.length - 1;
+                    showSlide(currentSlide);
+                });
+            }
+
+            // Next button
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function() {
+                    currentSlide = currentSlide < slides.length - 1 ? currentSlide + 1 : 0;
+                    showSlide(currentSlide);
+                });
+            }
+
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    currentSlide = index;
+                    showSlide(currentSlide);
+                });
+            });
+
+            // Auto-play (optional)
+            setInterval(function() {
+                currentSlide = currentSlide < slides.length - 1 ? currentSlide + 1 : 0;
+                showSlide(currentSlide);
+            }, 8000); // Change slide every 8 seconds
+        });
+
+        // Scroll animations with replay functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Element is entering viewport - add animation
+                        entry.target.classList.add('visible');
+                    } else {
+                        // Element is leaving viewport - remove animation for replay
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all scroll-animate elements
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Observe bot image container if it exists
+            const botImageContainer = document.getElementById('bot-image-container');
+            if (botImageContainer) {
+                observer.observe(botImageContainer);
+            }
+
+            // Also observe sections for replay animations
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Observe other animated elements
+            document.querySelectorAll('.demo-hero, .demo-form-container, .benefits-section').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Smooth scrolling for anchor links
+    document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Feature item expand functionality (if needed)
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureItems = document.querySelectorAll('.feature-item');
+            featureItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const isExpanded = this.classList.contains('expanded');
+                    
+                    // Close all other expanded items
+                    featureItems.forEach(otherItem => {
+                        if (otherItem !== this) {
+                            otherItem.classList.remove('expanded');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    if (isExpanded) {
+                        this.classList.remove('expanded');
+                    } else {
+                        this.classList.add('expanded');
+                    }
+                });
+            });
+        });
+
+        // Video restart functionality when scrolling into view
+        document.addEventListener('DOMContentLoaded', function() {
+            // Force reload video with cache busting for updated files
+            function forceVideoReload() {
+                const chatbotVideo = document.getElementById('chatbot-video');
+                if (chatbotVideo) {
+                    const source = chatbotVideo.querySelector('source');
+                    if (source) {
+                        // Add timestamp to force cache refresh
+                        const timestamp = new Date().getTime();
+                        const baseSrc = source.src.split('?')[0]; // Remove existing query params
+                        source.src = baseSrc + '?v=' + timestamp;
+                        chatbotVideo.load(); // Force reload the video
+                    }
+                }
+            }
+
+            // Function to start/restart all videos in the active tab
+            function startTabVideos() {
+                const activeTabContent = document.querySelector('.tab-content.active');
+                if (activeTabContent) {
+                    // Start/restart HTML5 videos
+                    const videos = activeTabContent.querySelectorAll('video');
+                    videos.forEach(video => {
+                        video.currentTime = 0;
+                        // Force autoplay for seamless experience
+                        video.play().catch(e => {
+                            console.log('Video autoplay prevented by browser:', e);
+                            // Fallback: try to play on user interaction
+                            document.addEventListener('click', function playOnClick() {
+                                video.play();
+                                document.removeEventListener('click', playOnClick);
+                            }, { once: true });
+                        });
+                    });
+                    
+                    // For YouTube iframes, force autoplay
+                    const youtubeIframes = activeTabContent.querySelectorAll('iframe[src*="youtube"]');
+                    youtubeIframes.forEach(iframe => {
+                        const src = iframe.src;
+                        if (src.includes('youtube.com') || src.includes('youtu.be')) {
+                            const separator = src.includes('?') ? '&' : '?';
+                            if (!src.includes('autoplay=1')) {
+                                iframe.src = src + separator + 'autoplay=1&mute=1';
+                            }
+                        }
+                    });
+                }
+            }
+
+            // Force video reload on page load to get the latest version
+            forceVideoReload();
+
+            // Observer for the tab section to start videos when it comes into view
+            const tabSectionObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Start videos when section is visible
+                        setTimeout(startTabVideos, 100);
+                    } else {
+                        // Pause videos when section is not visible for performance
+                        const allVideos = document.querySelectorAll('.tab-content video');
+                        allVideos.forEach(video => {
+                            video.pause();
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe the main tab section
+            const tabSection = document.getElementById('whats-included');
+            if (tabSection) {
+                tabSectionObserver.observe(tabSection);
+            }
+
+            // Start videos when tabs are clicked
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Add a delay to allow tab switch to complete
+                    setTimeout(startTabVideos, 150);
+                });
+            });
+
+            // Ensure videos start playing when page becomes visible
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    // Pause all videos when page is hidden
+                    const allVideos = document.querySelectorAll('.tab-content video');
+                    allVideos.forEach(video => {
+                        video.pause();
+                    });
+                } else {
+                    // Restart videos when page becomes visible again
+                    setTimeout(startTabVideos, 100);
+                }
+            });
+
+            // Force video to start when DOM is loaded
+            setTimeout(() => {
+                startTabVideos();
+            }, 800);
+
+            // Add keyboard shortcut to force reload video (Ctrl+Shift+R for video reload)
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.shiftKey && e.key === 'R') {
+                    e.preventDefault();
+                    forceVideoReload();
+                    setTimeout(startTabVideos, 300);
+                }
+            });
+        });
+    </script>
+
+    <!-- Chatbot Integration -->
+    <div id="chatbot-wrapper">
+        <script src='https://v2-bot.pages.dev/bot.js'  data-theme="nord" data-bot='website' onerror="console.error('Failed to load chatbot script')"></script>
+    </div>
+
+</body>
 </html>
