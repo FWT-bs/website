@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Our AI Chatbot - HotelChatAI Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Merriweather:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap');
+        
+        /* Custom daisyUI theme for chatbot */
+        :root:has(input.theme-controller[value=hotelchat]:checked), [data-theme="hotelchat"] {
+            color-scheme: light;
+            --color-primary: #2196f3;
+            --color-primary-content: #ffffff;
+            --color-secondary: #1976d2;
+            --color-secondary-content: #ffffff;
+            --color-accent: #2196f3;
+            --color-accent-content: #ffffff;
+            --color-neutral: #374151;
+            --color-neutral-content: #ffffff;
+            --color-base-100: #ffffff;
+            --color-base-200: #f8fafc;
+            --color-base-300: #e5e7eb;
+            --color-base-content: #374151;
+            --color-info: #2196f3;
+            --color-info-content: #ffffff;
+            --color-success: #10b981;
+            --color-success-content: #ffffff;
+            --color-warning: #f59e0b;
+            --color-warning-content: #ffffff;
+            --color-error: #ef4444;
+            --color-error-content: #ffffff;
+            --radius-selector: 0.5rem;
+            --radius-field: 0.5rem;
+            --radius-box: 0.75rem;
+            --border: 1px;
+            --rounded-box: 0.75rem;
+            --rounded-btn: 0.5rem;
+            --rounded-badge: 1rem;
+        }
+        
+        :root {
+            --main-bg: #FFFFFF;
+            --gradient-bg: #FFFFFF;
+            --section-bg: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --section-glow: 0 0 32px 0 rgba(59, 130, 246, 0.08);
+            --accent: #3B82F6;
+            --accent2: #64748B;
+            --accent3: #3B82F6;
+            --text-main: #374151;
+            --text-light: #4B5563;
+            --text-muted: #6B7280;
+            --navy: #374151;
+            --navy-light: #4B5563;
+            --navy-lighter: #6B7280;
+            --blue: #3B82F6;
+            --blue-light: #60A5FA;
+            --blue-dark: #2563EB;
+            --white: #FFFFFF;
+            --gray: #F3F4F6;
+            --sidebar-bg: rgba(255, 255, 255, 0.98);
+            --sidebar-border: #E5E7EB;
+            --accent-blue: #3B82F6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--main-bg) !important;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--main-bg) !important;
+            color: var(--text-main) !important;
+            min-height: 100vh;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        .topbar {
+            position: sticky !important;
+            top: 0;
+            left: 0;
+            margin: 0 auto;
+            width: calc(100vw - 64px);
+            max-width: 1200px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 32px;
+            height: 64px;
+            border-bottom: 1px solid var(--sidebar-border);
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        .logo {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent) !important;
+            letter-spacing: 0.04em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .logo:hover {
+            color: var(--accent2) !important;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .nav-link {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-main) !important;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--gray) !important;
+            color: var(--accent) !important;
+        }
+
+        .navbar-logo {
+            height: 50px;
+            width: auto;
+            max-width: 55px;
+            margin-right: 12px;
+            vertical-align: middle;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .navbar-logo:hover {
+            transform: scale(1.12);
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0 auto;
+            padding: 40px 20px 60px 20px;
+            max-width: 1000px;
+            width: 100%;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+        }
+
+        .chatbot-hero {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .chatbot-hero.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chatbot-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2196f3;
+            margin-bottom: 1.2rem;
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.2;
+        }
+
+        .chatbot-subtitle {
+            font-size: 1.25rem;
+            color: #2196f3;
+            margin-bottom: 2rem;
+            font-family: 'DM Sans', sans-serif;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .demo-container {
+            background: var(--section-bg);
+            border-radius: 24px;
+            box-shadow: 0 8px 40px rgba(33,150,243,0.10);
+            padding: 3rem 2.5rem;
+            width: 100%;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s, transform 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s;
+            position: relative;
+            min-height: 600px;
+        }
+
+        .demo-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .demo-instructions {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .demo-instructions h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        .demo-instructions p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .chat-trigger-btn {
+            background: #2196f3;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .chat-trigger-btn:hover {
+            background: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(33,150,243,0.3);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1) 0.4s, transform 0.8s cubic-bezier(0.4,0,0.2,1) 0.4s;
+        }
+
+        .features-grid.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card {
+            background: #f7fbff;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid #e3f0fd;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #2196f3;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(33,150,243,0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #2196f3;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-desc {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Chatbot positioning - ensure it appears in bottom-right */
+        #chatbot-wrapper {
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            z-index: 9999 !important;
+        }
+
+        @media (max-width: 768px) {
+            .chatbot-title {
+                font-size: 2.2rem;
+            }
+
+            .demo-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Dropdown Navigation Styles */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            color: var(--text-main);
+            transition: transform 0.3s ease, color 0.2s ease;
+        }
+
+        .dropdown-trigger:hover .dropdown-arrow {
+            color: var(--accent);
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            border: 1px solid var(--sidebar-border);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            padding: 8px 0;
+            margin-top: 8px;
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-main) !important;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-radius: 0;
+        }
+
+        .dropdown-item:hover {
+            background: #f8fafc !important;
+            color: var(--accent) !important;
+            padding-left: 24px;
+        }
+
+        .dropdown-item.active {
+            background: #f0f7ff !important;
+            color: var(--accent) !important;
+            font-weight: 600;
+        }
+
+        /* Responsive dropdown */
+        @media (max-width: 768px) {
+            .nav-dropdown {
+                position: static;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: transparent;
+                margin-top: 0;
+                padding: 0;
+            }
+            
+            .nav-dropdown:hover .dropdown-menu {
+                display: block;
+            }
+            
+            .dropdown-item {
+                padding: 8px 0;
+                padding-left: 20px;
+                border-left: 2px solid var(--gray);
+                margin-left: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topbar">
+        <a href="index.html" class="logo logo-link">
+            <img src="assets/images/logo.png" alt="Logo" class="navbar-logo">
+            <span class="logo-text">Hotel Chat AI</span>
+        </a>
+        <div class="nav-links">
+            <a class="nav-link" href="index.html">Home</a>
+            <div class="nav-dropdown">
+                <a class="nav-link dropdown-trigger" href="#">
+                    Platform Features
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item active" href="chatbot.html">Chatbot</a>
+                    <a class="dropdown-item" href="mobile-check-in.html">Mobile Check-In</a>
+                    <a class="dropdown-item" href="booking-engine.html">Booking Engine</a>
+                    <a class="dropdown-item" href="social-media-integrations.html">Social Media Integrations</a>
+                </div>
+            </div>
+            <a class="nav-link" href="pricing.html">Pricing</a>
+            <a class="nav-link" href="demo.html">Get Demo</a>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="chatbot-hero scroll-animate">
+            <h1 class="chatbot-title">Try Our AI Chatbot</h1>
+            <p class="chatbot-subtitle">Ask questions about hotels, bookings, amenities, or anything else!</p>
+        </div>
+
+        <div class="demo-container scroll-animate">
+            <div class="demo-instructions">
+                <h3>Interactive Demo</h3>
+                <p>Our AI can help with reservations, answer guest questions, and provide instant assistance 24/7.</p>
+                <button class="chat-trigger-btn" onclick="openChatbot()">Start Chatting</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chatbot Integration -->
+    <div id="chatbot-wrapper">
+        <script src='https://v2-bot.pages.dev/bot.js' data-theme="corporate" data-bot='website' onerror="console.error('Failed to load chatbot script')"></script>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Auto-trigger animations after page load
+            setTimeout(() => {
+                document.querySelector('.chatbot-hero')?.classList.add('visible');
+            }, 100);
+
+            setTimeout(() => {
+                document.querySelector('.demo-container')?.classList.add('visible');
+            }, 300);
+
+            setTimeout(() => {
+                document.querySelector('.features-grid')?.classList.add('visible');
+            }, 600);
+        });
+
+        // Function to trigger chatbot opening
+        function openChatbot() {
+            // Try multiple methods to open the chatbot
+            console.log('Attempting to open chatbot...');
+            
+            // Method 1: Try clicking elements in bottom-right area
+            const positions = [
+                { x: window.innerWidth - 80, y: window.innerHeight - 80 },
+                { x: window.innerWidth - 60, y: window.innerHeight - 60 },
+                { x: window.innerWidth - 100, y: window.innerHeight - 100 }
+            ];
+            
+            for (let pos of positions) {
+                const element = document.elementFromPoint(pos.x, pos.y);
+                if (element) {
+                    element.click();
+                    // Try clicking parent elements too
+                    let parent = element.parentElement;
+                    while (parent && parent !== document.body) {
+                        parent.click();
+                        parent = parent.parentElement;
+                    }
+                }
+            }
+            
+            // Method 2: Try finding chatbot-related elements
+            const possibleSelectors = [
+                '[data-bot]',
+                '.chatbot',
+                '.chat-widget',
+                '.chat-button',
+                '#chat',
+                '.messenger'
+            ];
+            
+            possibleSelectors.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => {
+                    if (el.click) el.click();
+                });
+            });
+            
+            // Method 3: Dispatch events to chatbot wrapper
+            const chatbotWrapper = document.getElementById('chatbot-wrapper');
+            if (chatbotWrapper) {
+                const event = new Event('click', { bubbles: true });
+                chatbotWrapper.dispatchEvent(event);
+            }
+            
+            // Show user instruction
+            setTimeout(() => {
+                if (window.innerWidth > 768) {
+                    alert('Look for the chat widget in the bottom-right corner of your screen!');
+                }
+            }, 1000);
+        }
+
+        // Auto-attempt to show chatbot after page loads
+        setTimeout(() => {
+            // Try to make chatbot more visible/accessible
+            console.log('Page loaded, chatbot should be available in bottom-right corner');
+        }, 3000);
+    </script>
+</body>
+</html> 

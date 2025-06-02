@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your Free Trial - HotelChatAI Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Merriweather:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap');
+        
+        /* Custom daisyUI theme for chatbot */
+        :root:has(input.theme-controller[value=hotelchat]:checked), [data-theme="hotelchat"] {
+            color-scheme: light;
+            --color-primary: #2196f3;
+            --color-primary-content: #ffffff;
+            --color-secondary: #1976d2;
+            --color-secondary-content: #ffffff;
+            --color-accent: #2196f3;
+            --color-accent-content: #ffffff;
+            --color-neutral: #374151;
+            --color-neutral-content: #ffffff;
+            --color-base-100: #ffffff;
+            --color-base-200: #f8fafc;
+            --color-base-300: #e5e7eb;
+            --color-base-content: #374151;
+            --color-info: #2196f3;
+            --color-info-content: #ffffff;
+            --color-success: #10b981;
+            --color-success-content: #ffffff;
+            --color-warning: #f59e0b;
+            --color-warning-content: #ffffff;
+            --color-error: #ef4444;
+            --color-error-content: #ffffff;
+            --radius-selector: 0.5rem;
+            --radius-field: 0.5rem;
+            --radius-box: 0.75rem;
+            --border: 1px;
+            --rounded-box: 0.75rem;
+            --rounded-btn: 0.5rem;
+            --rounded-badge: 1rem;
+        }
+        
+        :root {
+            --main-bg: #FFFFFF;
+            --gradient-bg: #FFFFFF;
+            --section-bg: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --section-glow: 0 0 32px 0 rgba(59, 130, 246, 0.08);
+            --accent: #3B82F6;
+            --accent2: #64748B;
+            --accent3: #3B82F6;
+            --text-main: #374151;
+            --text-light: #4B5563;
+            --text-muted: #6B7280;
+            --navy: #374151;
+            --navy-light: #4B5563;
+            --navy-lighter: #6B7280;
+            --blue: #3B82F6;
+            --blue-light: #60A5FA;
+            --blue-dark: #2563EB;
+            --white: #FFFFFF;
+            --gray: #F3F4F6;
+            --sidebar-bg: rgba(255, 255, 255, 0.98);
+            --sidebar-border: #E5E7EB;
+            --accent-blue: #3B82F6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--main-bg) !important;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--main-bg) !important;
+            color: var(--text-main) !important;
+            min-height: 100vh;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        .topbar {
+            position: sticky !important;
+            top: 0;
+            left: 0;
+            margin: 0 auto;
+            width: calc(100vw - 64px);
+            max-width: 1200px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 32px;
+            height: 64px;
+            border-bottom: 1px solid var(--sidebar-border);
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        .logo {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent) !important;
+            letter-spacing: 0.04em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .logo:hover {
+            color: var(--accent2) !important;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .nav-link {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-main) !important;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--gray) !important;
+            color: var(--accent) !important;
+        }
+
+        .navbar-logo {
+            height: 50px;
+            width: auto;
+            max-width: 55px;
+            margin-right: 12px;
+            vertical-align: middle;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .navbar-logo:hover {
+            transform: scale(1.12);
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0 auto;
+            padding: 40px 20px 60px 20px;
+            max-width: 800px;
+            width: 100%;
+            color: var(--text-main);
+            background: transparent;
+            border: none;
+        }
+
+        .demo-hero {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .demo-hero.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .demo-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2196f3;
+            margin-bottom: 1.2rem;
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.2;
+        }
+
+        .demo-subtitle {
+            font-size: 1.25rem;
+            color: #2196f3;
+            margin-bottom: 2rem;
+            font-family: 'DM Sans', sans-serif;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .demo-form-container {
+            background: var(--section-bg);
+            border-radius: 24px;
+            box-shadow: 0 8px 40px rgba(33,150,243,0.10);
+            padding: 3rem 2.5rem;
+            width: 100%;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s, transform 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s;
+        }
+
+        .demo-form-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .form-section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .room-selector {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .room-option {
+            background: #f7fbff;
+            border: 2px solid #e3f0fd;
+            border-radius: 16px;
+            padding: 1.5rem;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .room-option:hover {
+            border-color: #2196f3;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(33,150,243,0.15);
+        }
+
+        .room-option.selected {
+            background: #2196f3;
+            border-color: #2196f3;
+            color: #fff;
+        }
+
+        .room-option.selected .room-label {
+            color: #fff;
+        }
+
+        .room-option.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .room-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .room-option:hover .room-icon {
+            transform: scale(1.1);
+        }
+
+        .room-option.selected .room-icon {
+            filter: brightness(0) invert(1);
+        }
+
+        .room-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: color 0.3s ease;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .form-group.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-label .required {
+            color: #e74c3c;
+            margin-left: 4px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            padding: 1rem 1.2rem;
+            border: 2px solid #e3f0fd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.3s ease;
+            background: #fff;
+            color: var(--text-main);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #2196f3;
+            box-shadow: 0 0 0 3px rgba(33,150,243,0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .phone-container {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .country-code {
+            flex: 1;
+        }
+
+        .phone-number {
+            flex: 1;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .checkbox-group.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .checkbox-input {
+            width: 18px;
+            height: 18px;
+            accent-color: #2196f3;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .checkbox-label {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--text-light);
+        }
+
+        .checkbox-label a {
+            color: #2196f3;
+            text-decoration: none;
+        }
+
+        .checkbox-label a:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            background: #2196f3;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            font-family: 'DM Sans', sans-serif;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .submit-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .submit-btn:hover {
+            background: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(33,150,243,0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .benefits-section {
+            margin-top: 4rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1) 0.4s, transform 0.8s cubic-bezier(0.4,0,0.2,1) 0.4s;
+        }
+
+        .benefits-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .benefits-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .benefit-item {
+            background: #f7fbff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .benefit-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            color: #2196f3;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .benefit-text {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .trust-badges.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Feature Selection Styles */
+        .features-section {
+            margin: 2rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .features-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .features-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .features-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .feature-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-option {
+            background: #f7fbff;
+            border: 2px solid #e3f0fd;
+            border-radius: 12px;
+            padding: 1.2rem;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .feature-option.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-option:hover {
+            border-color: #2196f3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(33,150,243,0.12);
+        }
+
+        .feature-option.selected {
+            background: #e3f0fd;
+            border-color: #2196f3;
+            box-shadow: 0 4px 15px rgba(33,150,243,0.15);
+        }
+
+        .feature-option.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            color: #2196f3;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            color: #2196f3;
+        }
+
+        .feature-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-desc {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .selected-features-summary {
+            background: #e8f4fd;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .selected-features-summary.visible {
+            display: block;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .summary-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1976d2;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-list {
+            font-size: 0.85rem;
+            color: #1976d2;
+            line-height: 1.5;
+        }
+
+        /* Service Selector Styles */
+        .service-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-option {
+            background: #f7fbff;
+            border: 2px solid #e3f0fd;
+            border-radius: 16px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            position: relative;
+        }
+
+        .service-option:hover {
+            border-color: #2196f3;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(33,150,243,0.15);
+        }
+
+        .service-option.selected {
+            background: #2196f3;
+            border-color: #2196f3;
+            color: #fff;
+        }
+
+        .service-option.selected .service-label,
+        .service-option.selected .service-description {
+            color: #fff;
+        }
+
+        .service-option.selected .service-icon {
+            filter: brightness(0) invert(1);
+        }
+
+        .service-option.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #fff;
+            color: #2196f3;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .service-option.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .service-icon {
+            width: 32px;
+            height: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .service-option:hover .service-icon {
+            transform: scale(1.1);
+        }
+
+        .service-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: color 0.3s ease;
+        }
+
+        .service-description {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .service-selector {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-option {
+                padding: 1.2rem;
+            }
+
+            .demo-title {
+                font-size: 2.2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .room-selector {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .phone-container {
+                flex-direction: column;
+            }
+
+            .country-code {
+                flex: 1;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-badges {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .demo-form-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .room-selector {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+        }
+
+        /* Dropdown Navigation Styles */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            color: var(--text-main);
+            transition: transform 0.3s ease, color 0.2s ease;
+        }
+
+        .dropdown-trigger:hover .dropdown-arrow {
+            color: var(--accent);
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            border: 1px solid var(--sidebar-border);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            padding: 8px 0;
+            margin-top: 8px;
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-main) !important;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-radius: 0;
+        }
+
+        .dropdown-item:hover {
+            background: #f8fafc !important;
+            color: var(--accent) !important;
+            padding-left: 24px;
+        }
+
+        /* Responsive dropdown */
+        @media (max-width: 768px) {
+            .nav-dropdown {
+                position: static;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: transparent;
+                margin-top: 0;
+                padding: 0;
+            }
+            
+            .nav-dropdown:hover .dropdown-menu {
+                display: block;
+            }
+            
+            .dropdown-item {
+                padding: 8px 0;
+                padding-left: 20px;
+                border-left: 2px solid var(--gray);
+                margin-left: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topbar">
+        <a href="index.html" class="logo logo-link">
+            <img src="assets/images/logo.png" alt="Logo" class="navbar-logo">
+            <span class="logo-text">Hotel Chat AI</span>
+        </a>
+        <div class="nav-links">
+            <a class="nav-link" href="index.html">Home</a>
+            <div class="nav-dropdown">
+                <a class="nav-link dropdown-trigger" href="#">
+                    Platform Features
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="chatbot.html">Chatbot</a>
+                    <a class="dropdown-item" href="mobile-check-in.html">Mobile Check-In</a>
+                    <a class="dropdown-item" href="booking-engine.html">Booking Engine</a>
+                    <a class="dropdown-item" href="social-media-integrations.html">Social Media Integrations</a>
+                </div>
+            </div>
+            <a class="nav-link" href="pricing.html">Pricing</a>
+            <a class="nav-link active" href="demo.html">Get Demo</a>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="demo-hero scroll-animate">
+            <h1 class="demo-title">Get Your Free 7-Day Trial</h1>
+            <p class="demo-subtitle">Experience the industry's most trusted hotel platform. To start, select the number of rooms that you manage.</p>
+        </div>
+
+        <div class="demo-form-container scroll-animate">
+            <h2 class="form-section-title">Hotel Information</h2>
+            
+            <form id="demo-form">
+                <div class="room-selector">
+                    <div class="room-option scroll-animate" data-rooms="1-hotel">
+                        <img src="assets/images/single.png" alt="Single Hotel" class="room-icon">
+                        <div class="room-label">1 Hotel</div>
+                    </div>
+                    <div class="room-option scroll-animate" data-rooms="2-15-hotels">
+                        <img src="https://cdn-icons-png.flaticon.com/64/3045/3045330.png" alt="Small Chain" class="room-icon">
+                        <div class="room-label">2-15 Hotels</div>
+                    </div>
+                    <div class="room-option scroll-animate" data-rooms="15-50-hotels">
+                        <img src="https://cdn-icons-png.flaticon.com/64/3659/3659899.png" alt="Medium Chain" class="room-icon">
+                        <div class="room-label">15-50 Hotels</div>
+                    </div>
+                    <div class="room-option scroll-animate" data-rooms="50+-hotels">
+                        <img src="https://cdn-icons-png.flaticon.com/64/1067/1067256.png" alt="Large Chain" class="room-icon">
+                        <div class="room-label">50+ Hotels</div>
+                    </div>
+                </div>
+
+                <!-- Service Selection Section -->
+                <h3 class="form-section-title" style="margin-top: 3rem; margin-bottom: 1rem;">Which services would you like to demo?</h3>
+                <p style="color: var(--text-light); margin-bottom: 2rem; text-align: center; font-size: 0.95rem;">Select all that interest you (you can choose multiple)</p>
+                
+                <div class="service-selector" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <div class="service-option scroll-animate" data-service="ai-chatbot">
+                        <div class="service-header">
+                            <img src="https://cdn-icons-png.flaticon.com/64/4712/4712109.png" alt="AI Chatbot" class="service-icon">
+                            <div class="service-label">AI Hotel Chatbot</div>
+                        </div>
+                        <div class="service-description">24/7 virtual assistant for guest inquiries and bookings</div>
+                    </div>
+                    <div class="service-option scroll-animate" data-service="checkin-system">
+                        <div class="service-header">
+                            <img src="https://cdn-icons-png.flaticon.com/64/3135/3135715.png" alt="Face Recognition" class="service-icon">
+                            <div class="service-label">AI Check-in System</div>
+                        </div>
+                        <div class="service-description">Contactless check-in with AI face recognition technology</div>
+                    </div>
+                    <div class="service-option scroll-animate" data-service="booking-engine">
+                        <div class="service-header">
+                            <img src="https://cdn-icons-png.flaticon.com/64/3135/3135688.png" alt="Booking Engine" class="service-icon">
+                            <div class="service-label">Smart Booking Engine</div>
+                        </div>
+                        <div class="service-description">Direct bookings with real-time availability and OTA sync</div>
+                    </div>
+                    <div class="service-option scroll-animate" data-service="social-integrations">
+                        <div class="service-header">
+                            <img src="https://cdn-icons-png.flaticon.com/64/4494/4494487.png" alt="Social Media" class="service-icon">
+                            <div class="service-label">Social Media Integrations</div>
+                        </div>
+                        <div class="service-description">Facebook Messenger, Instagram DMs, and LINE integration</div>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group scroll-animate">
+                        <label class="form-label">First Name <span class="required">*</span></label>
+                        <input type="text" class="form-input" name="firstName" required>
+                    </div>
+                    <div class="form-group scroll-animate">
+                        <label class="form-label">Last Name <span class="required">*</span></label>
+                        <input type="text" class="form-input" name="lastName" required>
+                    </div>
+                    <div class="form-group full-width scroll-animate">
+                        <label class="form-label">Email <span class="required">*</span></label>
+                        <input type="email" class="form-input" name="email" required>
+                    </div>
+                    <div class="form-group scroll-animate">
+                        <label class="form-label">Phone Number <span class="required">*</span></label>
+                        <div class="phone-container">
+                            <select class="form-select country-code" name="countryCode" required>
+                                <option value="+1">+1</option>
+                                <option value="+44">+44</option>
+                                <option value="+61">+61</option>
+                                <option value="+33">+33</option>
+                                <option value="+49">+49</option>
+                                <option value="+81">+81</option>
+                                <option value="+86">+86</option>
+                                <option value="+82">+82</option>
+                                <option value="+65">+65</option>
+                                <option value="+66">+66</option>
+                            </select>
+                            <input type="tel" class="form-input phone-number" name="phoneNumber" required>
+                        </div>
+                    </div>
+                    <div class="form-group scroll-animate">
+                        <label class="form-label">Company Name <span class="required">*</span></label>
+                        <input type="text" class="form-input" name="companyName" required>
+                    </div>
+                    <div class="form-group full-width scroll-animate">
+                        <label class="form-label">Website (Optional)</label>
+                        <input type="url" class="form-input" name="website" placeholder="https://yourhotel.com">
+                    </div>
+                    <div class="form-group full-width scroll-animate">
+                        <label class="form-label">How can we help you? (Optional)</label>
+                        <textarea class="form-textarea" name="message" placeholder="Tell us about your hotel and what you're looking for..."></textarea>
+                    </div>
+                </div>
+
+                <div class="checkbox-group scroll-animate">
+                    <input type="checkbox" id="consent" class="checkbox-input" name="consent" required>
+                    <label for="consent" class="checkbox-label">
+                        By clicking you agree to allow Hotel Chat AI to periodically send you newsletters, webinar invites, 
+                        industry thought leadership and offers via email or SMS, and otherwise use your data in accordance 
+                        with our <a href="#" target="_blank">privacy policy</a>. You can withdraw your consent at any time by clicking unsubscribe on all our 
+                        emails or in our website footer.
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn scroll-animate">Start My Free Trial</button>
+            </form>
+        </div>
+
+        <div class="benefits-section scroll-animate">
+            <h3 class="benefits-title">What you'll get with your free trial</h3>
+            <div class="benefits-grid">
+                <div class="benefit-item scroll-animate">
+                    <span class="benefit-icon">✅</span>
+                    <div class="benefit-text">14 days free trial</div>
+                </div>
+                <div class="benefit-item scroll-animate">
+                    <span class="benefit-icon">💳</span>
+                    <div class="benefit-text">No credit card required</div>
+                </div>
+                <div class="benefit-item scroll-animate">
+                    <span class="benefit-icon">❌</span>
+                    <div class="benefit-text">Cancel anytime</div>
+                </div>
+                <div class="benefit-item scroll-animate">
+                    <span class="benefit-icon">🎯</span>
+                    <div class="benefit-text">Full platform access</div>
+                </div>
+                <div class="benefit-item scroll-animate">
+                    <span class="benefit-icon">🚀</span>
+                    <div class="benefit-text">Quick setup</div>
+                </div>
+                <div class="benefit-item scroll-animate">
+                    <span class="benefit-icon">📞</span>
+                    <div class="benefit-text">Expert support</div>
+                </div>
+            </div>
+
+            <div class="trust-badges scroll-animate">
+                <div class="trust-badge">
+                    <span>🔒</span>
+                    <span>SSL Secured</span>
+                </div>
+                <div class="trust-badge">
+                    <span>⭐</span>
+                    <span>Trusted by 30+ hotels</span>
+                </div>
+                <div class="trust-badge">
+                    <span>💬</span>
+                    <span>24/7 Support</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer id="footer" style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); color: #ffffff; padding: 80px 0 40px 0; margin-top: 80px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 48px;">
+                
+                <!-- Hotel Chat AI -->
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 24px; color: #ffffff;">Hotel Chat AI</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;"><a href="index.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Home</a></li>
+                        <li style="margin-bottom: 12px;"><a href="pricing.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Pricing</a></li>
+                        <li style="margin-bottom: 12px;"><a href="demo.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Get Demo</a></li>
+                        <li style="margin-bottom: 12px;"><a href="chatbot.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Try Chatbot</a></li>
+                        <li style="margin-bottom: 12px;"><a href="chatbot-details.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Chatbot Features</a></li>
+                    </ul>
+                </div>
+
+                <!-- Platform Features -->
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 24px; color: #ffffff;">Platform Features</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;"><a href="chatbot.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">AI Chatbot</a></li>
+                        <li style="margin-bottom: 12px;"><a href="mobile-check-in.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Mobile Check-In</a></li>
+                        <li style="margin-bottom: 12px;"><a href="booking-engine.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Booking Engine</a></li>
+                        <li style="margin-bottom: 12px;"><a href="social-media-integrations.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Social Media Integrations</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 24px; color: #ffffff;">Support</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;"><a href="faq.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">FAQ</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Help Center</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 24px; color: #ffffff;">Legal</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;"><a href="privacy-policy.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Privacy Policy</a></li>
+                        <li style="margin-bottom: 12px;"><a href="terms-of-service.html" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.2s;">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom section with social links -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255, 255, 255, 0.1); flex-wrap: wrap; gap: 24px;">
+                
+                <!-- Left side - Copyright -->
+                <div style="color: #cbd5e1; font-size: 0.875rem;">
+                    © Hotel Chat AI 2025. All rights reserved.
+                </div>
+
+                <!-- Right side - Social links -->
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <span style="color: #cbd5e1; font-size: 0.95rem; margin-right: 8px;">Follow Us</span>
+                    <a href="#" style="color: #cbd5e1; font-size: 1.25rem; transition: color 0.2s; text-decoration: none;" title="Instagram">📷</a>
+                    <a href="#" style="color: #cbd5e1; font-size: 1.25rem; transition: color 0.2s; text-decoration: none;" title="Facebook">📘</a>
+                    <a href="#" style="color: #cbd5e1; font-size: 1.25rem; transition: color 0.2s; text-decoration: none;" title="Twitter">🐦</a>
+                    <a href="#" style="color: #cbd5e1; font-size: 1.25rem; transition: color 0.2s; text-decoration: none;" title="LinkedIn">💼</a>
+                    <a href="#" style="color: #cbd5e1; font-size: 1.25rem; transition: color 0.2s; text-decoration: none;" title="YouTube">📺</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Room selector functionality
+            const roomOptions = document.querySelectorAll('.room-option');
+            let selectedRooms = null;
+
+            roomOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    roomOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedRooms = this.dataset.rooms;
+                });
+            });
+
+            // Service selector functionality
+            const serviceOptions = document.querySelectorAll('.service-option');
+            let selectedServices = [];
+
+            serviceOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const service = this.dataset.service;
+                    
+                    if (this.classList.contains('selected')) {
+                        // Deselect service
+                        this.classList.remove('selected');
+                        selectedServices = selectedServices.filter(s => s !== service);
+                    } else {
+                        // Select service
+                        this.classList.add('selected');
+                        selectedServices.push(service);
+                    }
+                });
+            });
+
+            // Form submission
+            const form = document.getElementById('demo-form');
+            const submitBtn = document.querySelector('.submit-btn');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (!selectedRooms) {
+                    alert('Please select the number of rooms you manage.');
+                    return;
+                }
+
+                if (selectedServices.length === 0) {
+                    alert('Please select at least one service you would like to demo.');
+                    return;
+                }
+
+                submitBtn.style.background = '#28a745';
+                submitBtn.textContent = 'Submitting...';
+                submitBtn.disabled = true;
+
+                // Collect form data
+                const formData = new FormData(form);
+                formData.append('rooms', selectedRooms);
+                formData.append('selectedServices', selectedServices.join(', '));
+                formData.append('timestamp', new Date().toISOString());
+                
+                const submissionData = Object.fromEntries(formData);
+                
+                // OPTION 1: Log to console (current)
+                console.log('=== FORM SUBMISSION ===');
+                console.log('Data:', submissionData);
+                console.log('Selected Services:', selectedServices);
+                
+                // OPTION 2: Send to your backend (you'll need to implement this)
+                sendToBackend(submissionData);
+                
+                // OPTION 3: Store in localStorage for testing
+                storeLocally(submissionData);
+                
+                // OPTION 4: Send to Google Sheets (you'll need to set this up)
+                // sendToGoogleSheets(submissionData);
+
+                // Simulate form submission
+                setTimeout(() => {
+                    submitBtn.style.background = '#28a745';
+                    submitBtn.textContent = 'Thank you! We\'ll be in touch soon.';
+                    
+                    // Reset after delay
+                    setTimeout(() => {
+                        form.reset();
+                        roomOptions.forEach(opt => opt.classList.remove('selected'));
+                        serviceOptions.forEach(opt => opt.classList.remove('selected'));
+                        selectedRooms = null;
+                        selectedServices = [];
+                        submitBtn.style.background = '#2196f3';
+                        submitBtn.textContent = 'Start My Free Trial';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                }, 1500);
+            });
+
+            // STORAGE FUNCTIONS
+            function sendToBackend(data) {
+                // Option 2: Send to your Python backend
+                fetch('/api/submit-demo', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Backend response:', result);
+                })
+                .catch(error => {
+                    console.error('Backend error:', error);
+                });
+            }
+
+            function storeLocally(data) {
+                // Option 3: Store in browser localStorage for testing
+                const existingData = JSON.parse(localStorage.getItem('hotelChatAI_submissions') || '[]');
+                existingData.push(data);
+                localStorage.setItem('hotelChatAI_submissions', JSON.stringify(existingData));
+                console.log('Stored locally. Total submissions:', existingData.length);
+            }
+
+            function sendToGoogleSheets(data) {
+                // Option 4: Send to Google Sheets (requires Google Apps Script setup)
+                const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+                
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(() => {
+                    console.log('Sent to Google Sheets');
+                })
+                .catch(error => {
+                    console.error('Google Sheets error:', error);
+                });
+            }
+
+            // Function to view stored submissions (for testing)
+            window.viewSubmissions = function() {
+                const submissions = JSON.parse(localStorage.getItem('hotelChatAI_submissions') || '[]');
+                console.table(submissions);
+                return submissions;
+            };
+
+            // Staggered animations for room options
+            setTimeout(() => {
+                roomOptions.forEach((option, index) => {
+                    setTimeout(() => {
+                        option.classList.add('visible');
+                    }, index * 100);
+                });
+            }, 500);
+
+            // Staggered animations for service options
+            setTimeout(() => {
+                serviceOptions.forEach((option, index) => {
+                    setTimeout(() => {
+                        option.classList.add('visible');
+                    }, index * 150);
+                });
+            }, 900);
+
+            // Staggered animations for form groups
+            setTimeout(() => {
+                const formGroups = document.querySelectorAll('.form-group');
+                formGroups.forEach((group, index) => {
+                    setTimeout(() => {
+                        group.classList.add('visible');
+                    }, index * 150);
+                });
+            }, 1300);
+
+            // Staggered animations for benefit items
+            setTimeout(() => {
+                const benefitItems = document.querySelectorAll('.benefit-item');
+                benefitItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 100);
+                });
+            }, 1700);
+
+            // Other elements animation delays
+            setTimeout(() => {
+                document.querySelector('.checkbox-group')?.classList.add('visible');
+            }, 1800);
+
+            setTimeout(() => {
+                document.querySelector('.submit-btn')?.classList.add('visible');
+            }, 1900);
+
+            setTimeout(() => {
+                document.querySelector('.trust-badges')?.classList.add('visible');
+            }, 2000);
+        });
+    </script>
+
+    <!-- Chatbot Integration -->
+    <div id="chatbot-wrapper">
+        <script src='https://v2-bot.pages.dev/bot.js' data-theme="corporate" data-bot='website' onerror="console.error('Failed to load chatbot script')"></script>
+    </div>
+
+</body>
+</html> 

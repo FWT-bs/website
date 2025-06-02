@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Hotel Chatbot - Hotel Chat AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom daisyUI theme for chatbot */
+        :root:has(input.theme-controller[value=hotelchat]:checked), [data-theme="hotelchat"] {
+            color-scheme: light;
+            --color-primary: #2196f3;
+            --color-primary-content: #ffffff;
+            --color-secondary: #1976d2;
+            --color-secondary-content: #ffffff;
+            --color-accent: #60a5fa;
+            --color-accent-content: #0a0a23;
+            --color-neutral: #374151;
+            --color-neutral-content: #ffffff;
+            --color-base-100: #ffffff;
+            --color-base-200: #f8fafc;
+            --color-base-300: #e2e8f0;
+            --color-base-content: #0a0a23;
+            --color-info: #2196f3;
+            --color-info-content: #ffffff;
+            --color-success: #10b981;
+            --color-success-content: #ffffff;
+            --color-warning: #f59e0b;
+            --color-warning-content: #ffffff;
+            --color-error: #ef4444;
+            --color-error-content: #ffffff;
+            --radius-selector: 0.75rem;
+            --radius-field: 0.5rem;
+            --radius-box: 0.75rem;
+            --border: 1px;
+        }
+        
+        :root {
+            --main-bg: #FFFFFF;
+            --accent: #2196f3;
+            --text-main: #374151;
+            --text-light: #4B5563;
+            --text-muted: #6B7280;
+            --gray: #F3F4F6;
+            --blue-light: #60A5FA;
+            --blue-dark: #1976d2;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--main-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        
+        .topbar {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 32px;
+            height: 64px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .navbar-logo {
+            height: 40px;
+            width: auto;
+            margin-right: 12px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            background: var(--gray);
+            color: var(--accent);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #f7fbff 0%, #eaf4ff 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border: 2px solid var(--accent);
+        }
+        
+        .btn-primary:hover {
+            background: var(--blue-dark);
+            border-color: var(--blue-dark);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+        
+        .btn-outline:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(33, 150, 243, 0.08);
+            border: 1px solid #e3f0fd;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(33, 150, 243, 0.15);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .benefits-section {
+            background: #f7fbff;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .benefit-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .benefit-title {
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefit-text {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .cta-section {
+            background: var(--accent);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn-white {
+            background: white;
+            color: var(--accent);
+            border: 2px solid white;
+        }
+        
+        .btn-white:hover {
+            background: transparent;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Dropdown Navigation Styles */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            color: var(--text-main);
+            transition: transform 0.3s ease, color 0.2s ease;
+        }
+
+        .dropdown-trigger:hover .dropdown-arrow {
+            color: var(--accent);
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            border: 1px solid var(--sidebar-border);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            padding: 8px 0;
+            margin-top: 8px;
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-main) !important;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-radius: 0;
+        }
+
+        .dropdown-item:hover {
+            background: #f8fafc !important;
+            color: var(--accent) !important;
+            padding-left: 24px;
+        }
+
+        .dropdown-item.active {
+            background: #f0f7ff !important;
+            color: var(--accent) !important;
+            font-weight: 600;
+        }
+
+        /* Responsive dropdown */
+        @media (max-width: 768px) {
+            .nav-dropdown {
+                position: static;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: transparent;
+                margin-top: 0;
+                padding: 0;
+            }
+            
+            .nav-dropdown:hover .dropdown-menu {
+                display: block;
+            }
+            
+            .dropdown-item {
+                padding: 8px 0;
+                padding-left: 20px;
+                border-left: 2px solid var(--gray);
+                margin-left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="topbar">
+        <a href="index.html" class="logo">
+            <img src="assets/images/logo.png" alt="Logo" class="navbar-logo">
+            <span class="logo-text">Hotel Chat AI</span>
+        </a>
+        <div class="nav-links">
+            <a class="nav-link" href="index.html">Home</a>
+            <div class="nav-dropdown">
+                <a class="nav-link dropdown-trigger" href="#">
+                    Platform Features
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item active" href="chatbot.html">Chatbot</a>
+                    <a class="dropdown-item" href="mobile-check-in.html">Mobile Check-In</a>
+                    <a class="dropdown-item" href="booking-engine.html">Booking Engine</a>
+                    <a class="dropdown-item" href="social-media-integrations.html">Social Media Integrations</a>
+                </div>
+            </div>
+            <a class="nav-link" href="pricing.html">Pricing</a>
+            <a class="nav-link" href="demo.html">Get Demo</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">AI Hotel Chatbot</h1>
+            <p class="hero-subtitle">Your 24/7 virtual assistant that revolutionizes guest engagement and drives more direct bookings</p>
+            <div class="hero-buttons">
+                <a href="demo.html" class="btn btn-primary">Start Free Trial</a>
+                <a href="chatbot.html" class="btn btn-outline">Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Chatbot Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3 class="feature-title">Instant, Accurate Answers</h3>
+                    <p class="feature-description">Our AI ensures consistently accurate information, all relayed to the customer lightning fast. It understands and responds in every language, ensuring seamless communication with international guests and providing fast, precise answers regardless of language barriers.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤚</div>
+                    <h3 class="feature-title">Contactless Check-In System</h3>
+                    <p class="feature-description">Guests can check in anytime, from anywhere — no front desk, no lines. Our system streamlines the process, making service faster, easier, and less reliant on in-person staff.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Multi-Platform Integration</h3>
+                    <p class="feature-description">Seamlessly integrate with your website, Facebook Messenger, Instagram, LINE, and other social media platforms for unified guest communication across all channels.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">Smart Leading Questions</h3>
+                    <p class="feature-description">Our AI asks strategic leading questions to ensure customers fully understand all options, amenities, and services, leaving no confusion and maximizing satisfaction.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Human Handoff System</h3>
+                    <p class="feature-description">Advanced backend ticket system seamlessly connects guests to human hotel correspondents when needed, ensuring complex issues are handled by experienced staff.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Analytics & Insights</h3>
+                    <p class="feature-description">Track chatbot performance, guest interactions, and booking conversions with detailed analytics to continuously improve your service quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section benefits-section">
+        <div class="container">
+            <h2 class="section-title">Why Hotels Choose Our AI Chatbot</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <h4 class="benefit-title">Increase Direct Bookings</h4>
+                    <p class="benefit-text">Reduce OTA commissions by guiding guests to book directly through your website</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4 class="benefit-title">Reduce Staff Workload</h4>
+                    <p class="benefit-text">Handle routine inquiries automatically, freeing up staff for high-value guest interactions</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4 class="benefit-title">Improve Guest Satisfaction</h4>
+                    <p class="benefit-text">Instant responses and 24/7 availability enhance the guest experience significantly</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4 class="benefit-title">Multilingual Support</h4>
+                    <p class="benefit-text">Communicate with international guests in their preferred language automatically</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4 class="benefit-title">Cost Effective</h4>
+                    <p class="benefit-text">Lower operational costs compared to hiring additional customer service staff</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4 class="benefit-title">Easy Integration</h4>
+                    <p class="benefit-text">Quick setup with no technical expertise required. Works with your existing systems</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">1️⃣</div>
+                    <h3 class="feature-title">Guest Interaction</h3>
+                    <p class="feature-description">Guests start a conversation on your website, social media, or messaging platforms. The AI understands their needs instantly.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">2️⃣</div>
+                    <h3 class="feature-title">Intelligent Responses</h3>
+                    <p class="feature-description">Our AI provides accurate information about rooms, amenities, pricing, and availability based on your hotel's data.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">3️⃣</div>
+                    <h3 class="feature-title">Seamless Booking</h3>
+                    <p class="feature-description">When ready to book, guests are guided through a smooth reservation process directly within the chat interface.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <h2 class="cta-title">Ready to Transform Your Guest Experience?</h2>
+            <p class="cta-text">Join 30+ hotels already using our AI chatbot to increase bookings and improve guest satisfaction</p>
+            <div class="hero-buttons">
+                <a href="demo.html" class="btn btn-white">Start Your Free Trial</a>
+                <a href="chatbot.html" class="btn btn-outline" style="border-color: white; color: white;">Schedule Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Integration -->
+    <div id="chatbot-wrapper">
+        <script src='https://v2-bot.pages.dev/bot.js' data-theme="corporate" data-bot='website' onerror="console.error('Failed to load chatbot script')"></script>
+    </div>
+
+</body>
+</html> 
